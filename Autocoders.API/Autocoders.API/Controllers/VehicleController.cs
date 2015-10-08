@@ -11,10 +11,16 @@ namespace Autocoders.API.Controllers
     [RoutePrefix("api/vehicle")]
     public class VehicleController : ApiController
     {
-         [GET("show")]
+         [GET("")]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
+
+         [POST("")]
+         public HttpResponseMessage Post()
+         {
+             return new HttpResponseMessage(HttpStatusCode.OK);
+         }
     }
 }
