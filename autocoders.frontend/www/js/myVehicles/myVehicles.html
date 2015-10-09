@@ -1,0 +1,13 @@
+<ion-view view-title="My Vehicles">
+    <ion-nav-buttons side="right">
+        <button class="right button button-icon icon ion-plus" ng-click="go('/app/addEditVehicle')"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+                {{playlist.title}}
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>
