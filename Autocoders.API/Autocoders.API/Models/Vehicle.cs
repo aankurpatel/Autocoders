@@ -7,8 +7,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Autocoders.API.Models
 {
     public class Vehicle
-    {
-        [BsonId]
+    {        
         public string Id { get; set; }
 
         public string Year { get; set; }
