@@ -1,6 +1,13 @@
 <ion-view view-title="Settings">
     <ion-content>
-       <ion-toggle ng-model="pushNotification.checked"
+        <span class="item item-input">
+            <span class="input-label">Account Key</span>
+            <input type="text" ng-model="user.accountKey" />
+            <button ng-click="getNewAccountKey()" ng-init="count=0">
+                New
+            </button>
+        </span>
+        <ion-toggle ng-model="pushNotification.checked"
                     ng-change="pushNotificationChange()">
             Push Notifications
         </ion-toggle>

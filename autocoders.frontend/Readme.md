@@ -12,4 +12,6 @@ npm install cordova -g
 
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
 
+ionic serve  (to open in browser)  Use Chrome Canary
+
 ionic run android   (to install on phone)

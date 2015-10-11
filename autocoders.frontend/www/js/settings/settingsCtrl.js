@@ -1,5 +1,6 @@
 ﻿angular.module('starter')
-    .controller('settingsCtrl', function ($scope, $rootScope, $cordovaPush, $cordovaToast, $cordovaDialogs, $cordovaMedia, $ionicPlatform, $http) {
+    .controller('settingsCtrl', function($scope, $rootScope, $cordovaPush, $cordovaToast, $cordovaDialogs, $cordovaMedia, $ionicPlatform, $http) {
+        
         var androidConfig = {
             "senderID": "api-project-405931835723"
         };
@@ -16,6 +17,24 @@
         };
 
         $scope.pushNotification = { checked: true };
+
+        $scope.getNewAccountKey = function () {
+            $scope.user.accountKey = makeid();
+        };
+
+        function makeid() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for (var i = 0; i < 5; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            window.localStorage['accountKey'] = text;
+
+            return text;
+        }
+
+        $scope.user = { accountKey: window.localStorage['accountKey'] || makeid() };
 
         
         function register() {
