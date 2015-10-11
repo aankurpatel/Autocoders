@@ -1,5 +1,5 @@
 ﻿angular.module('starter')
-    .controller('settingsCtrl', function($scope, $rootScope, $cordovaPush, $cordovaToast, $cordovaDialogs, $cordovaMedia, $ionicPlatform, $http) {
+    .controller('settingsCtrl', function ($scope, $rootScope, $cordovaPush, pushNotificationProxy) {
         
         var androidConfig = {
             "senderID": "api-project-405931835723"
@@ -35,7 +35,6 @@
         }
 
         $scope.user = { accountKey: window.localStorage['accountKey'] || makeid() };
-
         
         function register() {
             document.addEventListener("deviceready", function() {
@@ -53,6 +52,7 @@
                 case 'registered':
                     if (notification.regid.length > 0) {
                         alert('registration ID = ' + notification.regid);
+                        pushNotificationProxy.subscribe({ token: notification.regid, accountKey: androidConfig.senderID });
                     }
                     break;
 
