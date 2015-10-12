@@ -6,6 +6,8 @@ Install Java JDK (http://www.oracle.com/technetwork/java/javase/downloads/index.
 Install ant (http://ant.apache.org/)
 Install Android SDK (http://developer.android.com/sdk/index.html)
 
+Open SDK Manager.exe, and update/install android 22 and 23.
+
 # Run following commends to make it work
 npm install ionic -g
 npm install cordova -g
