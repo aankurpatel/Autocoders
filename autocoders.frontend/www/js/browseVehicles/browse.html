@@ -1,8 +1,9 @@
 <ion-view view-title="Browse Vehicles">
   <ion-content>
-    <h1>Browse Vehicles</h1>
-    <div>
-
+    <div ng-repeat="vehicle in vehicles">
+        <span>
+            <img ng-src="data:image/JPEG;base64,{{vehicle.image}}">
+        </span>
     </div>
   </ion-content>
 </ion-view>
