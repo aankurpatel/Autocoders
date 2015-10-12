@@ -1,6 +1,6 @@
 ﻿angular.module('starter')
 
-    .controller('addEditVehicleCtrl', function ($scope, $location, $cordovaBarcodeScanner, vehicleApiProxy) {
+    .controller('addEditVehicleCtrl', function ($scope, $state, $cordovaBarcodeScanner, vehicleApiProxy) {
 
         $scope.playlists = [
             { title: 'Honda Civic', id: 1 },
@@ -38,13 +38,13 @@
 
         $scope.saveVehicle = function() {
             vehicleApiProxy.saveVehicle($scope.vehicle)
-            .then(function() {
-                    go('/app/myVehicles');
+                .then(function() {
+                    go('app.myVehicles');
                 });
         };
 
         var go = function (path) {
-            $location.path(path);
+            $state.go(path, {}, { reload: true });
         };
 
     });
