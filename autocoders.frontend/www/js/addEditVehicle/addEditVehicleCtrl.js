@@ -1,6 +1,6 @@
 ﻿var app = angular.module('starter');
 
-app.controller('addEditVehicleCtrl', function($scope, $location, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService) {
+app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService) {
     $scope.selectedMake = '';
     $scope.selectedModel = '';
     $scope.makes = {};
