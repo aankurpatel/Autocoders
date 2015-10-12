@@ -13,7 +13,15 @@
         ];
         $scope.vehicle = {
 
+<<<<<<< Updated upstream
           
+=======
+            vin: '',
+            vehicleStyle:'',
+            year: '',
+            make: '',
+            model: '',
+>>>>>>> Stashed changes
             vin: 'test vin',
             make: 'Honda',
             model: 'Civic'
