@@ -1,7 +1,45 @@
-<ion-view view-title="Vehicle Detail" hide-nav-bar=false >
-  <ion-content>
-    <div>
+<ion-view view-title="Vehicle Detail">
+    <ion-content>
 
-    </div>
-  </ion-content>
+        <div class="list list-inset">
+            <label class="item item-input">
+                <span class="input-label">VIN</span>
+                <span class="positive">{{vehicle.vin}}</span>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Type</span>
+                <span class="positive">{{vehicle.type}}</span>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Year</span>
+                <span class="positive">{{vehicle.year}}</span>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Make</span>
+                <span class="positive">{{vehicle.make}}</span>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Model</span>
+                <span class="positive">{{vehicle.model}}</span>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Trim</span>
+                <span class="positive">{{vehicle.trim}}</span>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Exterior Color</span>
+                <span class="positive">{{vehicle.extColor}}</span>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Odometer</span>
+                <span class="positive">{{vehicle.odo | number}} miles</span>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Price</span>
+                <span class="positive">{{vehicle.featPrice.value}} {{vehicle.featPrice.currencyCode}}</span>
+            </label>
+
+        </div>
+
+    </ion-content>
 </ion-view>
