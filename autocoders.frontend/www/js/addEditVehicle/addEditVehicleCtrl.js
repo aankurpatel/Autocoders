@@ -9,16 +9,8 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
     $scope.selectedStyleId = '';
     $scope.zipcode = '';
 
-    $scope.vehicle = {
-        vehicleStyle: '',
-        year: '',
-        make: $scope.selectedMake,
-        model: $scope.selectedModel,
-        vin: 'vin',
-        zipcode: '',
-        tco: 0,
-        odometer: 0
-    };
+    $scope.vehicle = {};
+
     getAllMakes();
 
     function getAllMakes() {
@@ -31,8 +23,8 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
             });
     }
 
-    $scope.getModelByMake = function(selectedMake) {
-        edmundsService.getAllModels(selectedMake.name)
+    $scope.getModelByMake = function() {
+        edmundsService.getAllModels($scope.vehicle.make.name)
             .success(function(data) {
                 //alert(data);
                 $scope.models = data.models;
@@ -44,7 +36,7 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
 
     $scope.getStyleByMakeModelYear = function(selectedMake, selectedModel, selectedYear) {
         //alert(selectedYear);
-        edmundsService.getAllStyles(selectedMake.name, selectedModel.name, selectedYear)
+        edmundsService.getAllStyles($scope.vehicle.make.name, selectedModel.name, selectedYear)
             .success(function(data) {
                 // alert(data.styles);
                 $scope.styles = data.styles;
