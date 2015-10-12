@@ -12,11 +12,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
                 cordova.plugins.Keyboard.disableScroll(true);
-
+                console.log("test passes");
             }
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
+              console.log("test fails");
             }
         });
     })
@@ -40,7 +41,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                 url: '/browse',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/browse.html'
+                        templateUrl: 'js/browseVehicles/browse.html',
+                        controller:"browseVehiclesCtrl"
                     }
                 }
             })
@@ -90,5 +92,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                 }
             });
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/app/myVehicles');
+        $urlRouterProvider.otherwise('/app/browse');
     });
