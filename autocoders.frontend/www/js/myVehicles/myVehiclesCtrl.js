@@ -5,9 +5,13 @@
             $location.path(path);
         };
 
-        vehicleApiProxy.getVehicles().then(function(response) {
+        vehicleApiProxy.getMyVehicles().then(function (response) {
             console.log(response)
             $scope.vehicles = response.data;
+        },function(error) {
+            console.log('error getting vehicles');
+
+            console.log(error);
         });
 
         
