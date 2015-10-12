@@ -21,7 +21,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
             }
         });
     })
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+        $httpProvider.defaults.headers.common['X-ZUMO-APPLICATION'] = 'nJonQAsXZEMEStHVlzCpWpmuckaJnd90'; // add the application key
+        $httpProvider.defaults.headers.common['Content-Type'] = 'Application/json';
+
         $stateProvider
             .state('app', {
                 url: '/app',
