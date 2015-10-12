@@ -1,23 +1,28 @@
 ﻿angular.module('starter')
-    .controller('browseVehiclesCtrl', function($scope,$cordovaGeolocation,$http) {
+    .controller('browseVehiclesCtrl', ['locationService','$scope','$cordovaGeolocation','$http','$q',function(locationService,$scope,$cordovaGeolocation,$http,$q) {
 
-    var posOptions = {timeout: 10000, enableHighAccuracy: false};
-    $cordovaGeolocation
-      .getCurrentPosition(posOptions)
-      .then(function (position) {
-        $scope.lat  = position.coords.latitude
-        $scope.long = position.coords.longitude
-      }, function(err) {
-        console.log(err);
-      });
+      var defaultRange = "25";
+      var defer = $q.defer();
+      locationService.getCurrentLocation().then(function(results){getClosestVehicles(results)});
 
+
+    function getClosestVehicles(results){
+      console.log('testing');
       $http({
-        method: 'GET',
-        url: '/someUrl',
-        params: 'limit=10, sort_by=created:desc',
-      }).then(function successCallback(response) {
-      $scope.vehicles = response.data;
-      }, function errorCallback(response) {
-       console.log(response);
-      });
-    });
+          method: 'GET',
+          url: 'https://autocoders.azure-mobile.net/api/getclosestvehicles',
+          params: {'latitude':results.lat.toString(), 'longitude':results.long.toString(),'range':+defaultRange},
+          headers: {
+            'Content-Type': 'application/json',
+            'X-ZUMO-APPLICATION': 'nJonQAsXZEMEStHVlzCpWpmuckaJnd90',
+            'Access-Control-Allow-Origin':'*'
+          }
+        }).then(function successCallback(response) {
+          $scope.vehicles = response.data;
+          defer.resolve(response.data);
+        }, function errorCallback(response) {
+          console.log(response);
+        });
+      }
+      return defer.promise;
+    }]);
