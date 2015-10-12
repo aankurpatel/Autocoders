@@ -2,37 +2,41 @@
     <ion-content>
 
         <div class="list list-inset">
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">VIN: {{vehicle.vin}}</span>
-                <span>{{vehicle.vin}}</span>
+            <label class="item item-input">
+                <span class="input-label">VIN</span>
+                <span class="positive">{{vehicle.vin}}</span>
             </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Year: {{vehicle.year}}</span>
-                <span>{{vehicle.year}}</span>
+            <label class="item item-input">
+                <span class="input-label">Type</span>
+                <span class="positive">{{vehicle.type}}</span>
             </label>
-            <label class="item item-input item-stacked-label">
+            <label class="item item-input">
+                <span class="input-label">Year</span>
+                <span class="positive">{{vehicle.year}}</span>
+            </label>
+            <label class="item item-input">
                 <span class="input-label">Make</span>
-                <span>{{vehicle.make}}</span>
+                <span class="positive">{{vehicle.make}}</span>
             </label>
-            <label class="item item-input item-stacked-label">
+            <label class="item item-input">
                 <span class="input-label">Model</span>
-                <span>{{vehicle.model}}</span>
+                <span class="positive">{{vehicle.model}}</span>
             </label>
-            <label class="item item-input item-stacked-label">
+            <label class="item item-input">
                 <span class="input-label">Trim</span>
-                <span>{{vehicle.trim}}</span>
+                <span class="positive">{{vehicle.trim}}</span>
             </label>
-            <label class="item item-input item-stacked-label">
+            <label class="item item-input">
                 <span class="input-label">Exterior Color</span>
-                <span>{{vehicle.extColor}}</span>
+                <span class="positive">{{vehicle.extColor}}</span>
             </label>
-            <label class="item item-input item-stacked-label">
+            <label class="item item-input">
                 <span class="input-label">Odometer</span>
-                <span>{{vehicle.odo}}</span>
+                <span class="positive">{{vehicle.odo | number}} miles</span>
             </label>
-            <label class="item item-input item-stacked-label">
+            <label class="item item-input">
                 <span class="input-label">Price</span>
-                <span>{{vehicle.featPrice.value}} {{vehicle.featPrice.currencyCode}}</span>
+                <span class="positive">{{vehicle.featPrice.value}} {{vehicle.featPrice.currencyCode}}</span>
             </label>
 
         </div>
