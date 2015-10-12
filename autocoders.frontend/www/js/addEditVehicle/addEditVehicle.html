@@ -9,32 +9,34 @@
             <button class="button" ng-click="startScan();">
                 ||||
             </button>
-            <input type="text" ng-model="vehicle.vin">
-            <span class="input-label">Year</span>
-            <input type="text" ng-model="vehicle.year">
-            <span class="input-label">Make</span>
-            <input type="text" ng-model="vehicle.make">
-            <span class="input-label">Model</span>
-            <input type="text" ng-model="vehicle.model">
-            <span class="input-label">True Car Value</span>
-            <input type="text" ng-model="vehicle.TCO">
+            <input type="text" ng-model="vehicle.vin">          
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Make: </span>
+            <select name="ddlMakes" id="ddlMakes" ng-model="selectedMake" ng-options="make as make.name for make in makes " ng-change="getModelByMake(selectedMake)"></select>
+        </label>
+        
+        <label class="item item-input">
+            <span class="input-label">Model: </span>
+            <select name="ddlModels" id="ddlModels" ng-model="selectedModel" ng-options="model as model.name for model in models "></select>
+        </label>
+        
+        <label class="item item-input">
+            <span class="input-label">Year:</span>
+            <select name="ddlYears" id="ddlYears" ng-model="selectedYear" ng-options="n for n in [] | yearRange:1990:2017" ng-change="getStyleByMakeModelYear(selectedMake, selectedModel, selectedYear)"></select>
+        </label>
+        
+        <label class="item item-input">
+            <span class="input-label">Style: </span>
+            <select name="ddlMakes" id="ddlStyles" ng-model="selectedStyle" ng-options="style as style.name for style in styles " ></select>
         </label>
 
         <label class="item item-input">
-            <span class="input-label">Make</span>
-            <input type="text" ng-model="vehicle.make">
+            <button ng-click="saveVehicle()">
+                Save
+            </button>
         </label>
-        <label class="item item-input">
-            <span class="input-label">Model</span>
-            <input type="text" ng-model="vehicle.model">
-        </label>
-        <label class="item item-input">
-            <span class="input-label">Year</span>
-            <input type="text" ng-model="vehicle.year">
-        </label>
-
-        <button ng-click="saveVehicle()">
-            Save
-        </button>
+      
+     
     </ion-content>
 </ion-view>
