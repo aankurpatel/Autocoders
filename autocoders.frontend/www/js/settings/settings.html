@@ -3,7 +3,7 @@
         <span class="item item-input">
             <span class="input-label">Account Key</span>
             <input type="text" ng-model="user.accountKey" />
-            <button ng-click="getNewAccountKey()" ng-init="count=0">
+            <button ng-click="getNewAccountKey()">
                 New
             </button>
         </span>
@@ -11,5 +11,9 @@
                     ng-change="pushNotificationChange()">
             Push Notifications
         </ion-toggle>
+
+        <button ng-click="sendNotification()">
+            Send Test Notification
+        </button>
     </ion-content>
 </ion-view>

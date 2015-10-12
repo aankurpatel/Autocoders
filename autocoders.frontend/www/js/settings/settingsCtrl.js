@@ -16,7 +16,7 @@
 
         };
 
-        $scope.pushNotification = { checked: true };
+        $scope.pushNotification = { checked: !!window.localStorage['token'] };
 
         $scope.getNewAccountKey = function () {
             $scope.user.accountKey = makeid();
@@ -48,10 +48,12 @@
         };
         
         $rootScope.$on('$cordovaPush:notificationReceived', function (event, notification) {
+            alert('event wired')
             switch (notification.event) {
                 case 'registered':
                     if (notification.regid.length > 0) {
                         alert('registration ID = ' + notification.regid);
+                        window.localStorage['token'] = notification.regid;
                         pushNotificationProxy.subscribe({ token: notification.regid, accountKey: androidConfig.senderID });
                     }
                     break;
@@ -86,5 +88,9 @@
            
         };
 
+        $scope.sendNotification = function () {
+            console.log('sending test notification');
 
+            pushNotificationProxy.sendNotification('test notification from GP', window.localStorage['token']);
+        };
     });
