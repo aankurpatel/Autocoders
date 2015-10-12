@@ -16,6 +16,7 @@
         };
 
         self.saveVehicle = function (vehicle) {
+            alert('saving vehicle')
             var deffered = $q.defer();
             vehicle.accountKey = window.localStorage['accountKey'];
 
@@ -23,10 +24,11 @@
             console.log(vehicle);
 
             $http.post(url, vehicle).then(function(response) {
-                console.log(response);
+                alert(response);
                 deffered.resolve(response);
-            }, function(error) {
-                console.log('error', error);
+            }, function (error) {
+               
+                alert('error', error);
                 deffered.reject(error);
             });
 

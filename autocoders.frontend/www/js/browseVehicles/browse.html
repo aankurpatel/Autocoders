@@ -3,10 +3,10 @@
       <div class="list">
 
           <a class="item item-thumbnail-left" href="#" ng-repeat="vehicle in vehicles">
-              <img ng-src="data:image/JPEG;base64,{{vehicle.image}}">
-              <h2>{{year}} {{make}} {{model}}</h2>
-              <p>{{vin}}</p>
-              <p>{{status}}</p>
+              <img ng-src="data:image/JPEG;base64,{{vehicle.imageUrl[0]}}">
+              <h2>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</h2>
+              <p>{{vehicle.vin}}</p>
+              <p>{{vehicle.type}}</p>
           </a>
 
       </div>

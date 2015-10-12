@@ -1,4 +1,3 @@
-'use strict'
 
 var app = angular.module('starter');
 
@@ -8,20 +7,19 @@ app.factory('edmundsService',['$http','$log',function($http, $log)
   		 var urlBase = 'https://api.edmunds.com/api/vehicle/v2/';
 		 var apiKey = "5mb6ytkzebykvr6978nwt37q";
 
-		edmundsFactory.getAllMakes = function(){
+    edmundsFactory.getAllMakes = function() {
+        return $http.get(urlBase + 'makes?fmt=json&api_key=' + apiKey);
+    };
 
-		    return $http.get(urlBase + 'makes?fmt=json&api_key=' + apiKey)
-		  };
+    edmundsFactory.getAllModels = function(make) {
+        return $http.get(urlBase + make + '/models?fmt=json&api_key=' + apiKey);
+    };
 
-		  edmundsFactory.getAllModels = function(make){
-		    return $http.get(urlBase + make + '/models?fmt=json&api_key=' + apiKey)
-		  };
+    edmundsFactory.decodeVin = function(vin) {
+        //var deferred = $q.defer();
+        return $http.get(urlBase + 'vins/' + vin + '?fmt=json&api_key=' + apiKey);
 
-		  edmundsFactory.decodeVin =function(vin) {
-		            //var deferred = $q.defer();
-		           return $http.get(urlBase + 'vins/' + vin + '?fmt=json&api_key=' + apiKey)
-
-		               /*.success(function (data) {
+        /*.success(function (data) {
 		                    deferred.resolve(data);
 		                }).
 		                error(function (data, status) {
@@ -30,7 +28,11 @@ app.factory('edmundsService',['$http','$log',function($http, $log)
 		                });
 
 		            return deferred.promise;*/
-		        };
+    };
 
-		  return edmundsFactory;
+    edmundsFactory.getAllStyles = function(make, model, year) {
+        return $http.get(urlBase + make + '/' + model + '/' + year + '/styles?fmt=json&api_key=' + apiKey);
+    };
+
+    return edmundsFactory;
 }]);
