@@ -1,6 +1,6 @@
 ﻿angular.module('starter')
-    .controller('browseVehiclesCtrl', ['locationService','getClosestVehicleApiProxy','$scope','_','$q'
-    ,function(locationService,getClosestVehicleApiProxy,$scope,_,$q) {
+    .controller('browseVehiclesCtrl', ['locationService','getClosestVehicleApiProxy','vehicle','$scope','_','$q'
+    ,function(locationService,getClosestVehicleApiProxy,vehicle,$scope,_,$q) {
 
       var defer = $q.defer();
 
@@ -15,4 +15,9 @@
               }
             })
           });
+
+      $scope.setselectedVehicle= function(selVehicle)
+      {
+        vehicle.selectedVehicle(selVehicle);
+      }
     }]);

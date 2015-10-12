@@ -2,7 +2,7 @@
   <ion-content>
       <div class="list">
 
-          <a class="item item-thumbnail-left" href="#" ng-repeat="vehicle in vehicles">
+          <a class="item item-thumbnail-left" href="#" ng-repeat="vehicle in vehicles" ng-click="setselectedVehicle(vehicle)">
               <img ng-src="data:image/JPEG;base64,{{vehicle.imageUrl[0]}}">
               <h2>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</h2>
               <p>{{vehicle.vin}}</p>
