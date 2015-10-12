@@ -8,8 +8,15 @@
             return $http.get('https://autocoders.azure-mobile.net/tables/vehicles');
         };
 
+        self.getMyVehicles = function () {
+            console.log('getMyVehicles');
+
+            return $http.get("https://autocoders.azure-mobile.net/tables/vehicles?filter=(make eq 'Honda')");
+        };
+
         self.saveVehicle = function (vehicle) {
             var deffered = $q.defer();
+            vehicle.accountKey = window.localStorage['accountKey'];
 
             $log.log('saving vehicle');
 
