@@ -1,5 +1,7 @@
 ﻿angular.module('starter')
-    .controller('addEditVehicleCtrl', function($scope, $cordovaBarcodeScanner) {
+
+    .controller('addEditVehicleCtrl', function ($scope, $location, $cordovaBarcodeScanner, vehicleApiProxy) {
+
         $scope.playlists = [
             { title: 'Honda Civic', id: 1 },
             { title: 'Toyota Corolla', id: 2 },
@@ -10,7 +12,15 @@
             { title: 'Cehvrolet Corvette', id: 7 }
         ];
         $scope.vehicle = {
-            vin: '123'
+
+            vin: '',
+            vehicleStyle:'',
+            year: '',
+            make: '',
+            model: ''
+            vin: 'test vin',
+            make: 'Honda',
+            model: 'Civic'
         };
 
         $scope.startScan = function() {
@@ -26,4 +36,16 @@
                     }
                 );
         };
+
+        $scope.saveVehicle = function() {
+            vehicleApiProxy.saveVehicle($scope.vehicle)
+            .then(function() {
+                    go('/app/myVehicles');
+                });
+        };
+
+        var go = function (path) {
+            $location.path(path);
+        };
+
     });

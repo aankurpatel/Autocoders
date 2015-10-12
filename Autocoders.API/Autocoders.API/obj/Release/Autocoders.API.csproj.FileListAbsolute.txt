@@ -40,3 +40,14 @@ C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\AttributeRouting.Web.x
 C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\AttributeRouting.Web.Http.xml
 C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\AttributeRouting.Web.Http.WebHost.xml
 C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\WebActivator.pdb
+C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\Microsoft.Threading.Tasks.dll
+C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\Microsoft.Threading.Tasks.Extensions.dll
+C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\MongoDB.Bson.dll
+C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\MongoDB.Driver.Core.dll
+C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\MongoDB.Driver.dll
+C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\Microsoft.Threading.Tasks.xml
+C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\Microsoft.Threading.Tasks.Extensions.xml
+C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\MongoDB.Bson.xml
+C:\Hackathon\Autocoders\Autocoders.API\Autocoders.API\bin\MongoDB.Driver.xml

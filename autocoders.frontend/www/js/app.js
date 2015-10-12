@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
     .run(function($ionicPlatform) {
-        $ionicPlatform.ready(function() {
+        $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -21,7 +21,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
             }
         });
     })
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+        $httpProvider.defaults.headers.common['X-ZUMO-APPLICATION'] = 'nJonQAsXZEMEStHVlzCpWpmuckaJnd90'; // add the application key
+        $httpProvider.defaults.headers.common['Content-Type'] = 'Application/json';
+        $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+
         $stateProvider
             .state('app', {
                 url: '/app',
@@ -79,6 +83,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                     'menuContent': {
                         templateUrl: 'js/addEditVehicle/addEditVehicle.html',
                         controller: 'addEditVehicleCtrl'
+                    }
+                }
+            })
+            .state('app.settings', {
+                url: '/settings',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'js/settings/settings.html',
+                        controller: 'settingsCtrl'
                     }
                 }
             });
