@@ -6,13 +6,18 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $cordovaBarcode
     $scope.makes = {};
     $scope.models = {};
     $scope.styles = {};
+    $scope.selectedStyleId = '';
+    $scope.zipcode = '';
 
-        $scope.vehicle = {
+    $scope.vehicle = {
         vehicleStyle: '',
-            year: '',
+        year: '',
         make: $scope.selectedMake,
         model: $scope.selectedModel,
-        vin: 'vin'
+        vin: 'vin',
+        zipcode: '',
+        tco: 0,
+        odometer: 0
     };
     getAllMakes();
 
@@ -37,51 +42,64 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $cordovaBarcode
             });
     };
 
-    $scope.getStyleByMakeModelYear = function (selectedMake, selectedModel, selectedYear) {
+    $scope.getStyleByMakeModelYear = function(selectedMake, selectedModel, selectedYear) {
         //alert(selectedYear);
         edmundsService.getAllStyles(selectedMake.name, selectedModel.name, selectedYear)
-            .success(function (data) {
-               // alert(data.styles);
+            .success(function(data) {
+                // alert(data.styles);
                 $scope.styles = data.styles;
             })
-            .error(function (error) {
+            .error(function(error) {
                 $scope.status = 'Unable to load Styles data: ' + error.message;
             });
-        };
+    };
 
-        $scope.startScan = function() {
-            $cordovaBarcodeScanner.scan()
-                .then(function(result) {
-                        var s = "Result: " + result.text + "<br/>" +
-                            "Format: " + result.format + "<br/>" +
-                            "Cancelled: " + result.cancelled;
-                        $scope.vehicle.vin = result.text;
-                    },
-                    function(error) {
-                        alert("Scanning failed: " + error);
-                    }
-                );
-        };
+    $scope.getTrueCost = function() {
+        //alert($scope.vehicle.vehicleStyle);
+        //alert($scope.vehicle.zipcode);
+        edmundsService.getTCO($scope.vehicle.vehicleStyle, $scope.vehicle.zipcode)
+           .success(function (data) {
+                //alert(data.value);
+               $scope.vehicle.tco = data.value;
+           })
+           .error(function (error) {
+               $scope.status = 'Unable to load Styles data: ' + error.message;
+           });
+    };
 
-        $scope.saveVehicle = function() {
-            vehicleApiProxy.saveVehicle($scope.vehicle)
+    $scope.startScan = function() {
+        $cordovaBarcodeScanner.scan()
+            .then(function(result) {
+                var s = "Result: " + result.text + "<br/>" +
+                    "Format: " + result.format + "<br/>" +
+                    "Cancelled: " + result.cancelled;
+                $scope.vehicle.vin = result.text;
+            },
+                function(error) {
+                    alert("Scanning failed: " + error);
+                }
+            );
+    };
+
+    $scope.saveVehicle = function() {
+        vehicleApiProxy.saveVehicle($scope.vehicle)
             .then(function() {
-                    go('app.myVehicles');
-                });
-        };
+                go('app.myVehicles');
+            });
+    };
 
-        var go = function (path) {
-            $state.go(path, {}, { reload: true });
-        };
+    var go = function(path) {
+        $state.go(path, {}, { reload: true });
+    };
 
 });
 
-app.filter('yearRange', function () {
-    return function (input, min, max) {
+app.filter('yearRange', function() {
+    return function(input, min, max) {
         min = parseInt(min); //Make string input int
         max = parseInt(max);
         for (var i = min; i < max; i++)
             input.push(i);
         return input;
     };
-    });
+});
