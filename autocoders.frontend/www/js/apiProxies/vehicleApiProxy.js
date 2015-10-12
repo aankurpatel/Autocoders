@@ -6,7 +6,9 @@
             return $http.get('https://autocoders.azure-mobile.net/tables/vehicles');
         };
 
-        self.saveVehicle = function() {
+        self.saveVehicle = function(vehicle) {
             $log.log('saving vehicle');
+
+
         };
     });
