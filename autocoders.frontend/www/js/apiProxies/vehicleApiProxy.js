@@ -1,5 +1,5 @@
 ﻿angular.module('starter')
-    .service('vehicleApiProxy', function ($log, $http, $q) {
+    .service('vehicleApiProxy', function ($log, $http, $q, logger) {
         var self = this,
             url = "https://autocoders.azure-mobile.net/tables/vehicles";
 
@@ -11,12 +11,12 @@
         self.getMyVehicles = function () {
             console.log('getMyVehicles');
             var url = "https://autocoders.azure-mobile.net/tables/vehicles?$filter=(accountKey eq '" + window.localStorage['accountKey'] + "')";
-            console.log(url);
+            logger.log(url);
             return $http.get(url);
         };
 
         self.saveVehicle = function (vehicle) {
-            alert('saving vehicle')
+            logger.log('saving vehicle')
             var deffered = $q.defer();
             vehicle.accountKey = window.localStorage['accountKey'];
 
@@ -24,7 +24,7 @@
             console.log(vehicle);
 
             $http.post(url, vehicle).then(function(response) {
-                alert(response);
+                logger.log(response);
                 deffered.resolve(response);
             }, function (error) {
                
