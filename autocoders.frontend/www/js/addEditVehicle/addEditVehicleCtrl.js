@@ -12,16 +12,11 @@
             { title: 'Cehvrolet Corvette', id: 7 }
         ];
         $scope.vehicle = {
-
-<<<<<<< Updated upstream
-          
-=======
             vin: '',
             vehicleStyle:'',
             year: '',
             make: '',
             model: '',
->>>>>>> Stashed changes
             vin: 'test vin',
             make: 'Honda',
             model: 'Civic'
