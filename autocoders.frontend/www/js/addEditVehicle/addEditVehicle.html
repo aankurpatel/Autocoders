@@ -21,7 +21,7 @@
         </label>
         <label class="item item-input">
             <span class="input-label">Make: </span>
-            <select name="ddlMakes" id="ddlMakes" ng-model="selectedMake" ng-options="make as make.name for make in makes " ng-change="getModelByMake(selectedMake)"></select>
+            <select name="ddlMakes" id="ddlMakes" ng-model="vehicle.make" ng-options="make as make.name for make in makes " ng-change="getModelByMake()"></select>
         </label>
         
         <label class="item item-input">
