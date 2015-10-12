@@ -1,5 +1,8 @@
 ﻿angular.module('starter')
     .controller('addEditVehicleCtrl', function($scope, $cordovaBarcodeScanner) {
+        
+       
+
         $scope.playlists = [
             { title: 'Honda Civic', id: 1 },
             { title: 'Toyota Corolla', id: 2 },
@@ -10,7 +13,11 @@
             { title: 'Cehvrolet Corvette', id: 7 }
         ];
         $scope.vehicle = {
-            vin: '123'
+            vin: '',
+            vehicleStyle:'',
+            year: '',
+            make: '',
+            model: ''
         };
 
         $scope.startScan = function() {
