@@ -6,10 +6,10 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $cordovaBarcode
     $scope.makes = {};
     $scope.models = {};
     $scope.styles = {};
-    
-    $scope.vehicle = {
+
+        $scope.vehicle = {
         vehicleStyle: '',
-        year: '',
+            year: '',
         make: $scope.selectedMake,
         model: $scope.selectedModel,
         vin: 'vin'
@@ -47,32 +47,32 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $cordovaBarcode
             .error(function (error) {
                 $scope.status = 'Unable to load Styles data: ' + error.message;
             });
-    };
+        };
 
-    $scope.startScan = function() {
-        $cordovaBarcodeScanner.scan()
-            .then(function(result) {
-                var s = "Result: " + result.text + "<br/>" +
-                    "Format: " + result.format + "<br/>" +
-                    "Cancelled: " + result.cancelled;
-                $scope.vehicle.vin = result.text;
-            },
-                function(error) {
-                    alert("Scanning failed: " + error);
-                }
-            );
-    };
+        $scope.startScan = function() {
+            $cordovaBarcodeScanner.scan()
+                .then(function(result) {
+                        var s = "Result: " + result.text + "<br/>" +
+                            "Format: " + result.format + "<br/>" +
+                            "Cancelled: " + result.cancelled;
+                        $scope.vehicle.vin = result.text;
+                    },
+                    function(error) {
+                        alert("Scanning failed: " + error);
+                    }
+                );
+        };
 
-    $scope.saveVehicle = function() {
-        vehicleApiProxy.saveVehicle($scope.vehicle)
+        $scope.saveVehicle = function() {
+            vehicleApiProxy.saveVehicle($scope.vehicle)
             .then(function() {
-                go('/app/myVehicles');
-            });
-    };
+                    go('app.myVehicles');
+                });
+        };
 
-    var go = function(path) {
-        $location.path(path);
-    };
+        var go = function (path) {
+            $state.go(path, {}, { reload: true });
+        };
 
 });
 
@@ -84,4 +84,4 @@ app.filter('yearRange', function () {
             input.push(i);
         return input;
     };
-});
+    });

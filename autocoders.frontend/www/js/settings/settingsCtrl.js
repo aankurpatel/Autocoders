@@ -15,6 +15,11 @@
             }
 
         };
+        $scope.accountKeyChange = function () {
+            console.log('accountKeyChange');
+
+            window.localStorage['accountKey'] = $scope.user.accountKey;
+        };
 
         $scope.pushNotification = { checked: !!window.localStorage['token'] };
 
