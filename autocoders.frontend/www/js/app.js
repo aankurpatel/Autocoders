@@ -62,6 +62,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'underscore', 'ngCord
                     }
                 }
             })
+            .state('app.vehicleDetail', {
+              url: '/vehicleDetail',
+              views: {
+                'menuContent': {
+                  templateUrl: 'js/vehicleDetail/vehicleDetail.html',
+                  controller: 'vehicleDetailCtrl'
+                }
+              }
+            })
             .state('app.settings', {
                 url: '/settings',
                 views: {
