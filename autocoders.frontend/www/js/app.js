@@ -50,6 +50,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                         controller: 'myVehiclesCtrl'
                     }
                 }
+            }, {
+                reload: true
             })
             .state('app.addEditVehicle', {
                 url: '/addEditVehicle',
