@@ -10,21 +10,25 @@
 
         self.getMyVehicles = function () {
             console.log('getMyVehicles');
-
-            return $http.get("https://autocoders.azure-mobile.net/tables/vehicles?filter=(make eq 'Honda')");
+            var url = "https://autocoders.azure-mobile.net/tables/vehicles?$filter=(accountKey eq '" + window.localStorage['accountKey'] + "')";
+            console.log(url);
+            return $http.get(url);
         };
 
         self.saveVehicle = function (vehicle) {
+            alert('saving vehicle')
             var deffered = $q.defer();
             vehicle.accountKey = window.localStorage['accountKey'];
 
             $log.log('saving vehicle');
+            console.log(vehicle);
 
             $http.post(url, vehicle).then(function(response) {
-                console.log(response);
+                alert(response);
                 deffered.resolve(response);
-            }, function(error) {
-                console.log('error', error);
+            }, function (error) {
+               
+                alert('error', error);
                 deffered.reject(error);
             });
 
