@@ -13,6 +13,7 @@ npm install ionic -g
 npm install cordova -g
 
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
+cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
 
 ionic serve  (to open in browser)  Use Chrome Canary
 

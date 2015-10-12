@@ -1,6 +1,6 @@
 ﻿var app = angular.module('starter');
 
-app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService) {
+app.controller('addEditVehicleCtrl', function ($scope, $location, $state, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService, $cordovaToast) {
     $scope.selectedMake = '';
     $scope.selectedModel = '';
     $scope.makes = {};
@@ -46,7 +46,11 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
             });
     };
 
-    $scope.getTrueCost = function() {
+    $scope.getTrueCost = function () {
+        if (!$scope.vehicle.vehicleStyle) {
+            $cordovaToast.show('Style must be selected for TCM', 'long', 'center');
+            return;
+        }
         //alert($scope.vehicle.vehicleStyle);
         //alert($scope.vehicle.zipcode);
         edmundsService.getTCO($scope.vehicle.vehicleStyle, $scope.vehicle.zipcode)
