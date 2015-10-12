@@ -12,8 +12,11 @@
             { title: 'Cehvrolet Corvette', id: 7 }
         ];
         $scope.vehicle = {
-
-          
+            vin: '',
+            vehicleStyle:'',
+            year: '',
+            make: '',
+            model: '',
             vin: 'test vin',
             make: 'Honda',
             model: 'Civic'
