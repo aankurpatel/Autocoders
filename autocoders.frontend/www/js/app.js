@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'underscore', 'ngCordova'])
     .run(function($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -62,6 +62,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                     }
                 }
             })
+            .state('app.vehicleDetail', {
+              url: '/vehicleDetail',
+              views: {
+                'menuContent': {
+                  templateUrl: 'js/vehicleDetail/vehicleDetail.html',
+                  controller: 'vehicleDetailCtrl'
+                }
+              }
+            })
             .state('app.settings', {
                 url: '/settings',
                 views: {
@@ -74,3 +83,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/browse');
     });
+
+var underscore = angular.module('underscore', []);
+underscore.factory('_', ['$window', function($window) {
+  return $window._; // assumes underscore has already been loaded on the page
+}]);

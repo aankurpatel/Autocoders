@@ -11,16 +11,23 @@
             </button>
             <input type="text" ng-model="vehicle.vin">          
         </label>
+        <label class="item">
+            <input type="radio" ng-model="type.name" value="pre-owned">
+            Pre-Owned
+        </label>
+        <label class="item">
+            <input type="radio" ng-model="type.name" value="new">
+            New
+        </label>
         <label class="item item-input">
             <span class="input-label">Make: </span>
-            <select name="ddlMakes" id="ddlMakes" ng-model="selectedMake" ng-options="make as make.name for make in makes " ng-change="getModelByMake(selectedMake)"></select>
+            <select name="ddlMakes" id="ddlMakes" ng-model="vehicle.make" ng-options="make as make.name for make in makes " ng-change="getModelByMake()"></select>
         </label>
         
         <label class="item item-input">
             <span class="input-label">Model: </span>
             <select name="ddlModels" id="ddlModels" ng-model="selectedModel" ng-options="model as model.name for model in models "></select>
         </label>
-        
         <label class="item item-input">
             <span class="input-label">Year:</span>
             <select name="ddlYears" id="ddlYears" ng-model="selectedYear" ng-options="n for n in [] | yearRange:1990:2017" ng-change="getStyleByMakeModelYear(selectedMake, selectedModel, selectedYear)"></select>
@@ -28,7 +35,26 @@
         
         <label class="item item-input">
             <span class="input-label">Style: </span>
-            <select name="ddlMakes" id="ddlStyles" ng-model="selectedStyle" ng-options="style as style.name for style in styles " ></select>
+            <select name="ddlStyles" id="ddlStyles" ng-model="vehicle.vehicleStyle" >                
+                <option ng-repeat="option in styles" value="{{option.id}}">{{option.name}}</option>
+            </select>
+        </label>
+        
+        <label class="item item-input">
+            <span class="input-label">ZipCode: </span>
+            <input type="text" ng-model="vehicle.zipcode"> 
+        </label>
+
+        <label class="item item-input">
+            <span class="input-label">Odometer: </span>
+            <input type="text" ng-model="vehicle.odometer">
+        </label>
+
+        <button class="button" ng-click="getTrueCost()">TCO</button>
+        
+        <label class="item item-input">
+            <span class="input-label">True cost to own: </span>
+            <input type="text" ng-model="vehicle.tco">
         </label>
 
         <label class="item item-input">
@@ -36,7 +62,5 @@
                 Save
             </button>
         </label>
-      
-     
     </ion-content>
 </ion-view>

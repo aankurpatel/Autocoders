@@ -18,9 +18,9 @@
         };
 
         this.log = function (message) {
-            var out = toString(message);
+            //var out = toString(message);
            
-            console.log(out);
+            console.log(message);
            // alert(out);
         };
 

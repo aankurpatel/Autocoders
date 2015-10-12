@@ -1,19 +1,16 @@
 ﻿var app = angular.module('starter');
 
-app.controller('addEditVehicleCtrl', function($scope, $location, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService) {
+app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService) {
     $scope.selectedMake = '';
     $scope.selectedModel = '';
     $scope.makes = {};
     $scope.models = {};
     $scope.styles = {};
+    $scope.selectedStyleId = '';
+    $scope.zipcode = '';
 
-        $scope.vehicle = {
-        vehicleStyle: '',
-            year: '',
-        make: $scope.selectedMake,
-        model: $scope.selectedModel,
-        vin: 'vin'
-    };
+    $scope.vehicle = {};
+
     getAllMakes();
 
     function getAllMakes() {
@@ -26,8 +23,8 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $cordovaBarcode
             });
     }
 
-    $scope.getModelByMake = function(selectedMake) {
-        edmundsService.getAllModels(selectedMake.name)
+    $scope.getModelByMake = function() {
+        edmundsService.getAllModels($scope.vehicle.make.name)
             .success(function(data) {
                 //alert(data);
                 $scope.models = data.models;
@@ -37,51 +34,64 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $cordovaBarcode
             });
     };
 
-    $scope.getStyleByMakeModelYear = function (selectedMake, selectedModel, selectedYear) {
+    $scope.getStyleByMakeModelYear = function(selectedMake, selectedModel, selectedYear) {
         //alert(selectedYear);
-        edmundsService.getAllStyles(selectedMake.name, selectedModel.name, selectedYear)
-            .success(function (data) {
-               // alert(data.styles);
+        edmundsService.getAllStyles($scope.vehicle.make.name, selectedModel.name, selectedYear)
+            .success(function(data) {
+                // alert(data.styles);
                 $scope.styles = data.styles;
             })
-            .error(function (error) {
+            .error(function(error) {
                 $scope.status = 'Unable to load Styles data: ' + error.message;
             });
-        };
+    };
 
-        $scope.startScan = function() {
-            $cordovaBarcodeScanner.scan()
-                .then(function(result) {
-                        var s = "Result: " + result.text + "<br/>" +
-                            "Format: " + result.format + "<br/>" +
-                            "Cancelled: " + result.cancelled;
-                        $scope.vehicle.vin = result.text;
-                    },
-                    function(error) {
-                        alert("Scanning failed: " + error);
-                    }
-                );
-        };
+    $scope.getTrueCost = function() {
+        //alert($scope.vehicle.vehicleStyle);
+        //alert($scope.vehicle.zipcode);
+        edmundsService.getTCO($scope.vehicle.vehicleStyle, $scope.vehicle.zipcode)
+           .success(function (data) {
+                //alert(data.value);
+               $scope.vehicle.tco = data.value;
+           })
+           .error(function (error) {
+               $scope.status = 'Unable to load Styles data: ' + error.message;
+           });
+    };
 
-        $scope.saveVehicle = function() {
-            vehicleApiProxy.saveVehicle($scope.vehicle)
+    $scope.startScan = function() {
+        $cordovaBarcodeScanner.scan()
+            .then(function(result) {
+                var s = "Result: " + result.text + "<br/>" +
+                    "Format: " + result.format + "<br/>" +
+                    "Cancelled: " + result.cancelled;
+                $scope.vehicle.vin = result.text;
+            },
+                function(error) {
+                    alert("Scanning failed: " + error);
+                }
+            );
+    };
+
+    $scope.saveVehicle = function() {
+        vehicleApiProxy.saveVehicle($scope.vehicle)
             .then(function() {
-                    go('app.myVehicles');
-                });
-        };
+                go('app.myVehicles');
+            });
+    };
 
-        var go = function (path) {
-            $state.go(path, {}, { reload: true });
-        };
+    var go = function(path) {
+        $state.go(path, {}, { reload: true });
+    };
 
 });
 
-app.filter('yearRange', function () {
-    return function (input, min, max) {
+app.filter('yearRange', function() {
+    return function(input, min, max) {
         min = parseInt(min); //Make string input int
         max = parseInt(max);
         for (var i = min; i < max; i++)
             input.push(i);
         return input;
     };
-    });
+});
