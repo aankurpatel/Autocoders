@@ -1,12 +1,18 @@
 ﻿angular.module('starter')
-    .controller('browseVehiclesCtrl', ['locationService','getClosestVehicleApiProxy','$scope','_'
-    ,function(locationService,getClosestVehicleApiProxy,$scope,_) {
+    .controller('browseVehiclesCtrl', ['locationService','getClosestVehicleApiProxy','$scope','_','$q'
+    ,function(locationService,getClosestVehicleApiProxy,$scope,_,$q) {
+
+      var defer = $q.defer();
+
       locationService.getCurrentLocation()
         .then(function(results){
-          var vehicles = getClosestVehicleApiProxy.getClosestVehicles(results)});
-          if(vehicles)
-          {
-
-          }
-
+          getClosestVehicleApiProxy.getClosestVehicles(results)
+            .then(function(vehicles)
+            {
+              if(vehicles && angular.isArray(vehicles))
+              {
+                $scope.vehicles = vehicles;
+              }
+            })
+          });
     }]);
