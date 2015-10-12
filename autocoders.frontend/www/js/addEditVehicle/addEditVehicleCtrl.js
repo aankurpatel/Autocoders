@@ -1,8 +1,12 @@
 ﻿angular.module('starter')
+<<<<<<< HEAD
     .controller('addEditVehicleCtrl', function($scope, $cordovaBarcodeScanner) {
         
        
 
+=======
+    .controller('addEditVehicleCtrl', function($scope, $cordovaBarcodeScanner, vehicleApiProxy) {
+>>>>>>> b1cab1a46fff0deada3d506380c0c164b16f043f
         $scope.playlists = [
             { title: 'Honda Civic', id: 1 },
             { title: 'Toyota Corolla', id: 2 },
@@ -32,5 +36,9 @@
                         alert("Scanning failed: " + error);
                     }
                 );
+        };
+
+        $scope.saveVehicle = function() {
+            vehicleApiProxy.saveVehicle();
         };
     });

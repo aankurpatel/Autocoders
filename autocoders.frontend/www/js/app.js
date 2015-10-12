@@ -6,21 +6,25 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
     .run(function($ionicPlatform) {
-        $ionicPlatform.ready(function() {
+        $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
                 cordova.plugins.Keyboard.disableScroll(true);
-
+                console.log("test passes");
             }
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
+              console.log("test fails");
             }
         });
     })
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+        $httpProvider.defaults.headers.common['X-ZUMO-APPLICATION'] = 'nJonQAsXZEMEStHVlzCpWpmuckaJnd90'; // add the application key
+        $httpProvider.defaults.headers.common['Content-Type'] = 'Application/json';
+
         $stateProvider
             .state('app', {
                 url: '/app',
@@ -40,7 +44,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                 url: '/browse',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/browse.html'
+                        templateUrl: 'js/browseVehicles/browse.html',
+                        controller:"browseVehiclesCtrl"
                     }
                 }
             })
@@ -79,7 +84,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                         controller: 'addEditVehicleCtrl'
                     }
                 }
+            })
+            .state('app.settings', {
+                url: '/settings',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'js/settings/settings.html',
+                        controller: 'settingsCtrl'
+                    }
+                }
             });
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/app/myVehicles');
+        $urlRouterProvider.otherwise('/app/browse');
     });

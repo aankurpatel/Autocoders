@@ -1,12 +1,23 @@
 use 'strict';
 
-angular.module('starter').factory('edmundsService', ['$http', '$q',  
-	function ($http, $q) {
+angular.module('starter').factory('edmundsService', ['$http', '$log',  
+	function ($http, $log) {
+		 var edmundsFactory = {};
+  		 var urlBase = 'https://api.edmunds.com/api/vehicle/v2/';
 		 var apiKey = "5mb6ytkzebykvr6978nwt37q";
-    	return {    		
-		        decodeVin: function (vin) {
+
+		edmundsFactory.getAllMakes = function(){
+    
+		    return $http.get(urlBase + 'makes?fmt=json&api_key=5mb6ytkzebykvr6978nwt37q')
+		  };
+		  
+		  edmundsFactory.getAllModels = function(make){
+		    return $http.get(urlBase + make + '/models?fmt=json&api_key=5mb6ytkzebykvr6978nwt37q')
+		  };
+
+		  /*edmundsFactory.decodeVin: function (vin) {
 		            var deferred = $q.defer();
-		            $http.get(webAPIRelativePath + "https://api.edmunds.com/api/vehicle/v2/vins/" + caryear + "/" + oldalgcode + "/" + newalgcode).
+		            $http.get(webAPIRelativePath + "urlBase + "vins/" + caryear + "/" + oldalgcode + "/" + newalgcode).
 		                success(function (data) {
 		                    deferred.resolve(data);
 		                }).
@@ -16,6 +27,9 @@ angular.module('starter').factory('edmundsService', ['$http', '$q',
 		                });
 
 		            return deferred.promise;
-		        }
+		        }*/
+		  
+		  return edmundsFactory;
+    	
     };
 }]);
