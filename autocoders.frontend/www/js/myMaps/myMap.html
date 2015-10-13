@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app='App'>
+
+<head>
+  <style type='text/css'>
+    body, html { height: 100%; margin: 0;}
+    .google-map {  height: 100%; }
+  </style>
+  <script>
+    angular.module('App', ['ngMaps'])
+  </script>
+</head>
+
+<body>
+<map ng-transclude class='google-map'> </map>
+</body>
+
+</html>

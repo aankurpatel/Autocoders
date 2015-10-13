@@ -10,13 +10,14 @@
 
         self.getMyVehicles = function () {
             console.log('getMyVehicles');
-            var url = "https://autocoders.azure-mobile.net/tables/vehicles?$filter=(accountKey eq '" + window.localStorage['accountKey'] + "')";
+            //var url = "https://autocoders.azure-mobile.net/tables/vehicles?$filter=(accountKey eq '" + window.localStorage['accountKey'] + "')";
+            var url = "https://autocoders.azure-mobile.net/tables/vehicles";
             logger.log(url);
             return $http.get(url);
         };
 
         self.saveVehicle = function (vehicle) {
-            logger.log('saving vehicle')
+            logger.log('saving vehicle');
             var deffered = $q.defer();
             vehicle.accountKey = window.localStorage['accountKey'];
 
