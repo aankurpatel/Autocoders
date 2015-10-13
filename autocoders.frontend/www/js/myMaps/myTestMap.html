@@ -1,0 +1,11 @@
+<ion-view view-title="LocationMap" hide-nav-bar=false >
+  <ion-content>
+     <div>
+       <!--
+       <map ng-transclude class="google-map" center="map.center" options="map.options" events="map.events"/>-->
+       <map ng-transclude class="google-map" center="map.center">
+         <marker position='marker.position'></marker>
+       </map>
+     </div>
+  </ion-content>
+</ion-view>
