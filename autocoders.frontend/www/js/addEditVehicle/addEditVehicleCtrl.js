@@ -78,8 +78,22 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
             );
     };
 
-  $scope.getPhoto = function() {
+  $scope.getPhoto = function(args) {
     photoService.getPicture().then(function(imageURI) {
+      console.log(imageURI);
+      $scope.lastPhoto = imageURI;
+    }, function(err) {
+      console.err(err);
+    }, {
+      quality: 75,
+      targetWidth: 320,
+      targetHeight: 320,
+      saveToPhotoAlbum: false
+    });
+  };
+
+  $scope.uploadPhoto = function(args) {
+    photoService.uploadImages().then(function(imageURI) {
       console.log(imageURI);
       $scope.lastPhoto = imageURI;
     }, function(err) {

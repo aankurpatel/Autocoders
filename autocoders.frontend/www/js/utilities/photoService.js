@@ -2,7 +2,7 @@
  * Created by singhap on 10/12/15.
  */
 angular.module('starter')
-  .factory('photoService', ['$q', function($q) {
+  .factory('photoService', function($q,$cordovaImagePicker) {
 
     return {
       getPicture: function(options) {
@@ -16,6 +16,24 @@ angular.module('starter')
         }, options);
 
         return q.promise;
+      },
+
+      uploadImages:function(){
+        var options = {
+          maximumImagesCount: 10,
+          width: 800,
+          height: 800,
+          quality: 80
+        };
+
+        $cordovaImagePicker.getPictures(options)
+          .then(function (results) {
+            for (var i = 0; i < results.length; i++) {
+              console.log('Image URI: ' + results[i]);
+            }
+          }, function(error) {
+            // error getting photos
+          });
       }
     }
-  }]);
+  });
