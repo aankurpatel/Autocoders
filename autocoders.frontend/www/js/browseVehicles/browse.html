@@ -15,11 +15,11 @@
         <div class="list">
 
             <a class="item item-thumbnail-left" href="#" ng-repeat="vehicle in vehicles" ng-click="setselectedVehicle(vehicle)">
-                <img ng-src="data:image/JPEG;base64,{{vehicle.imageUrl[0]}}">
+                <img ng-src="data:image/jpeg;base64,{{vehicle.imageUrl.substring(2, vehicle.imageUrl.length-2)}}">
                 <h2>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h2>
                 <p>{{vehicle.vin}}</p>
                 <p>{{vehicle.type}}</p>
-                <p>{{vehicle.featPrice.value | currency : '$' : 0}}</p>
+                <p>{{vehicle.featPrice | currency : '$' : 0}}</p>
             </a>
 
             <!--Example Vehicles-->
