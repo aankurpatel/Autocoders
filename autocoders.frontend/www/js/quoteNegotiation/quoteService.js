@@ -16,7 +16,7 @@ app.factory('quoteService', ['$http', '$log', function ($http, $log) {
             success(function(data) {
                 // alert(data.styles);
                 //$scope.styles = data.styles;
-                taxRate = result.totalRate;
+                taxRate = data.totalRate;
             }).error(function(error) {
                 taxRate = 9.25;
             });
@@ -30,9 +30,9 @@ app.factory('quoteService', ['$http', '$log', function ($http, $log) {
     };
 
 
-    quoteFactory.getRebatesIncentives = function (styleId, zipcode) {
-        return $http.get('https://api.edmunds.com/v1/api/incentive/incentiverepository/findincentivesbystyleidandzipcode?styleId=' + styleId + '&zipcode=' + zipcode + '&fmt=json&api_key=' + apiKey);
-    };
+    //quoteFactory.getRebatesIncentives = function (styleId, zipcode) {
+    //    return $http.get('https://api.edmunds.com/v1/api/incentive/incentiverepository/findincentivesbystyleidandzipcode?styleId=' + styleId + '&zipcode=' + zipcode + '&fmt=json&api_key=' + apiKey);
+    //};
 
     return quoteFactory;
 }]);
