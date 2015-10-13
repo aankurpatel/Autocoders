@@ -38,7 +38,7 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
             .success(function(data) {
                 // alert(data.styles);
                 $scope.styles = data.styles;
-                
+
             })
             .error(function(error) {
                 $scope.status = 'Unable to load Styles data: ' + error.message;
@@ -78,16 +78,20 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
   $scope.allImages = [];
   $scope.getPhoto = function(args) {
     photoService.getPicture().then(function(image) {
+      alert(image);
       $scope.allImages.push(image);
     }, function(err) {
+      alert(err.message);
       console.log(err);
     });
   };
 
   $scope.uploadPhoto = function(args) {
     photoService.uploadImages().then(function(results) {
+      alert(results);
      $scope.allImages = results;
     }, function(err) {
+      alert(err.message);
       console.log(err);
     });
   };
