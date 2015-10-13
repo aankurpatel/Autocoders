@@ -2,7 +2,8 @@
     .controller('settingsCtrl', function($scope, $rootScope, $cordovaPush, pushNotificationProxy, userApiProxy, logger) {
 
         var androidConfig = {
-            "senderID": "api-project-405931835723"
+//            "senderID": "api-project-405931835723"
+            "senderID": "719651694151"
         };
         
         $scope.pushNotificationChange = function() {
@@ -100,6 +101,7 @@
                 var userTokens = [];
                
                 userTokens = _.pluck(response.data, 'pushNotificationToken');
+//                userTokens = _.without(userTokens, $scope.user.pushNotificationToken);
 
                 pushNotificationProxy.sendNotification('test notification from GP', userTokens);
             });

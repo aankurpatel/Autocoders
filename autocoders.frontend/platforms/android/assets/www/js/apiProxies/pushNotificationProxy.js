@@ -1,8 +1,12 @@
 ﻿angular.module('starter')
     .service('pushNotificationProxy', function ($http, logger) {
         var self = this;
-        var app_id = "api-project-405931835723";
-        var private_key = " AIzaSyDhO1kckiYgD7ZoygDwradomZbJzkTzx14";
+//        var app_id = "api-project-405931835723";
+        //var app_id = "autocoders-1097";
+//        var private_key = "AIzaSyDhO1kckiYgD7ZoygDwradomZbJzkTzx14";
+//        var private_key = "AIzaSyAurCRc8_zSpFUKre9xyrbwJFeH-AAokKk";
+//                var private_key = "AIzaSyBCwXIJNWaqvimRvsJlkfOUEKXMVDASXzE";
+//                var private_key = "AIzaSyDtdD3KI-C4qGFwrtzfCZlr1RsChVSCd7c";
 
         self.subscribe = function (user) {
             if (!user.token) {
@@ -85,13 +89,13 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'key=' + private_key
+                    'Authorization': 'key=AIzaSyDtdD3KI-C4qGFwrtzfCZlr1RsChVSCd7c'
                 },
                 data: {
-                                        'to': token[0],
+                    'to': token[0],
 //                    'registration_ids': token,
-                    data: {
-                        message: 'hello GP'
+                    message: {
+                        text: 'hello GP'
                     }
                 }
             };

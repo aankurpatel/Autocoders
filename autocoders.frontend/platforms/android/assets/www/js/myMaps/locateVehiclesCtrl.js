@@ -5,20 +5,18 @@ angular.module('starter')
 .controller('locateVehiclesCtrl', function($scope, $http, $timeout, $stateParams) {
     /*<bing-map> directive options*/
     $scope.view = {};
-    $scope.view.vehicles = $stateParams.vehicles;
     $scope.mapOptions = {};
-    $scope.mapOptions.center = {latitude: 42.073326,longitude: -88.186176};
-    // $scope.mapOptions.zoom = 15;
+    $scope.pushpin = {};
+    $scope.pushpin.options = {};
+    
+    //Set vehicles
+    $scope.view.vehicles = $stateParams.vehicles;
+    //Set map defaults
+    $scope.mapOptions.zoom = 13;
     $scope.mapOptions.mapType = 'r';
     $scope.mapOptions.options = {
         disablePanning: false,
         disableZooming: false
-    };
-    
-    $scope.pushpin = {};
-    $scope.pushpin.location = {latitude: 42.073326,longitude: -88.186176};
-    $scope.pushpin.options = {
-        draggable: true
     };
     $scope.pushpin.events = {
         click: function() {
