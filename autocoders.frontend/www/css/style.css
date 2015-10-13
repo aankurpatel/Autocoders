@@ -1,1 +1,58 @@
-/* Empty. Add your own CSS if you like */
+/* Utility Classes */
+.ac-center {
+    text-align: center;
+}
+
+.ac-left {
+    text-align: left;
+}
+
+.ac-right {
+    text-align: right;
+}
+
+
+/*Browse Vehicles Page*/
+.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-location {
+    font-size: 24px;
+}
+
+.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-funnel {
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.item-thumbnail-left > img.ac-browse-vehicle-img {
+    height: auto;
+}
+
+.row.ac-browse-vehicle-row {
+    font-size: 14px;
+    padding: 0;
+}
+
+.row.ac-browse-vehicle-row .col {
+    padding: 0;
+}
+
+/* Vehicle Detail Page */
+.item.item-image > img.ac-vehicle-detail-img {
+    width: auto;
+    margin: 20px 0;
+}
+
+.ac-vehicle-detail-value {
+    font-weight: 700;
+}
+
+.item h2.ac-vehicle-detail-value {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+/* Vehicle Location Page*/
+bing-map {
+    height: 100%;
+    width: 100%;
+}

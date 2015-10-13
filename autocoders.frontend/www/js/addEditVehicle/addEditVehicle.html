@@ -35,12 +35,17 @@
 
         <label class="item item-input">
             <span class="input-label">Style: </span>
-            <select name="ddlStyles" id="ddlStyles" ng-model="vehicle.vehicleStyle" >
+            <select name="ddlStyles" id="ddlStyles" ng-model="vehicle.styleId" >
                 <option ng-repeat="option in styles" value="{{option.id}}">{{option.name}}</option>
             </select>
         </label>
 
         <div>
+          <a class="item item-list-detail">
+            <ion-scroll direction="x">
+              <img ng-repeat="image in allImages" ng-src="data:image/jpeg;base64,{{image.src}}" ng-click="showImages($index)" class="image-list-thumb"/>
+            </ion-scroll>
+          </a>
           <button ng-click="getPhoto()" class="button button-block button-primary">Photo</button>
           <button ng-click="uploadPhoto()">From Photo
             Library</button><br>

@@ -7,9 +7,6 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
     $scope.makes = {};
     $scope.models = {};
     $scope.styles = {};
-    $scope.selectedStyleId = '';
-    $scope.zipcode = '';
-
     $scope.vehicle = {};
 
     getAllMakes();
@@ -41,6 +38,7 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
             .success(function(data) {
                 // alert(data.styles);
                 $scope.styles = data.styles;
+                
             })
             .error(function(error) {
                 $scope.status = 'Unable to load Styles data: ' + error.message;
@@ -48,13 +46,13 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
     };
 
     $scope.getTrueCost = function () {
-        if (!$scope.vehicle.vehicleStyle) {
-            $cordovaToast.show('Style must be selected for TCM', 'long', 'center');
+        if (!$scope.vehicle.styleId) {
+            $cordovaToast.show('Please enter zipcode and style to get the true cost', 'long', 'center');
             return;
         }
-        //alert($scope.vehicle.vehicleStyle);
+        //alert($scope.vehicle.styleId);
         //alert($scope.vehicle.zipcode);
-        edmundsService.getTCO($scope.vehicle.vehicleStyle, $scope.vehicle.zipcode)
+        edmundsService.getTCO($scope.vehicle.styleId, $scope.vehicle.zipcode)
            .success(function (data) {
                 //alert(data.value);
                $scope.vehicle.tco = data.value;
@@ -77,27 +75,20 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
                 }
             );
     };
-
+  $scope.allImages = [];
   $scope.getPhoto = function(args) {
-    photoService.getPicture().then(function(imageURI) {
-      console.log(imageURI);
-      $scope.lastPhoto = imageURI;
+    photoService.getPicture().then(function(image) {
+      $scope.allImages.push(image);
     }, function(err) {
-      console.err(err);
+      console.log(err);
     });
   };
 
   $scope.uploadPhoto = function(args) {
-    photoService.uploadImages().then(function(imageURI) {
-      console.log(imageURI);
-      $scope.lastPhoto = imageURI;
+    photoService.uploadImages().then(function(results) {
+     $scope.allImages = results;
     }, function(err) {
-      console.err(err);
-    }, {
-      quality: 75,
-      targetWidth: 320,
-      targetHeight: 320,
-      saveToPhotoAlbum: false
+      console.log(err);
     });
   };
 
