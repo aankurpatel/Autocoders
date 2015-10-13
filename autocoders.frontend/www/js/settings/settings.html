@@ -4,7 +4,7 @@
             <span class="input-label">Account Key</span>
             <input type="text" ng-model="user.accountKey" ng-change="accountKeyChange()" />
         </span>
-        <ion-toggle ng-model="pushNotification.checked"
+        <ion-toggle ng-model="user.PushNotificationToken"
                     ng-change="pushNotificationChange()">
             Push Notifications
         </ion-toggle>
@@ -12,5 +12,13 @@
         <button ng-click="sendNotification()">
             Send Test Notification
         </button>
+        <button ng-click="saveUser()">
+            Save
+        </button>
+
+        <div class="item">
+            <pre ng-bind="users | json"></pre>
+        </div>
+
     </ion-content>
 </ion-view>
