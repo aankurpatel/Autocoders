@@ -1,7 +1,7 @@
 angular.module('starter')
     .service('getClosestVehicleApiProxy', function ($log, $http, $q) {
         var url = "https://autocoders.azure-mobile.net/api/getclosestvehicles",
-            defaultRange = 25;
+            defaultRange = 50;
 
         return {
           'getClosestVehicles': function (results) {
