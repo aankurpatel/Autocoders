@@ -24,3 +24,13 @@ ionic plugin add https://github.com/apache/cordova-plugin-whitelist.git
 
 cordova plugin add cordova-plugin-camera
 cordova plugin add https://github.com/wymsee/cordova-imagePicker.git
+
+// for notification
+ionic add ionic-platform-web-client
+ionic plugin add phonegap-plugin-push
+
+ionic io init
+ionic config set dev_push true
+
+ionic push --google-api-key AIzaSyDhO1kckiYgD7ZoygDwradomZbJzkTzx14
+ionic config set gcm_key api-project-405931835723
