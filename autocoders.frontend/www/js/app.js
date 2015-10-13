@@ -79,6 +79,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'underscore', 'ngCord
                         controller: 'settingsCtrl'
                     }
                 }
+            })
+            .state('app.myMaps', {
+                url: '/locationMaps',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'js/myMaps/myTestMap.html',
+                        controller: 'locateDealersCtrl'
+                    }
+                }
             });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/browse');
