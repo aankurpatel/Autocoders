@@ -135,7 +135,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
                url: '/locationMaps',
                views: {
                    'menuContent': {
-                       templateUrl: 'js/myMaps/myVeiclesOnMap.html',
+                       templateUrl: 'js/myMaps/myVehiclesOnMap.html',
                        controller: 'locateVehiclesCtrl'
                    }
                },
