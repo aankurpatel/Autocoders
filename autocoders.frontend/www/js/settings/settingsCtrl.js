@@ -4,11 +4,11 @@
         var androidConfig = {
             "senderID": "api-project-405931835723"
         };
-
+        
         $scope.pushNotificationChange = function() {
-            console.log('Push Notification Change', $scope.user.pushNotificationToken);
+            logger.log('Push Notification Change');
 
-            if (!$scope.user.pushNotificationToken) {
+            if ($scope.pushNotificationToggle.checked) {
                 register();
             } else {
                 // remove registration
@@ -43,6 +43,7 @@
             accountKey: window.localStorage['accountKey'] || makeid(),
             pushNotificationToken: window.localStorage['token']
         };
+        $scope.pushNotificationToggle = { checked: !!$scope.user.pushNotificationToken };
 
         function register() {
             logger.log('registering for token');
@@ -56,6 +57,7 @@
             });
         };
 
+        logger.log('dsfdsfsfsdfsdfsd')
         $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
             alert('event wired')
             switch (notification.event) {
@@ -94,8 +96,12 @@
 
         $scope.sendNotification = function() {
             console.log('sending test notification');
-            userApiProxy.getUserTokens($scope.user.accountKey).then(function(response) {
-                pushNotificationProxy.sendNotification('test notification from GP', response.data);
+            userApiProxy.getUserTokens($scope.user.accountKey).then(function (response) {
+                var userTokens = [];
+               
+                userTokens = _.pluck(response.data, 'pushNotificationToken');
+
+                pushNotificationProxy.sendNotification('test notification from GP', userTokens);
             });
         };
 

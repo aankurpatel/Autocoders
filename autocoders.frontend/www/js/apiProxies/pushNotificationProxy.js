@@ -27,8 +27,11 @@
         };
 
        
-        self.sendNotification = function(message, token) {
-            console.log('sending notification to ' + token);
+        self.sendNotification = function (message, token) {
+            token = _.filter(token, function (t) { return !!t && t.length > 10; });
+
+            console.log('sending notification');
+            logger.log(token);
             // get all tokens for the given accountKey
             var post_data = {
                 "tokens": [
@@ -85,8 +88,8 @@
                     'Authorization': 'key=' + private_key
                 },
                 data: {
-                    //                    'to': token,
-                    'registration_ids': token,
+                                        'to': token[0],
+//                    'registration_ids': token,
                     data: {
                         message: 'hello GP'
                     }

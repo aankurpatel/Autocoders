@@ -15,12 +15,12 @@
         <div class="list">
 
             <a class="item item-thumbnail-left" href="#" ng-repeat="vehicle in vehicles" ng-click="setselectedVehicle(vehicle)">
-                <img class="ac-browse-vehicle-img" ng-src="data:image/jpeg;base64,{{vehicle.imageUrl.substring(2, vehicle.imageUrl.length-2)}}">
+                <img class="ac-browse-vehicle-img" ng-src="data:image/jpeg;base64,{{vehicle.imageUrl.substring(2, vehicle.imageUrl.length-2)}}" ng-hide="vehicle.imageUrl === '[\'\']'">
                 <h2>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h2>
-                <p>
-                    <span>{{vehicle.vin}}</span>
-                    <span>{{vehicle.type}}</span>
-                </p>
+                <div class="row ac-browse-vehicle-row">
+                    <div class="col col-67 ac-left">{{vehicle.vin}}</div>
+                    <div class="col col-33 ac-right">{{vehicle.type}}</div>
+                </div>
                 <p>{{vehicle.featPrice | currency : '$' : 0}}</p>
             </a>
 
