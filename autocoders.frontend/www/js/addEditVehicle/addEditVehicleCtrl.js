@@ -82,11 +82,6 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
       $scope.lastPhoto = imageURI;
     }, function(err) {
       console.err(err);
-    }, {
-      quality: 75,
-      targetWidth: 320,
-      targetHeight: 320,
-      saveToPhotoAlbum: false
     });
   };
 
