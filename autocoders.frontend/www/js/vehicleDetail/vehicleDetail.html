@@ -7,33 +7,27 @@
             </div>
 
             <div class="item item-image">
-                <img class="ac-vehicle-detail-img" ng-src="data:image/jpeg;base64,{{vehicle.imageUrl.substring(2, vehicle.imageUrl.length-2)}}">
+                <img class="ac-vehicle-detail-img" ng-src="data:image/jpeg;base64,{{vehicle.imageUrl.substring(2, vehicle.imageUrl.length-2)}}" ng-hide="vehicle.imageUrl === '[\'\']'">
             </div>
 
-            <div class="item item-text-wrap">
-                <div class="list">
-                    <label class="item item-input">
-                        <span class="input-label">VIN</span>
-                        <span class="ac-vehicle-detail-value">{{vehicle.vin}}</span>
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">Type</span>
-                        <span class="ac-vehicle-detail-value">{{vehicle.type}}</span>
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">Exterior</span>
-                        <span class="ac-vehicle-detail-value">{{vehicle.extColor}}</span>
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">Odometer</span>
-                        <span class="ac-vehicle-detail-value">{{vehicle.odo | number}} miles</span>
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">Price</span>
-                        <span class="ac-vehicle-detail-value">{{vehicle.featPrice | currency : '$' : 0}}</span>
-                    </label>
+            <div class="item">
+                <div class="row">
+                    <div class="col col-67 ac-left">{{vehicle.vin}}</div>
+                    <div class="col col-33 ac-right">{{vehicle.type}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-67 ac-left">{{vehicle.odo | number}} miles</div>
+                    <div class="col col-33 ac-right">{{vehicle.extColor}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <h2 class="ac-vehicle-detail-value">{{vehicle.featPrice | currency : '$' : 0}}</h2>
+                    </div>
                 </div>
             </div>
+
             <div class="item item-divider ac-right">
                 <button class="button button-clear button-calm">
                     Test Drive
