@@ -1,9 +1,0 @@
-C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\classes\debug
-C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-cf69a6c94941121862b2ca838788ffac320b9565.jar
-C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-1e75c888a4e2b72d3cc4e2b36f4be66cca137579.jar
-C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\classes-3d4b725f4864a00051604226b42a26041fae742d.jar
-C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\gcm4-d08cb5d5a0079dbeb8eb70862c3c363128682cb8.jar
-C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\classes-526bf445fdaa096ab27f9392f80eba6ccf44cc6b.jar
-C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-07514e273567d8ca0db1c02feef2956d8231a245.jar
-C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\com.google.zxing.client.android.captureactivity-bfb016ba54198981724b8383de991eec257cad82.jar
-C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\classes-cf5b1c85b5c7270b07beab4a779738bb6c721cbb.jar
