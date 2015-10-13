@@ -1,3 +1,8 @@
+/* Override Ionic styles */
+.view-container {
+    top: 0;
+}
+
 /* Utility Classes */
 .ac-center {
     text-align: center;
