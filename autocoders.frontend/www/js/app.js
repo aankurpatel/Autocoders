@@ -4,9 +4,32 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'underscore', 'ngCordova', 'angularBingMaps'])
+angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'underscore', 'ngCordova', 'angularBingMaps'])
     .run(function($ionicPlatform, $rootScope) {
         $ionicPlatform.ready(function () {
+            Ionic.io();
+
+            // this will give you a fresh user or the previously saved 'current user'
+            var user = Ionic.User.current();
+
+            // if the user doesn't have an id, you'll need to give it one.
+            if (!user.id) {
+                user.id = Ionic.User.anonymousId();
+                // user.id = 'your-custom-user-id';
+                user.set('name', 'gpatel');
+            }
+
+            //persist the user
+            user.save();
+
+            var push = new Ionic.Push({
+                "debug": true
+            });
+
+            push.register(function (token) {
+                console.log("Device token:", token.token);
+            });
+
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -112,7 +135,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'underscore', 'ngCord
                url: '/locationMaps',
                views: {
                    'menuContent': {
-                       templateUrl: 'js/myMaps/myVeiclesOnMap.html',
+                       templateUrl: 'js/myMaps/myVehiclesOnMap.html',
                        controller: 'locateVehiclesCtrl'
                    }
                },

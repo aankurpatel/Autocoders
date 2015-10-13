@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-07514e273567d8ca0db1c02feef2956d8231a245.jar" />
+    </item>
+    <item
+        jar="C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.1\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a0c456a59e1edab84702b48a626705aa1d830ccc">
+        <dex dex="C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-cf69a6c94941121862b2ca838788ffac320b9565.jar" />
+    </item>
+    <item
+        jar="C:\Stash\Autocoders\autocoders.frontend\platforms\android\libs\gcm4.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a6d7bce795a14c7f86111756c4ceb44b79de14aa">
+        <dex dex="C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\gcm4-d08cb5d5a0079dbeb8eb70862c3c363128682cb8.jar" />
+    </item>
+    <item
+        jar="C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\classes-cf5b1c85b5c7270b07beab4a779738bb6c721cbb.jar" />
+    </item>
+    <item
+        jar="C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.1\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8c046c952177602c858ed41c8fc492c939bde9aa">
+        <dex dex="C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\classes-3d4b725f4864a00051604226b42a26041fae742d.jar" />
+    </item>
+    <item
+        jar="C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\exploded-aar\android\CordovaLib\unspecified\debug\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="cff67ff948d4793c91a8f1e3fd1511cc9bcf97cd">
+        <dex dex="C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\classes-526bf445fdaa096ab27f9392f80eba6ccf44cc6b.jar" />
+    </item>
+    <item
+        jar="C:\Stash\Autocoders\autocoders.frontend\platforms\android\libs\com.google.zxing.client.android.captureactivity.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="daca75b7de34e1ca229682f2cd54b54e1c324be6">
+        <dex dex="C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\com.google.zxing.client.android.captureactivity-bfb016ba54198981724b8383de991eec257cad82.jar" />
+    </item>
+    <item
+        jar="C:\Dev\androidDevTools\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Stash\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-1e75c888a4e2b72d3cc4e2b36f4be66cca137579.jar" />
+    </item>
+
+</items>
