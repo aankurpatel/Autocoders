@@ -1,0 +1,17 @@
+<ion-view view-title="LocationMap">
+    <div class="bing-map" ng-controller="locateVehiclesCtrl">
+      <bing-map
+          center="mapOptions.center"
+          zoom="mapOptions.zoom"
+          map-type="mapOptions.mapType"
+          options="mapOptions.options"
+          on-map-ready="onMapReady(map)">
+          <pushpin ng-repeat="vehicle in view.vehicles"
+                lat="vehicle.latitude"
+                lng="vehicle.longitude"
+                options="pushpin.options"
+                events="pushpin.events">
+          </pushpin>
+      </bing-map>
+    </div>
+</ion-view>

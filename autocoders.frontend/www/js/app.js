@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'underscore', 'ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'underscore', 'ngCordova', 'angularBingMaps'])
     .run(function($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,7 +21,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'underscore', 'ngCord
             }
         });
     })
-    .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, angularBingMapsProvider) {
         $httpProvider.defaults.headers.common['X-ZUMO-APPLICATION'] = 'nJonQAsXZEMEStHVlzCpWpmuckaJnd90'; // add the application key
         $httpProvider.defaults.headers.common['Content-Type'] = 'Application/json';
         $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
@@ -79,18 +79,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'underscore', 'ngCord
                         controller: 'settingsCtrl'
                     }
                 }
+            })
+            .state('app.LocateVehiclesOnMaps', {
+               url: '/locationMaps',
+               views: {
+                   'menuContent': {
+                       templateUrl: 'js/myMaps/myVeiclesOnMap.html',
+                       controller: 'locateVehiclesCtrl'
+                   }
+               },
+               params: {'vehicles': null}
             });
-            //.state('app.myMaps', {
-            //    url: '/locationMaps',
-            //    views: {
-            //        'menuContent': {
-            //            templateUrl: 'js/myMaps/myTestMap.html',
-            //            controller: 'locateDealersCtrl'
-            //        }
-            //    }
-            //});
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/browse');
+        
+        //Register Bing-Maps & set default options
+        angularBingMapsProvider.setDefaultMapOptions({
+            credentials: 'AqWNccwBVcI7iRPX___tij6sHF1VtSOK9J9CD8e9R1kSx3fRYZsoFTSSCxkcQygM',
+            enableClickableLogo: false
+        });
     });
 
 var underscore = angular.module('underscore', []);
