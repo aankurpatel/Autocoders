@@ -1,0 +1,56 @@
+﻿&#xFEFF;<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+<script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+<!-- <script src="cordova.js"></script> -->
+    <script src="lib/ionic/js/ng-cordova.js"></script>
+
+    <script src="lib/underscore/underscore-min.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/apiProxies/pushNotificationProxy.js"></script>
+    <script src="js/apiProxies/vehicleApiProxy.js"></script>
+    <script src="js/apiProxies/getClosestVehicleApiProxy.js"></script>
+    <script src="js/apiProxies/userApiProxy.js"></script>
+
+    <script src="js/utilities/logger.js"></script>
+    <script src="js/utilities/photoService.js"></script>
+
+    <script src="js/apiProxies/edmundsService.js"></script>
+
+    <script src="js/controllers.js"></script>
+    <script src="js/myVehicles/myVehiclesCtrl.js"></script>
+    <script src="js/vehicleDetail/vehicleDetailCtrl.js"></script>
+    <script src="js/vehicleDetail/vehicle.js"></script>
+    <script src="js/browseVehicles/locationService.js"></script>
+    <script src="js/browseVehicles/browseVehiclesCtrl.js"></script>
+    <script src="js/addEditVehicle/addEditVehicleCtrl.js"></script>
+    <script src="js/settings/settingsCtrl.js"></script>
+    <script src="js/myMaps/locateVehiclesCtrl.js"></script>
+    
+    <script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    <script src="lib/angular-bing-maps/dist/angular-bing-maps.js"></script>
+
+</head>
+
+<body ng-app="starter" class="platform-android platform-cordova platform-webview">
+    <!-- where the initial view template will be rendered -->
+    <ion-nav-view></ion-nav-view>
+</body>
+</html>
