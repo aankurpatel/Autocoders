@@ -12,19 +12,29 @@
 }
 
 /* Navigation */
-.bar .button.back-button .ion-arrow-left-c {
+.bar .button.back-button .ion-android-arrow-back {
     font-size: 30px;
     color: white;
 }
 
-/* Browse Vehicles Page */
-.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-location {
-    font-size: 24px;
+.bar.ac-menu-header {
+    height: auto;
 }
 
-.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-funnel {
-    font-size: 20px;
-    margin-left: 5px;
+.bar.ac-menu-header .title {
+    top: 22px;
+    font-size: 22px;
+    color: #82C500; /*CDK Green*/
+}
+
+.ac-menu-content {
+    top: 89px;
+}
+
+/* Browse Vehicles Page */
+.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-android-funnel,
+.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-android-locate {
+    font-size: 22px;
 }
 
 .item-thumbnail-left > img.ac-browse-vehicle-img {
