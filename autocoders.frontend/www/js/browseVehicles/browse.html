@@ -1,5 +1,8 @@
 <ion-view view-title="Browse Vehicles">
   <ion-content>
+      <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
+      </ion-refresher>
+
       <div class="list">
 
           <a class="item item-thumbnail-left" href="#" ng-repeat="vehicle in vehicles" ng-click="setselectedVehicle(vehicle)">
@@ -8,9 +11,9 @@
               <h2>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h2>
               <p>{{vehicle.vin}}</p>
               <p>{{vehicle.type}}</p>
+              <p>{{vehicle.featPrice.value | currency : '$' : 0}}</p>
           </a>
-          
-      
+
           <!--Example Vehicles-->
           <a class="item item-thumbnail-left" href="#">
               <img src="http://lorempixel.com/100/100/transport">
@@ -24,9 +27,8 @@
               <p>2G1125S37E9108642</p>
               <p>Fake</p>
           </a>
+
       </div>
-
-
 
   </ion-content>
 </ion-view>
