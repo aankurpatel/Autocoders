@@ -19,7 +19,10 @@
             logger.log('saving vehicle')
             var deffered = $q.defer();
             vehicle.accountKey = window.localStorage['accountKey'];
+
             vehicle.make = vehicle.make.name;
+            vehicle.model = vehicle.model.name;
+            vehicle.style = vehicle.sytle.name;
 
             $log.log('saving vehicle');
             console.log(vehicle);
