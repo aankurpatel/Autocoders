@@ -1,7 +1,7 @@
 ﻿var app = angular.module('starter');
 
 
-app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService, $cordovaToast,photoService, Camera) {
+app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService, $cordovaToast,photoService) {
     $scope.selectedMake = '';
     $scope.selectedModel = '';
     $scope.makes = {};
@@ -79,7 +79,7 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
     };
 
   $scope.getPhoto = function() {
-    Camera.getPicture().then(function(imageURI) {
+    photoService.getPicture().then(function(imageURI) {
       console.log(imageURI);
       $scope.lastPhoto = imageURI;
     }, function(err) {
