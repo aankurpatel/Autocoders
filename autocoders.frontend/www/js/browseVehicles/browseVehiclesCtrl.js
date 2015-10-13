@@ -8,26 +8,25 @@
 
         locationService.getCurrentLocation()
           .then(function (results) {
-            getClosestVehicleApiProxy.getClosestVehicles(results)
-              .then(function (vehicles) {
-                if (vehicles && angular.isArray(vehicles)) {
-                  $scope.vehicles = vehicles;
-                }
-              })
+              getClosestVehicleApiProxy.getClosestVehicles(results)
+                  .then(function(vehicles) {
+                      if (vehicles && angular.isArray(vehicles)) {
+                          $scope.vehicles = vehicles;
+                      }
+                  });
           });
       }
 
       loadVehicles();
 
-      $scope.setselectedVehicle= function(selVehicle)
-      {
-        vehicle.selectedVehicle(selVehicle);
-        $state.go("app.vehicleDetail");
-      }
+        $scope.setselectedVehicle = function(selVehicle) {
+            vehicle.selectedVehicle(selVehicle);
+            $state.go("app.vehicleDetail");
+        };
       $scope.doRefresh = function () {
         loadVehicles();
         $scope.$broadcast('scroll.refreshComplete');
-        $scope.$apply()
+          $scope.$apply();
       };
 
     }]);

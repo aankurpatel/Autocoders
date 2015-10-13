@@ -38,6 +38,10 @@ app.factory('edmundsService',['$http','$log',function($http, $log)
     edmundsFactory.getTCO = function (styleId, zipcode) {
         return $http.get(urlBaseTCO + '/usedtotalcashpricebystyleidandzip/' + styleId + '/' + zipcode + '?fmt=json&api_key=' + apiKey);
     };
+    
+    edmundsFactory.getRebatesIncentives = function (styleId, zipcode) {
+        return $http.get('https://api.edmunds.com/v1/api/incentive/incentiverepository/findincentivesbystyleidandzipcode?styleId=' + styleId + '&zipcode=' + zipcode + '&fmt=json&api_key=' + apiKey);
+    };
 
     return edmundsFactory;
 }]);
