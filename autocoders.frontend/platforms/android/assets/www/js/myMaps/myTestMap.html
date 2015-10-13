@@ -1,0 +1,11 @@
+<ion-view view-title="Vehicle Location">
+    <div class="bing-map" ng-controller="locateDealersCtrl">
+      <bing-map
+          center="mapOptions.center"
+          zoom="mapOptions.zoom"
+          map-type="mapOptions.mapType"
+          options="mapOptions.options"
+          on-map-ready="onMapReady(map)">
+      </bing-map>
+    </div>
+</ion-view>
