@@ -94,13 +94,14 @@
 
         $scope.sendNotification = function() {
             console.log('sending test notification');
-
-            pushNotificationProxy.sendNotification('test notification from GP', window.localStorage['token']);
-
+            userApiProxy.getUserTokens($scope.user.accountKey).then(function(response) {
+                pushNotificationProxy.sendNotification('test notification from GP', response.data);
+            });
         };
 
         function loadUser() {
-            userApiProxy.getUsers().then(function(response) {
+            userApiProxy.getUsers().then(function (response) {
+                logger.log(response.data);
                 $scope.users = response.data;
             }, function(error) {
                 logger.log('error getting users');

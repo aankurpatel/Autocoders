@@ -85,14 +85,14 @@
                     'Authorization': 'key=' + private_key
                 },
                 data: {
-                    'to': token,
+                    //                    'to': token,
+                    'registration_ids': token,
                     data: {
                         message: 'hello GP'
                     }
                 }
             };
 
-           alert('sending notification')
             $http(req).then(function(response) {
                 logger.log(response);
             }, function (error) {
