@@ -1,10 +1,10 @@
 <ion-view view-title="Browse Vehicles">
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="navigateToMaps()">
-            <i class="ion-location" style="font-size: 24px;"></i>
+        <button class="button button-icon ac-browse-vehicle-icon" ng-click="navigateToMaps()">
+            <i class="ion-location"></i>
         </button>
-        <button class="button button-clear" ng-click="doSomething()">
-            <i class="ion-funnel" style="font-size: 20px; margin-left: 10px;"></i>
+        <button class="button button-icon ac-browse-vehicle-icon" ng-click="doSomething()">
+            <i class="ion-funnel"></i>
         </button>
     </ion-nav-buttons>
 
@@ -15,27 +15,13 @@
         <div class="list">
 
             <a class="item item-thumbnail-left" href="#" ng-repeat="vehicle in vehicles" ng-click="setselectedVehicle(vehicle)">
-                <img ng-src="data:image/jpeg;base64,{{vehicle.imageUrl.substring(2, vehicle.imageUrl.length-2)}}">
+                <img class="ac-browse-vehicle-img" ng-src="data:image/jpeg;base64,{{vehicle.imageUrl.substring(2, vehicle.imageUrl.length-2)}}">
                 <h2>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h2>
-                <p>{{vehicle.vin}}</p>
-                <p>{{vehicle.type}}</p>
+                <p>
+                    <span>{{vehicle.vin}}</span>
+                    <span>{{vehicle.type}}</span>
+                </p>
                 <p>{{vehicle.featPrice | currency : '$' : 0}}</p>
-            </a>
-
-            <!--Example Vehicles-->
-            <a class="item item-thumbnail-left" href="#">
-                <img src="http://lorempixel.com/100/100/transport">
-                <h2>2006 Chevrolet Suburban</h2>
-                <p>3GNFK16Z46G115745</p>
-                <p>Fake</p>
-                <p>$28,234</p>
-            </a>
-            <a class="item item-thumbnail-left" href="#">
-                <img src="http://lorempixel.com/100/100/transport">
-                <h2>2014 Chevrolet Impala LT</h2>
-                <p>2G1125S37E9108642</p>
-                <p>Fake</p>
-                <p>$25,743</p>
             </a>
 
         </div>

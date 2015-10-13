@@ -1,5 +1,20 @@
-/* Empty. Add your own CSS if you like */
+/*Browse Vehicles Page*/
+
+.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-location {
+    font-size: 24px;
+}
+
+.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-funnel {
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.item-thumbnail-left > img.ac-browse-vehicle-img {
+    height: auto;
+}
+
+/* Vehicle Location Page*/
 bing-map {
-        height: 100%;
-        width: 100%;
+    height: 100%;
+    width: 100%;
 }
