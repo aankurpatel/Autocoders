@@ -1,0 +1,2 @@
+C:\Hackathon\Autocoders\autocoders.frontend\platforms\android\build\intermediates\classes\debug
+C:\Hackathon\Autocoders\autocoders.frontend\platforms\android\build\intermediates\pre-dexed\debug\classes-184cbade43a3475269d469170146eaba81528475.jar

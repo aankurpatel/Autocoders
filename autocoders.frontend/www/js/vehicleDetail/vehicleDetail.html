@@ -1,45 +1,41 @@
 <ion-view view-title="Vehicle Detail">
     <ion-content>
 
-        <div class="list list-inset">
-            <label class="item item-input">
-                <span class="input-label">VIN</span>
-                <span class="positive">{{vehicle.vin}}</span>
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Type</span>
-                <span class="positive">{{vehicle.type}}</span>
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Year</span>
-                <span class="positive">{{vehicle.year}}</span>
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Make</span>
-                <span class="positive">{{vehicle.make}}</span>
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Model</span>
-                <span class="positive">{{vehicle.model}}</span>
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Trim</span>
-                <span class="positive">{{vehicle.trim}}</span>
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Exterior Color</span>
-                <span class="positive">{{vehicle.extColor}}</span>
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Odometer</span>
-                <span class="positive">{{vehicle.odo | number}} miles</span>
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Price</span>
-                <span class="positive">{{vehicle.featPrice | currency : '$' : 0}}</span>
-            </label>
+        <div class="card">
+            <div class="item item-divider">
+                <h2 class="ac-vehicle-detail-value">{{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h2>
+            </div>
 
+            <div class="item item-image">
+                <img class="ac-vehicle-detail-img" ng-src="data:image/jpeg;base64,{{vehicle.imageUrl.substring(2, vehicle.imageUrl.length-2)}}" ng-hide="vehicle.imageUrl === '[\'\']'">
+            </div>
+
+            <div class="item">
+                <div class="row">
+                    <div class="col col-67 ac-left">{{vehicle.vin}}</div>
+                    <div class="col col-33 ac-right">{{vehicle.type}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-67 ac-left">{{vehicle.odo | number}} miles</div>
+                    <div class="col col-33 ac-right">{{vehicle.extColor}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <h2 class="ac-vehicle-detail-value">{{vehicle.featPrice | currency : '$' : 0}}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item item-divider ac-right">
+                <button class="button button-clear button-calm">
+                    Get Quote
+                </button>
+            </div>
         </div>
+
+
 
     </ion-content>
 </ion-view>
