@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'underscore', 'ngCordova'])
-    .run(function($ionicPlatform) {
+    .run(function ($ionicPlatform, $rootScope) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -18,6 +18,34 @@ angular.module('starter', ['ionic', 'starter.controllers', 'underscore', 'ngCord
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
               console.log("test fails");
+            }
+        });
+
+        // Notification Received
+        $rootScope.$on('$cordovaPush:notificationReceived', function (event, notification) {
+            console.log(JSON.stringify([notification]));
+            switch (notification.event) {
+                case 'registered':
+                    if (notification.regid.length > 0) {
+                        alert('registration ID = ' + notification.regid);
+                        window.localStorage['token'] = notification.regid;
+//                        $scope.user.pushNotificationToken = notification.regid;
+                        //pushNotificationProxy.subscribe({ token: notification.regid, accountKey: androidConfig.senderID });
+                    }
+                    break;
+
+                case 'message':
+                    // this is the actual push notification. its format depends on the data model from the push server
+                    alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+                    break;
+
+                case 'error':
+                    alert('GCM error = ' + notification.msg);
+                    break;
+
+                default:
+                    alert('An unknown GCM event has occurred');
+                    break;
             }
         });
     })
