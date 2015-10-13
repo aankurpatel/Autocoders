@@ -1,5 +1,5 @@
 ﻿angular.module('starter')
-    .service('pushNotificationProxy', function ($http) {
+    .service('pushNotificationProxy', function ($http, logger) {
         var self = this;
         var app_id = "api-project-405931835723";
         var private_key = " AIzaSyDhO1kckiYgD7ZoygDwradomZbJzkTzx14";
@@ -85,21 +85,18 @@
                     'Authorization': 'key=' + private_key
                 },
                 data: {
-                    'to': token,
-                    'registration_ids': [token],
+                    //                    'to': token,
+                    'registration_ids': token,
                     data: {
                         message: 'hello GP'
                     }
                 }
             };
 
-           alert('sending notification')
             $http(req).then(function(response) {
-                alert('response', response)
-                console.log(response)
+                logger.log(response);
             }, function (error) {
-                console.log(error)
-                alert(error.data)
+                logger.log(error);
             });
 
         };
