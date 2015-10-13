@@ -32,6 +32,11 @@
 }
 
 /* Browse Vehicles Page */
+.item.item-thumbnail-left.ac-browse-vehicle-list {
+    min-height: 0;
+    padding-bottom: 8px;
+}
+
 .bar .button.button-icon.ac-browse-vehicle-icon > i.ion-android-funnel,
 .bar .button.button-icon.ac-browse-vehicle-icon > i.ion-android-locate {
     font-size: 22px;
@@ -39,6 +44,7 @@
 
 .item-thumbnail-left > img.ac-browse-vehicle-img {
     height: auto;
+    padding-bottom: 16px;
 }
 
 .row.ac-browse-vehicle-row {
