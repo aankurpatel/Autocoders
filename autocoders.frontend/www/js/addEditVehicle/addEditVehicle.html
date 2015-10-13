@@ -35,14 +35,14 @@
 
         <label class="item item-input">
             <span class="input-label">Style: </span>
-            <select name="ddlStyles" id="ddlStyles" ng-model="vehicle.vehicleStyle" >
+            <select name="ddlStyles" id="ddlStyles" ng-model="vehicle.styleId" >
                 <option ng-repeat="option in styles" value="{{option.id}}">{{option.name}}</option>
             </select>
         </label>
 
         <div>
           <button ng-click="getPhoto()" class="button button-block button-primary">Photo</button>
-          <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo
+          <button ng-click="uploadPhoto()">From Photo
             Library</button><br>
           <img id="image" src="" style="display:none;width:100%;">
         </div>

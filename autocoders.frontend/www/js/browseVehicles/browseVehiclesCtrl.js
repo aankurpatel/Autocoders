@@ -16,7 +16,8 @@
               })
           });
       }
-
+      
+      
       loadVehicles();
 
       $scope.setselectedVehicle= function(selVehicle)

@@ -18,3 +18,9 @@ cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
 ionic serve  (to open in browser)  Use Chrome Canary
 
 ionic run android   (to install on phone)
+
+// GP
+ionic plugin add https://github.com/apache/cordova-plugin-whitelist.git
+
+cordova plugin add cordova-plugin-camera
+cordova plugin add https://github.com/wymsee/cordova-imagePicker.git

@@ -18,4 +18,3 @@ angular.module('starter')
         console.log('Map loaded with center:' + map.getCenter());
     };
 });
-
