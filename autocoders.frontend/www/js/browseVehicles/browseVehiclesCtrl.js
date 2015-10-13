@@ -30,5 +30,9 @@
         $scope.$broadcast('scroll.refreshComplete');
         $scope.$apply()
       };
+      
+      $scope.navigateToMaps = function(){
+          $state.go("app.LocateVehiclesOnMaps");
+      };
 
     }]);
