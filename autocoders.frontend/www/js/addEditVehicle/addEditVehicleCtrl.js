@@ -77,27 +77,20 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
                 }
             );
     };
-
+  $scope.allImages = [];
   $scope.getPhoto = function(args) {
-    photoService.getPicture().then(function(imageURI) {
-      console.log(imageURI);
-      $scope.lastPhoto = imageURI;
+    photoService.getPicture().then(function(image) {
+      $scope.allImages.push(image);
     }, function(err) {
-      console.err(err);
+      console.log(err);
     });
   };
 
   $scope.uploadPhoto = function(args) {
-    photoService.uploadImages().then(function(imageURI) {
-      console.log(imageURI);
-      $scope.lastPhoto = imageURI;
+    photoService.uploadImages().then(function(results) {
+     $scope.allImages = results;
     }, function(err) {
-      console.err(err);
-    }, {
-      quality: 75,
-      targetWidth: 320,
-      targetHeight: 320,
-      saveToPhotoAlbum: false
+      console.log(err);
     });
   };
 
