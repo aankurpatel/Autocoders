@@ -2,14 +2,31 @@
   <ion-content>
       <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
       </ion-refresher>
+
       <div class="list">
 
           <a class="item item-thumbnail-left" href="#" ng-repeat="vehicle in vehicles" ng-click="setselectedVehicle(vehicle)">
               <img ng-src="data:image/JPEG;base64,{{vehicle.imageUrl[0]}}">
-              <h2>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</h2>
+              <h2>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h2>
               <p>{{vehicle.vin}}</p>
               <p>{{vehicle.type}}</p>
+              <p>{{vehicle.featPrice.value | currency : '$' : 0}}</p>
           </a>
+
+          <!--Example Vehicles-->
+          <a class="item item-thumbnail-left" href="#">
+              <img src="http://lorempixel.com/100/100/transport">
+              <h2>2006 Chevrolet Suburban</h2>
+              <p>3GNFK16Z46G115745</p>
+              <p>Fake</p>
+          </a>
+          <a class="item item-thumbnail-left" href="#">
+              <img src="http://lorempixel.com/100/100/transport">
+              <h2>2014 Chevrolet Impala LT</h2>
+              <p>2G1125S37E9108642</p>
+              <p>Fake</p>
+          </a>
+
       </div>
 
   </ion-content>
