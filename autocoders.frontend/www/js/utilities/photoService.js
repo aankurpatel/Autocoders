@@ -79,6 +79,11 @@ angular.module('starter')
           });
         return defer.promise;
 
+      },
+
+      getBase64Image:function(img)
+      {
+        return getBase64Image(img);
       }
     };
   });
