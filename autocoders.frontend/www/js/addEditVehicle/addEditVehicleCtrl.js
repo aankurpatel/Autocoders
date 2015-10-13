@@ -1,6 +1,6 @@
 ﻿var app = angular.module('starter');
 
-app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService) {
+app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService, photoService, Camera) {
     $scope.selectedMake = '';
     $scope.selectedModel = '';
     $scope.makes = {};
@@ -72,6 +72,20 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
                 }
             );
     };
+
+  $scope.getPhoto = function() {
+    Camera.getPicture().then(function(imageURI) {
+      console.log(imageURI);
+      $scope.lastPhoto = imageURI;
+    }, function(err) {
+      console.err(err);
+    }, {
+      quality: 75,
+      targetWidth: 320,
+      targetHeight: 320,
+      saveToPhotoAlbum: false
+    });
+  };
 
     $scope.saveVehicle = function() {
         vehicleApiProxy.saveVehicle($scope.vehicle)
