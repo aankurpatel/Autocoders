@@ -3,9 +3,6 @@
     ,function(locationService,getClosestVehicleApiProxy,vehicle,$scope,_,$q,$state) {
 
       function loadVehicles() {
-
-        var defer = $q.defer();
-
         locationService.getCurrentLocation()
           .then(function (results) {
             getClosestVehicleApiProxy.getClosestVehicles(results)
@@ -15,8 +12,7 @@
                 }
               })
           });
-      }
-      
+      };
       
       loadVehicles();
 
@@ -24,7 +20,8 @@
       {
         vehicle.selectedVehicle(selVehicle);
         $state.go("app.vehicleDetail");
-      }
+      };
+      
       $scope.doRefresh = function () {
         loadVehicles();
         $scope.$broadcast('scroll.refreshComplete');
@@ -32,7 +29,7 @@
       };
       
       $scope.navigateToMaps = function(){
-          $state.go("app.LocateVehiclesOnMaps");
+          $state.go("app.LocateVehiclesOnMaps", {vehicles: $scope.vehicles});
       };
 
     }]);
