@@ -84,7 +84,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'underscore', 'ngCord
                url: '/locationMaps',
                views: {
                    'menuContent': {
-                       templateUrl: 'js/myMaps/myVeiclesOnMap.html',
+                       templateUrl: 'js/myMaps/myVehiclesOnMap.html',
                        controller: 'locateVehiclesCtrl'
                    }
                },
