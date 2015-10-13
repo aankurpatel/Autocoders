@@ -140,6 +140,16 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
                    }
                },
                params: {'vehicles': null}
+            })
+            .state('app.StartQuote', {
+               url: '/startQuote',
+               views: {
+                   'menuContent': {
+                       templateUrl: 'js/quoteNegotiation/quote.html',
+                       controller: 'quoteCtrl'
+                   }
+               },
+               params: {'vehicle': null}
             });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/browse');

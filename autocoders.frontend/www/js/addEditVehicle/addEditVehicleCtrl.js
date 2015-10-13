@@ -1,7 +1,8 @@
 ﻿var app = angular.module('starter');
 
 
-app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService, $cordovaToast,photoService) {
+app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService,
+                                              $cordovaToast,photoService,$cordovaImagePicker) {
     $scope.selectedMake = '';
     $scope.selectedModel = '';
     $scope.makes = {};
@@ -87,13 +88,26 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
   };
 
   $scope.uploadPhoto = function(args) {
-    photoService.uploadImages().then(function(results) {
-      alert(results);
-     $scope.allImages = results;
-    }, function(err) {
-      alert(err.message);
-      console.log(err);
-    });
+    var defer = $q.defer(),
+      allImages = [];
+    var options = {
+      maximumImagesCount: 10,
+      width: 800,
+      height: 800,
+      quality: 80
+    };
+
+    $cordovaImagePicker.getPictures(options)
+      .then(function (results) {
+        for (var i = 0; i < results.length; i++) {
+          alert('Image URI: ' + results[i]);
+          var base64Image = photoService.getBase64Image(results[i]);
+          allImages.push(base64Image);
+        }
+        $scope.allImages = results;
+      }, function (err) {
+        alert(err);
+      });
   };
 
     $scope.saveVehicle = function() {

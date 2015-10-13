@@ -7,18 +7,18 @@
             </div>
 
             <div class="item item-image">
-                <img class="ac-vehicle-detail-img" ng-src="data:image/jpeg;base64,{{vehicle.imageUrl.substring(2, vehicle.imageUrl.length-2)}}" ng-hide="vehicle.imageUrl === '[\'\']'">
+                <img class="ac-vehicle-detail-img" ng-src="data:image/jpeg;base64,{{vehicle.imageUrl[0]}}">
             </div>
 
             <div class="item">
                 <div class="row">
                     <div class="col col-67 ac-left">{{vehicle.vin}}</div>
-                    <div class="col col-33 ac-right">{{vehicle.type}}</div>
+                    <div class="col col-33 ac-right">{{vehicle.extColor}}</div>
                 </div>
 
                 <div class="row">
                     <div class="col col-67 ac-left">{{vehicle.odo | number}} miles</div>
-                    <div class="col col-33 ac-right">{{vehicle.extColor}}</div>
+                    <div class="col col-33 ac-right">{{vehicle.type}}</div>
                 </div>
 
                 <div class="row">
@@ -29,7 +29,7 @@
             </div>
 
             <div class="item item-divider ac-right">
-                <button class="button button-clear button-calm">
+                <button class="button button-clear button-calm" ng-click="NavigateToQuote()">
                     Get Quote
                 </button>
             </div>
