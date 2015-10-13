@@ -2,20 +2,33 @@
  * Created by singhap on 10/12/15.
  */
 angular.module('starter')
-  .factory('photoService', function($q,$cordovaImagePicker) {
+  .factory('photoService', function($q,$cordovaImagePicker,$cordovaCamera) {
 
     return {
-      getPicture: function(options) {
-        var q = $q.defer();
+      getPicture: function() {
+        document.addEventListener("deviceready", function () {
 
-        navigator.camera.getPicture(function(result) {
-          // Do any magic you need
-          q.resolve(result);
-        }, function(err) {
-          q.reject(err);
-        }, options);
+          var options = {
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 100,
+            targetHeight: 100,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: true,
+            correctOrientation:true
+          };
 
-        return q.promise;
+          $cordovaCamera.getPicture(options).then(function(imageData) {
+            var image = document.getElementById('myImage');
+            image.src = "data:image/jpeg;base64," + imageData;
+          }, function(err) {
+            // error
+          });
+
+        }, false);
       },
 
       uploadImages:function(){
