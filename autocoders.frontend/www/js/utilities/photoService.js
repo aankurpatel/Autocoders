@@ -21,12 +21,7 @@ angular.module('starter')
             correctOrientation:true
           };
 
-          $cordovaCamera.getPicture(options).then(function(imageData) {
-            var image = document.getElementById('myImage');
-            image.src = "data:image/jpeg;base64," + imageData;
-          }, function(err) {
-            // error
-          });
+          $cordovaCamera.getPicture(options);
 
         }, false);
       },
@@ -39,14 +34,8 @@ angular.module('starter')
           quality: 80
         };
 
-        $cordovaImagePicker.getPictures(options)
-          .then(function (results) {
-            for (var i = 0; i < results.length; i++) {
-              console.log('Image URI: ' + results[i]);
-            }
-          }, function(error) {
-            // error getting photos
-          });
+        $cordovaImagePicker.getPictures(options);
+
       }
     }
   });

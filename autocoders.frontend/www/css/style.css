@@ -1,25 +1,20 @@
-/* Empty. Add your own CSS if you like */
-@import "compass/css3";
-.star-rating {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  
-  .star{
-    padding: 1px;
-    color: #ddd;
+/*Browse Vehicles Page*/
+
+.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-location {
+    font-size: 24px;
+}
+
+.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-funnel {
     font-size: 20px;
-    text-shadow: .05em .05em #aaa;
-    list-style-type: none;
-    display: inline-block;
-    cursor: pointer;
+    margin-left: 5px;
+}
 
-    &.filled {
-      color: #fd0;
-    }
-  }
+.item-thumbnail-left > img.ac-browse-vehicle-img {
+    height: auto;
+}
 
-  &.readonly .star.filled {
-    color: #666;
-  }
+/* Vehicle Location Page*/
+bing-map {
+    height: 100%;
+    width: 100%;
 }
