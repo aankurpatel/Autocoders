@@ -21,7 +21,7 @@
             var out = toString(message);
            
             console.log(message);
-            alert(out);
+//            alert(out);
         };
 
        
