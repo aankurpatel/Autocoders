@@ -1,28 +1,21 @@
 /**
  * Created by nasakas on 10/12/2015.
  */
-angular.module('starter', ['ngMaps'])
-  .controller('locateDealersCtlr', function($scope) {
-    $scope.map = {
-      center: [40.7, -74]
-    }
-    $scope.marker = {
-      position: [40.7, -74]
-    }
-    //$scope.$on('mapInitialized', function (event, map) {
-    //  map = {
-    //    center: [39, -121],
-    //    options: function () {
-    //      return {
-    //        streetViewControl: false,
-    //        scrollwheel: false
-    //      }
-    //    },
-    //    events: {
-    //      click: function (e, map) {
-    //        alert(e.latLng.lat() + " " + e.latLng.lng());
-    //      }
-    //    }
-    //  };
-    //})
-  });
+angular.module('starter')
+.controller('locateDealersCtrl', function($scope, $http, $timeout) {
+    /*<bing-map> directive options*/
+    $scope.mapOptions = {};
+    $scope.mapOptions.center = {latitude: 42.073326,longitude: -88.186176};
+    $scope.mapOptions.zoom = 15;
+    $scope.mapOptions.mapType = 'r';
+    $scope.mapOptions.options = {
+        disablePanning: false,
+        disableZooming: false
+    };
+    $scope.onMapReady = function(map) {
+        map.setView(new Microsoft.Maps.setView({}));
+        //This will return (0,0) because we havn't set the center yet
+        console.log('Map loaded with center:' + map.getCenter());
+    };
+});
+
