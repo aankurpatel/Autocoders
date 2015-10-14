@@ -13,13 +13,13 @@
          <div class="col col-67 ac-left">StockNo:{{proposal.vehicle.stockNo}}</div>
        </div>
        <div class="row ac-browse-vehicle-row">
-         <div class="col col-67 ac-left">{{proposal.buyer.fisrtName}} {{proposal.buyer.lastName}}</div>
-         <div class="col col-67 ac-left">{{proposal.buyer.email}}</div>
-         <div class="col col-67 ac-left">{{proposal.buyer.phone}}</div>
+         <div class="col ac-left">{{proposal.buyer.firstName}} {{proposal.buyer.lastName}}</div>
+         <div class="col ac-left">{{proposal.buyer.email}}</div>
+         <div class="col ac-left">{{proposal.buyer.phone}}</div>
        </div>
        <div class="row ac-browse-vehicle-row">
-         <div class="col col-67 ac-left ac-vehicle-detail-value">MSRP: {{proposal.quote.featPrice | currency : '$' : 0}}</div>
-         <div class="col col-67 ac-left ac-vehicle-detail-value">Offered Price: {{proposal.quote.offeredPrice | currency : '$' : 0}}</div>
+         <div class="col col-67 ac-left ac-vehicle-detail-value">MSRP: {{proposal.vehicle.featPrice | currency : '$' : 0}}</div>
+         <div class="col col-67 ac-left ac-vehicle-detail-value">Offered Price: {{proposal.buyerQuote.offeredPrice | currency : '$' : 0}}</div>
        </div>
      </a>
 
