@@ -9,7 +9,14 @@ angular.module('starter')
 
     self.getQuotesforDealer = function () {
       logger.log('getting users');
-      return $http.get(url+"?filter=dealeraccesskey eq "+userApiProxy.getCurrentUser().accountKey);
+      var filterUrl = url+"?$filter=(dealeraccesskey eq '"+userApiProxy.getCurrentUser().accountKey+"')";
+      console.log(filterUrl);
+      return $http.get(filterUrl);
+    }
+
+    self.addUpdateQuote = function (quote) {
+      logger.log('updating quote');
+      return $http.post(url,quote);
     }
 
   });
