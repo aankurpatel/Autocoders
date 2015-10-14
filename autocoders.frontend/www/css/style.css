@@ -3,6 +3,19 @@
     top: 0;
 }
 
+.bar.bar-autocoders {
+    border-color: #37899F; 
+    background-color: #37899F;
+    background-image: linear-gradient(0deg, #37899F, #37899F 50%, transparent 50%); 
+    color: #fff;
+}
+
+.button.button-autocoders {
+    border-color: #82C500;
+    background-color: #82C500;
+    color: #fff;
+}
+
 /* Utility Classes */
 .ac-center {
     text-align: center;
@@ -66,8 +79,7 @@
 }
 
 .bar .button.button-icon.ac-browse-vehicle-icon > i.ion-android-funnel,
-.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-android-locate,
-.bar .button.button-icon.ac-login-close-icon > i.ion-android-close {
+.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-android-locate {
     font-size: 22px;
 }
 
@@ -123,4 +135,14 @@ bing-map {
 
 .row.ac-quote-vehicle-row .col.ac-pad-left {
     padding-left: 8px;
+}
+
+/* Login Page */
+.bar .button.button-icon.ac-login-close-icon > i.ion-android-close {
+    font-size: 22px;
+    color: white;
+}
+
+.title {
+    color: white;
 }
