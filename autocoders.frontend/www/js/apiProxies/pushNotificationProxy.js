@@ -25,7 +25,7 @@
 
        
         self.sendNotification = function (message, tokens) {
-            tokens = _.filter(tokens, function (t) { return !!t && t.length > 10; });
+            console.log('sending notifications to tokens', tokens);
 
             var req = {
                 url: "https://gcm-http.googleapis.com/gcm/send",
