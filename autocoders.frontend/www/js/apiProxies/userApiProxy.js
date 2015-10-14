@@ -7,9 +7,10 @@
             throw new  Error('not implemented');
         };
 
-        self.getUsers = function () {
+        self.getUsers = function (filter) {
             logger.log('getting users');
-            return $http.get(url);
+            var filteredUrl = filter?url+'?$filter='+filter:url;
+            return $http.get(filteredUrl);
         }
 
         self.saveUser = function (user) {
@@ -35,7 +36,7 @@
                     });
                 }
 
-              
+
 
             }, function (error) {
                 console.log('error saving userprofile');
