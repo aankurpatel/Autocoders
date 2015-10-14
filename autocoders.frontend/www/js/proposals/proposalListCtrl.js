@@ -21,9 +21,6 @@ angular.module('starter')
                   console.log(err);
               });
 
-
-
-
       }
 
       loadProposals();
