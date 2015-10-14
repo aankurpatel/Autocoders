@@ -10,5 +10,9 @@ angular.module('starter')
       $scope.navigateToList = function(){
         $state.go("app.proposalList");
       };
+      $scope.showOffer = false;
+      $scope.addOffer = function(){
+        $scope.showOffer = true;
+      }
     }]);
 

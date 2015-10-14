@@ -21,13 +21,14 @@ angular.module('starter')
         //  });
         $scope.proposals = [{
             buyer:{
-              fisrtName:"John",
+              firsttName:"John",
               lastName:"Burke",
               zip:"60172",
               phone:"8472340984",
               email:"john.burke@gmailTest.com"
             },
             vehicle:{
+                featPrice:"32000",
                 make:"Honda",
                 model:"Accord",
                 year:"2015",
@@ -37,23 +38,34 @@ angular.module('starter')
                 imageUrl:"http://car-pictures.cars.com/images/?IMG=USC60ACS122A022002.jpg, http://images.cars.com/supersized/DMI/20/22138/05.jpg",
                 vin:"DC0XPORUSAWREZBP8"
             },
-            quote:{
-                featPrice:"32000",
+            buyerQuote:{
                 taxRate:"5%",
-                titleFee:"$500",
-                regFee:"$700",
-                downPayment:"$3000",
-                tradeInPayment:"$8000",
+                titleFee:"500",
+                regFee:"700",
+                downPayment:"3000",
+                tradeInPayment:"8000",
                 term:"60",
                 creditTier:"1",
                 apr:"",
-                monthlyPayment:"$700",
+                monthlyPayment:"700",
                 offeredPrice:"30000"
+            },
+            sellerQuote:{
+              taxRate:"5%",
+              titleFee:"500",
+              regFee:"700",
+              downPayment:"3000",
+              tradeInPayment:"8000",
+              term:"60",
+              creditTier:"1",
+              apr:"",
+              monthlyPayment:"700",
+              offeredPrice:"30000"
             }
           },
           {
             buyer:{
-              fisrtName:"Wesley",
+              firstName:"Wesley",
               lastName:"Pak",
               zip:"60006",
               phone:"7082345633",
@@ -67,19 +79,31 @@ angular.module('starter')
               type:"Used",
               stockNo:"737243",
               imageUrl:"http://car-pictures.cars.com/images/?IMG=USC60ACS122A022002.jpg, http://images.cars.com/supersized/DMI/20/22138/05.jpg",
-              vin:"DC0XPORUSAWREZBP8"
+              vin:"DC0XPORUSAWREZBP8",
+              featPrice:"25000"
             },
-            quote:{
-              featPrice:"25000",
+            buyerQuote:{
               taxRate:"5%",
-              titleFee:"$500",
-              regFee:"$700",
-              downPayment:"$3000",
-              tradeInPayment:"$0",
+              titleFee:"500",
+              regFee:"700",
+              downPayment:"3000",
+              tradeInPayment:"0",
               term:"60",
               creditTier:"1",
               apr:"",
-              monthlyPayment:"$400",
+              monthlyPayment:"400",
+              offeredPrice:"23000"
+            },
+            sellerQuote:{
+              taxRate:"5%",
+              titleFee:"500",
+              regFee:"700",
+              downPayment:"3000",
+              tradeInPayment:"0",
+              term:"60",
+              creditTier:"1",
+              apr:"",
+              monthlyPayment:"400",
               offeredPrice:"23000"
             }
           }];
