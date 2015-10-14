@@ -25,7 +25,7 @@
         };
 
         self.getCurrentUser = function() {
-            return JSON.stringify(window.localStorage['userprofile']);
+            return JSON.parse(window.localStorage['userprofile']);
         };
 
         self.getDealerProfile = function (accountKey) {
@@ -37,6 +37,11 @@
         };
 
         self.getUserTokens = function(accountKey) {
+            return $http.get(url + "?$select=" + "pushNotificationToken&$filter=(accountKey eq '"+ accountKey + "')");
+//            return $http.get(url + "?$select=" + "pushNotificationToken");
+        }
+
+        self.getAllUserTokens = function () {
             //return $http.get(url + "?$select=" + "pushNotificationToken&$filter=(accountKey eq '"+ accountKey + "')");
             return $http.get(url + "?$select=" + "pushNotificationToken");
         }

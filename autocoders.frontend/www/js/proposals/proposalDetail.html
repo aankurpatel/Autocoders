@@ -5,7 +5,67 @@
 
   <ion-content>
 
-<h3>Proposal Detail</h3>
+    <div class="card">
+      <div class="item item-divider item-text-wrap">
+        <h2 class="ac-vehicle-detail-value">{{proposal.vehicle.year}} {{proposal.vehicle.make}} {{proposal.vehicle.model}} {{proposal.vehicle.trim}}</h2>
+      </div>
+      <div class="item">
+        <!--<div class="row">-->
+          <!--<img class="" ng-src="{{proposal.vehicle.imageUrl[0]}}">-->
+        <!--</div>-->
+        <div class="row">
+          <a class="col col-67 ac-left" href="" id = "vin">{{proposal.vehicle.vin}}</a>
+          <div class="col col-33 ac-right">{{proposal.vehicle.extColor}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col col-67 ac-left">{{proposal.vehicle.odo | number}} miles</div>
+          <div class="col col-33 ac-right">{{proposal.vehicle.type}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <h2 class="ac-vehicle-detail-value">{{proposal.vehicle.featPrice | currency : '$' : 0}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="item item-divider ac-right">
+      <div>Offer from {{proposal.buyer.firstName}} {{proposal.buyer.lastName}}:</div>
+      <div class="col ac-left">Offered Price: {{proposal.quote.offeredPrice | currency : '$' : 0}}</div>
+      <div class="col ac-left">Trade in Value: {{proposal.quote.tradeInValue | currency : '$' : 0}}</div>
+      <div class="col ac-left">Down payment: {{proposal.quote.downPayment | currency : '$' : 0}}</div>
+      <div class="col ac-left">Term: {{proposal.quote.term}}</div>
+      <div class="col ac-left">APR: {{proposal.quote.apr}}</div>
+      <div class="col ac-left">Monthly Payment: {{proposal.quote.monthlyPayment | currency : '$' : 0}}</div>
+      <div class="col ac-left">Ttle Fee: {{proposal.quote.titleFee | currency : '$' : 0}}</div>
+      <div class="col ac-left">Reg Fee: {{proposal.quote.regFee | currency : '$' : 0}}</div>
+      <div class="col ac-left">Tax Rate: {{proposal.quote.taxRate | currency : '$' : 0}}</div>
+    </div>
+    <div class="item item-divider ac-right">
+      <button class="button button-clear button-calm" ng-click="acceptOffer()">
+        Accept
+      </button>
+      <button class="button button-clear button-calm" ng-click="rejectOffer()">
+       Reject
+      </button>
+      <button class="button button-clear button-calm" ng-click="addOffer()">
+        Offer
+      </button>
+    </div>
+    <div class="item item-divider ac-right" ng-show="showOffer">
+      <div class="col ac-left">Offered Price:
+          <input type="text" ng-value="proposal.sellerQuote.offeredPrice"/>
+      </div>
+      <div class="col ac-left">Trade in Value:
+        <input type="text" ng-value="proposal.sellerQuote.tradeInValue"/>
+      </div>
+      <div class="item item-divider ac-right">
+        <button class="button button-clear button-calm" ng-click="sendQuote()">
+          Send Offer
+        </button>
+      </div>
+    </div>
 
   </ion-content>
 </ion-view>
