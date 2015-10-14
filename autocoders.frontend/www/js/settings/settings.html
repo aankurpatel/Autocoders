@@ -1,24 +1,40 @@
 <ion-view view-title="Settings">
     <ion-content>
-        <span class="item item-input">
-            <span class="input-label">Account Key</span>
-            <input type="text" ng-model="user.accountKey" ng-change="accountKeyChange()" />
-        </span>
-        <ion-toggle ng-model="pushNotificationToggle.checked"
-                    ng-change="pushNotificationChange()">
-            Push Notifications
-        </ion-toggle>
-        {{user}}
-        <button ng-click="sendNotification()">
-            Send Test Notification
-        </button>
-        <button ng-click="saveUser()">
-            Save
-        </button>
-
-        <div class="item">
-            <pre ng-bind="users | json"></pre>
+        <div class="card">
+            <label class="item item-input">
+                <span class="input-label">Account Key</span>
+                <input class="ac-vehicle-detail-value" type="text" ng-model="user.accountKey" />
+            </label>
         </div>
+        <div class="card">
+            <label class="item item-input">
+                <span class="input-label">Name</span>
+                <input class="ac-vehicle-detail-value" type="text" ng-model="user.name" />
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Email</span>
+                <input class="ac-vehicle-detail-value" type="email" ng-model="user.email">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Telephone</span>
+                <input class="ac-vehicle-detail-value" type="tel" ng-model="user.phoneNo">
+            </label>
+            <ion-toggle toggle-class="toggle-balanced" ng-model="pushNotificationToggle.checked" ng-change="pushNotificationChange()">
+                Notifications
+            </ion-toggle>
 
+            <div class="item item-divider ac-right">
+                <button class="button button-clear button-calm" ng-click="sendNotification()">
+                    SEND NOTIFICATION
+                </button>
+                <button class="button button-clear button-calm" ng-click="saveUser()">
+                    SAVE
+                </button>
+            </div>
+
+        </div>
+        <!--        <span>-->
+        <!--            {{user}}-->
+        <!--        </span>-->
     </ion-content>
 </ion-view>

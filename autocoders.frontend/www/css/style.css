@@ -1,3 +1,8 @@
+/* Override Ionic styles */
+.view-container {
+    top: 0;
+}
+
 /* Utility Classes */
 .ac-center {
     text-align: center;
@@ -38,7 +43,8 @@
 }
 
 .bar .button.button-icon.ac-browse-vehicle-icon > i.ion-android-funnel,
-.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-android-locate {
+.bar .button.button-icon.ac-browse-vehicle-icon > i.ion-android-locate,
+.bar .button.button-icon.ac-login-close-icon > i.ion-android-close {
     font-size: 22px;
 }
 
@@ -57,9 +63,9 @@
 }
 
 /* Vehicle Detail Page */
-.item.item-image > img.ac-vehicle-detail-img {
-    width: auto;
-    margin: 20px 0;
+.ac-vehicle-detail-img .slider-slides,
+.ac-vehicle-detail-img .slider-slide {
+    height: auto;
 }
 
 .ac-vehicle-detail-value {

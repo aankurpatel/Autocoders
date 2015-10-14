@@ -1,6 +1,6 @@
 ﻿var app = angular.module('starter');
 
-app.factory('quoteService', ['$http', '$log', function ($http, $log) {
+app.factory('quoteService', ['$http', '$log', '$q', function ($http, $log, $q) {
     var quoteFactory = {};
     var urlBaseTaxRate = 'https://taxrates.api.avalara.com/postal?country=usa';
     
@@ -9,6 +9,7 @@ app.factory('quoteService', ['$http', '$log', function ($http, $log) {
     var title = 150;
     var registrationFees = 25;
     
+<<<<<<< HEAD
     quoteFactory.getRandomQuotePrice = function (msrp) {
         var num = parseFloat(msrp);
         var val = num - (num * Math.random());
@@ -33,6 +34,28 @@ app.factory('quoteService', ['$http', '$log', function ($http, $log) {
             title: title,
             registrationFees: registrationFees
         };
+=======
+    quoteFactory.getQuote = function (msrp, zipcode) {
+        var deferred = $q.defer();
+        var num = parseFloat(msrp);
+        var val = num - (num * Math.random());
+        zipcode = "60169";
+        $http.get(urlBaseTaxRate + '&postal=' + zipcode + '&apikey=' + apiKey).
+            success(function(data) {
+                // alert(data.styles);
+                //$scope.styles = data.styles;
+                taxRate = data.totalRate;
+                deferred.resolve({
+                    value: val,
+                    taxRate: taxRate,
+                    title: title,
+                    registrationFees: registrationFees
+                });
+            }).error(function(error) {
+                deferred.reject({taxRate: 9.25});
+            });
+        return deferred.promise;
+>>>>>>> 1beb803da945aaa20f3b60cb8bdcd6c06d01d2be
     };
     
     quoteFactory.getMonthlyPayment = function (price, term, zipcode) {

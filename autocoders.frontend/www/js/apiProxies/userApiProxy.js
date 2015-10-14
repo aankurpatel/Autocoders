@@ -18,6 +18,7 @@
         };
 
         self.getUserTokens = function(accountKey) {
+            //return $http.get(url + "?$select=" + "pushNotificationToken&$filter=(accountKey eq '"+ accountKey + "')");
             return $http.get(url + "?$select=" + "pushNotificationToken");
         }
     });

@@ -1,8 +1,6 @@
 ﻿angular.module('starter')
     .service('pushNotificationProxy', function ($http, logger) {
         var self = this;
-        var app_id = "api-project-405931835723";
-        var private_key = " AIzaSyDhO1kckiYgD7ZoygDwradomZbJzkTzx14";
 
         self.subscribe = function (user) {
             if (!user.token) {
@@ -13,7 +11,6 @@
             }
 
             // send subscription to api
-
             alert('subscription added for ' + user);
         };
 
@@ -27,72 +24,19 @@
         };
 
        
-        self.sendNotification = function (message, token) {
-            token = _.filter(token, function (t) { return !!t && t.length > 10; });
+        self.sendNotification = function (message, tokens) {
+            tokens = _.filter(tokens, function (t) { return !!t && t.length > 10; });
 
-            console.log('sending notification');
-            logger.log(token);
-            // get all tokens for the given accountKey
-            var post_data = {
-                "tokens": [
-                    token
-                ],
-                "notification": {
-                    "alert": message,
-                    "ios": {
-                        "badge": 1,
-                        "sound": "ping.aiff",
-                        "expiry": 1423238641,
-                        "priority": 10,
-                        "contentAvailable": true,
-                        "payload": {
-                            "key1": "value",
-                            "key2": "value"
-                        }
-                    },
-                    "android": {
-                        "collapseKey": "foo",
-                        "delayWhileIdle": true,
-                        "timeToLive": 300,
-                        "payload": {
-                            "key1": "value",
-                            "key2": "value"
-                        }
-                    }
-                }
-            }
-           
-           
-//            url = "https://push.ionic.io/api/v1/push"
-//            req = urllib2.Request(url, data = post_data)
-//            req.add_header("Content-Type", "application/json");
-//            req.add_header("X-Ionic-Application-Id", app_id);
-//            b64 = base64.encodestring('%s:' % private_key).replace('\n', '');
-//            req.add_header("Authorization", "Basic %s" % b64);
-//            resp = urllib2.urlopen(req);
-
-//            var req = {
-//                url: "https://push.ionic.io/api/v1/push ",
-//                method: 'POST',
-//                headers: {
-//                    'Content-Type': 'application/json',
-//                    'X-Ionic-Application-Id': app_id
-//                },
-//                data: post_data
-//            };
             var req = {
                 url: "https://gcm-http.googleapis.com/gcm/send",
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'key=' + private_key
+                    'Authorization': 'key=AIzaSyDtdD3KI-C4qGFwrtzfCZlr1RsChVSCd7c'
                 },
                 data: {
-                                        'to': token[0],
-//                    'registration_ids': token,
-                    data: {
-                        message: 'hello GP'
-                    }
+                    'registration_ids': tokens,
+                    data: message
                 }
             };
 
