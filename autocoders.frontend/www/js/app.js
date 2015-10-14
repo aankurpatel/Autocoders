@@ -7,29 +7,6 @@
 angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'underscore', 'ngCordova', 'angularBingMaps'])
     .run(function($ionicPlatform, $rootScope) {
         $ionicPlatform.ready(function () {
-            Ionic.io();
-
-            // this will give you a fresh user or the previously saved 'current user'
-            var user = Ionic.User.current();
-
-            // if the user doesn't have an id, you'll need to give it one.
-            if (!user.id) {
-                user.id = Ionic.User.anonymousId();
-                // user.id = 'your-custom-user-id';
-                user.set('name', 'gpatel');
-            }
-
-            //persist the user
-            user.save();
-
-            var push = new Ionic.Push({
-                "debug": true
-            });
-
-            push.register(function (token) {
-                console.log("Device token:", token.token);
-            });
-
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -50,13 +27,9 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
             switch (notification.event) {
                 case 'registered':
                     if (notification.regid.length > 0) {
-                        alert('registration ID = ' + notification.regid);
                         window.localStorage['token'] = notification.regid;
-//                        $scope.user.pushNotificationToken = notification.regid;
-                        //pushNotificationProxy.subscribe({ token: notification.regid, accountKey: androidConfig.senderID });
                     }
                     break;
-
                 case 'message':
                     // this is the actual push notification. its format depends on the data model from the push server
                     alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);

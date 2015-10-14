@@ -1,8 +1,6 @@
 ﻿angular.module('starter')
     .controller('settingsCtrl', function($scope, $rootScope, $cordovaPush, pushNotificationProxy, userApiProxy, logger) {
-
         var androidConfig = {
-//            "senderID": "api-project-405931835723"
             "senderID": "719651694151"
         };
         
@@ -13,16 +11,12 @@
                 register();
             } else {
                 // remove registration
+                unRegister();
             }
 
         };
-        $scope.accountKeyChange = function() {
-            console.log('accountKeyChange');
 
-            window.localStorage['accountKey'] = $scope.user.accountKey;
-        };
-
-        $scope.user = {  };
+        $scope.user = {};
 
         $scope.getNewAccountKey = function() {
             $scope.user.accountKey = makeid();
@@ -40,10 +34,9 @@
             return text;
         }
 
-        $scope.user = {
-            accountKey: window.localStorage['accountKey'] || makeid(),
-            pushNotificationToken: window.localStorage['token']
-        };
+        $scope.user = JSON.parse(window.localStorage['userprofile']);
+        $scope.user.accountKey = window.localStorage['accountKey'] || makeid();
+
         $scope.pushNotificationToggle = { checked: !!$scope.user.pushNotificationToken };
 
         function register() {
@@ -57,34 +50,6 @@
                 });
             });
         };
-
-        logger.log('dsfdsfsfsdfsdfsd')
-        $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-            alert('event wired')
-            switch (notification.event) {
-            case 'registered':
-                if (notification.regid.length > 0) {
-                    alert('registration ID = ' + notification.regid);
-                    window.localStorage['token'] = notification.regid;
-                    $scope.user.pushNotificationToken = notification.regid;
-                    //pushNotificationProxy.subscribe({ token: notification.regid, accountKey: androidConfig.senderID });
-                }
-                break;
-
-            case 'message':
-                // this is the actual push notification. its format depends on the data model from the push server
-                alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-                break;
-
-            case 'error':
-                alert('GCM error = ' + notification.msg);
-                break;
-
-            default:
-                alert('An unknown GCM event has occurred');
-                break;
-            }
-        });
 
         function unRegister() {
             // WARNING: dangerous to unregister (results in loss of tokenID)
@@ -101,7 +66,7 @@
                 var userTokens = [];
                
                 userTokens = _.pluck(response.data, 'pushNotificationToken');
-//                userTokens = _.without(userTokens, $scope.user.pushNotificationToken);
+                userTokens = _.without(userTokens, $scope.user.pushNotificationToken);
 
                 pushNotificationProxy.sendNotification('test notification from GP', userTokens);
             });
@@ -118,13 +83,16 @@
 
         }
 
-        loadUser();
+        //loadUser();
 
         $scope.saveUser = function () {
             logger.log('saving user');
+            $scope.user.pushNotificationToken = window.localStorage['token'];
+
+            window.localStorage['userprofile'] = JSON.stringify($scope.user);
+
             userApiProxy.saveUser($scope.user).then(function(response) {
                 logger.log(response);
-
             }, function(error) {
                 logger.log(error);
             });
