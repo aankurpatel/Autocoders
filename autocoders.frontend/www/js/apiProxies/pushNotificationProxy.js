@@ -36,9 +36,7 @@
                 },
                 data: {
                     'registration_ids': tokens,
-                    data: {
-                        message: message
-                    }
+                    data: message
                 }
             };
 

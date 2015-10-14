@@ -12,6 +12,8 @@ Open SDK Manager.exe, and update/install android 22 and 23.
 npm install ionic -g
 npm install cordova -g
 
+cordova platform add android 
+
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
 cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
 
