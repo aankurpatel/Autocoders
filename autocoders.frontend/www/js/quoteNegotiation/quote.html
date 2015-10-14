@@ -19,14 +19,15 @@
 
                 <div class="row">
                     <div class="col">
-                        <h2 class="ac-vehicle-detail-value">{{vehicle.featPrice | currency : '$' : 0}}</h2>
+                        <h2 ng-show="!view.editable" class="ac-vehicle-detail-value">{{vehicle.featPrice | currency : '$' : 0}}</h2>
+                        <input ng-show="view.editable" class="ac-vehicle-detail-value">{{vehicle.offerPrice | currency : '$' : 0}}</input>
                     </div>
                 </div>
             </div>
 
             <div class="item item-divider">
                 <div class="row">
-                    <div class="col col-67 ac-vehicle-detail-value ac-left">Monthly Payment</div>
+                    <input type="text" ng-enabled="view.editable" class="col col-67 ac-vehicle-detail-value ac-left">Monthly Payment</input>
                     <div class="col col-33 ac-vehicle-detail-value balanced ac-right">{{monthlyPayment | currency : '$' : 0}}</div>
                 </div>
             </div>
@@ -50,7 +51,7 @@
                 <button class="button button-clear button-calm" ng-click="AcceptQuote()">
                     ACCEPT
                 </button>
-                <button class="button button-clear button-calm" ng-click="NavigateToQuote()">
+                <button class="button button-clear button-calm" ng-click="Negotiate()">
                     MAKE OFFER
                 </button>
             </div>
