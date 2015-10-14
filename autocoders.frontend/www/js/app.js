@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'underscore', 'ngCordova', 'angularBingMaps'])
-    .run(function ($ionicPlatform, $rootScope, $cordovaToast, $cordovaPush) {
+    .run(function ($ionicPlatform, $rootScope, $cordovaToast, $cordovaPush, userApiProxy, logger) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -28,22 +28,31 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
                 }).then(function(result) {
                     // Success
                     console.log("Register success " + result);
+                   
                 }, function(err) {
                     // Error
                 });
             });
         };
 
-        if (!window.localStorage['token']) {
+        var userprofile = userApiProxy.getCurrentUser();
+
+        if (!userprofile) {
             register();
         }
+
         // Notification Received
         $rootScope.$on('$cordovaPush:notificationReceived', function (event, notification) {
             alert(JSON.stringify([notification]));
             switch (notification.event) {
                 case 'registered':
                     if (notification.regid.length > 0) {
-                        window.localStorage['token'] = notification.regid;
+                        userprofile.pushNotificationToken = notification.regid;
+                        userApiProxy.saveUser(userprofile).then(function (response) {
+                            logger.log(response);
+                        }, function (error) {
+                            logger.log(error);
+                        });
                     }
                     break;
                 case 'message':

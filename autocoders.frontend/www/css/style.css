@@ -16,6 +16,23 @@
     text-align: right;
 }
 
+.ac-nowrap {
+    white-space: nowrap;
+}
+
+.ac-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.ac-regular {
+    font-weight: 400;
+}
+
+.ac-pad-left {
+    padding-left: 16px;
+}
+
 /* Navigation */
 .bar .button.back-button .ion-android-arrow-back {
     font-size: 30px;
@@ -88,4 +105,22 @@
 bing-map {
     height: 100%;
     width: 100%;
+}
+
+/* Quote Vehicle Page */
+.row.ac-quote-vehicle-row {
+    padding: 0;
+    padding-bottom: 8px;
+}
+
+.row.ac-quote-vehicle-row:last-child {
+    padding: 0;
+}
+
+.row.ac-quote-vehicle-row .col {
+    padding: 0;
+}
+
+.row.ac-quote-vehicle-row .col.ac-pad-left {
+    padding-left: 8px;
 }
