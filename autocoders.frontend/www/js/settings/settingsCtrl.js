@@ -1,5 +1,5 @@
 ﻿angular.module('starter')
-    .controller('settingsCtrl', function($scope, $rootScope, $cordovaPush, pushNotificationProxy, userApiProxy, logger, helper) {
+    .controller('settingsCtrl', function ($scope, $rootScope, $cordovaPush, $cordovaToast, pushNotificationProxy, userApiProxy, logger, helper) {
         var androidConfig = {
             "senderID": "719651694151"
         };
@@ -74,10 +74,10 @@
         loadUser();
 
         $scope.saveUser = function () {
-            logger.log('saving user');
+            userApiProxy.saveUser($scope.user).then(function (response) {
+                $scope.user = response;
+                //$cordovaToast.show('Saved', 'long', 'center');
+            });
 
-            window.localStorage['userprofile'] = JSON.stringify($scope.user);
-
-            userApiProxy.saveUser($scope.user);
         };
     });
