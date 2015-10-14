@@ -1,0 +1,29 @@
+<ion-view view-title="Proposed Quotes">
+ <ion-content>
+    <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
+    </ion-refresher>
+
+   <div class="list">
+
+     <a class="item item-thumbnail-left ac-browse-proposal-list" href="#" ng-repeat="proposal in proposals" ng-click="setSelectedProposal(proposal)">
+       <img class="ac-browse-vehicle-img" ng-src="{{proposal.vehicle.imageUrl[0]}}">
+       <h2>{{proposal.vehicle.year}} {{proposal.vehicle.make}} {{proposal.vehicle.model}} {{proposal.vehicle.trim}}</h2>
+       <div class="row ac-browse-vehicle-row">
+         <div class="col col-67 ac-left">{{proposal.vehicle.vin}}</div>
+         <div class="col col-67 ac-left">StockNo:{{proposal.vehicle.stockNo}}</div>
+       </div>
+       <div class="row ac-browse-vehicle-row">
+         <div class="col col-67 ac-left">{{proposal.buyer.fisrtName}} {{proposal.buyer.lastName}}</div>
+         <div class="col col-67 ac-left">{{proposal.buyer.email}}</div>
+         <div class="col col-67 ac-left">{{proposal.buyer.phone}}</div>
+       </div>
+       <div class="row ac-browse-vehicle-row">
+         <div class="col col-67 ac-left ac-vehicle-detail-value">MSRP: {{proposal.quote.featPrice | currency : '$' : 0}}</div>
+         <div class="col col-67 ac-left ac-vehicle-detail-value">Offered Price: {{proposal.quote.offeredPrice | currency : '$' : 0}}</div>
+       </div>
+     </a>
+
+   </div>
+
+  </ion-content>
+</ion-view>

@@ -63,7 +63,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
                         .show(notification.message.text, 'long', 'center')
                         .then(function(success) {
                             // success
-                            
+
                         }, function(error) {
                             // error
                         });
@@ -157,10 +157,28 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
                    }
                },
                params: {'vehicle': null}
+            })
+            .state('app.proposalList', {
+              url: '/proposals',
+              views: {
+                'menuContent': {
+                  templateUrl: 'js/proposals/proposalList.html',
+                  controller: 'proposalListCtrl'
+                }
+              }
+            })
+            .state('app.proposalDetail', {
+              url: '/proposalDetail',
+              views: {
+                'menuContent': {
+                  templateUrl: 'js/proposals/proposalDetail.html',
+                  controller: 'proposalDetailCtrl'
+                }
+              }
             });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/browse');
-        
+
         //Register Bing-Maps & set default options
         angularBingMapsProvider.setDefaultMapOptions({
             credentials: 'AqWNccwBVcI7iRPX___tij6sHF1VtSOK9J9CD8e9R1kSx3fRYZsoFTSSCxkcQygM',
