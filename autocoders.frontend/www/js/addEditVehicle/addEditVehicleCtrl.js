@@ -2,7 +2,7 @@
 
 
 app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService,
-                                              $cordovaToast,photoService,$cordovaImagePicker) {
+                                              $cordovaToast,photoService,$cordovaImagePicker,$cordovaCamera) {
     $scope.selectedMake = '';
     $scope.selectedModel = '';
     $scope.makes = {};
@@ -78,18 +78,34 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
     };
   $scope.allImages = [];
   $scope.getPhoto = function(args) {
-    photoService.getPicture().then(function(image) {
-      alert(image);
-      $scope.allImages.push(image);
-    }, function(err) {
-      alert(err.message);
-      console.log(err);
-    });
+    document.addEventListener("deviceready", function () {
+
+      var options = {
+        quality: 50,
+        destinationType: Camera.DestinationType.DATA_URL,
+        sourceType: Camera.PictureSourceType.CAMERA,
+        allowEdit: false,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 100,
+        targetHeight: 100,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: true,
+        correctOrientation: true
+      };
+
+      $cordovaCamera.getPicture(options)
+        .then(function (image) {
+          //var base64Image = photoService.getBase64Image(image);
+          alert(image);
+          $scope.allImages.push(image);
+        }, function (err) {
+          console.log(err);
+        });
+    }, false);
   };
 
   $scope.uploadPhoto = function(args) {
-    var defer = $q.defer(),
-      allImages = [];
+    var allImages = [];
     var options = {
       maximumImagesCount: 10,
       width: 800,
@@ -99,14 +115,14 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
 
     $cordovaImagePicker.getPictures(options)
       .then(function (results) {
+
         for (var i = 0; i < results.length; i++) {
-          alert('Image URI: ' + results[i]);
           var base64Image = photoService.getBase64Image(results[i]);
-          allImages.push(base64Image);
+          $scope.allImages.push(base64Image);
         }
-        $scope.allImages = results;
+        alert($scope.allImages.toString());
       }, function (err) {
-        alert(err);
+        console.log(err);
       });
   };
 
