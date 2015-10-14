@@ -59,6 +59,12 @@
     padding-bottom: 8px;
 }
 
+/* Proposal Page */
+.item.item-thumbnail-left.ac-browse-proposal-list {
+  min-height: 0;
+  padding-bottom: 8px;
+}
+
 .bar .button.button-icon.ac-browse-vehicle-icon > i.ion-android-funnel,
 .bar .button.button-icon.ac-browse-vehicle-icon > i.ion-android-locate,
 .bar .button.button-icon.ac-login-close-icon > i.ion-android-close {
