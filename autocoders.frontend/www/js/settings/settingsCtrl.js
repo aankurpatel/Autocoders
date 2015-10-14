@@ -78,7 +78,6 @@
 
         $scope.saveUser = function () {
             logger.log('saving user');
-            $scope.user.pushNotificationToken = window.localStorage['token'];
 
             window.localStorage['userprofile'] = JSON.stringify($scope.user);
 
