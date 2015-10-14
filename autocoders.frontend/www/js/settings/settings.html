@@ -1,4 +1,10 @@
 <ion-view view-title="Settings">
+    <ion-nav-buttons side="right">
+        <button class="button button-autocoders" ng-click="saveUser()">
+            SAVE
+        </button>
+    </ion-nav-buttons>
+
     <ion-content>
         <div class="card">
             <label class="item item-input">
@@ -22,19 +28,11 @@
             <ion-toggle toggle-class="toggle-balanced" ng-model="pushNotificationToggle.checked" ng-change="pushNotificationChange()">
                 Notifications
             </ion-toggle>
-
-            <div class="item item-divider ac-right">
-                <button class="button button-clear button-calm" ng-click="sendNotification()">
-                    SEND NOTIFICATION
-                </button>
-                <button class="button button-clear button-calm" ng-click="saveUser()">
-                    SAVE
-                </button>
-            </div>
-
         </div>
-        <!--        <span>-->
-        <!--            {{user}}-->
-        <!--        </span>-->
+
+        <div class="padding">
+            <button class="button button-block button-stable" ng-click="sendNotification()">SEND TEST NOTIFICATION</button>
+        </div>
+
     </ion-content>
 </ion-view>

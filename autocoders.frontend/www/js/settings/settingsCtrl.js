@@ -1,5 +1,5 @@
 ﻿angular.module('starter')
-    .controller('settingsCtrl', function($scope, $rootScope, $cordovaPush, pushNotificationProxy, userApiProxy, logger, helper) {
+    .controller('settingsCtrl', function ($scope, $rootScope, $cordovaPush, $cordovaToast, pushNotificationProxy, userApiProxy, logger, helper) {
         var androidConfig = {
             "senderID": "719651694151"
         };
@@ -22,10 +22,7 @@
             $scope.user.accountKey = makeid();
         };
 
-        logger.log(window.localStorage['userprofile']);
-
-        $scope.user = JSON.parse(window.localStorage['userprofile'] || '{}');
-        $scope.user.accountKey = $scope.user.accountKey || helper.makeid();
+        $scope.user = userApiProxy.getCurrentUser();
 
         $scope.pushNotificationToggle = { checked: !!$scope.user.pushNotificationToken };
 
@@ -77,14 +74,10 @@
         loadUser();
 
         $scope.saveUser = function () {
-            logger.log('saving user');
-
-            window.localStorage['userprofile'] = JSON.stringify($scope.user);
-
-            userApiProxy.saveUser($scope.user).then(function(response) {
-                logger.log(response);
-            }, function(error) {
-                logger.log(error);
+            userApiProxy.saveUser($scope.user).then(function (response) {
+                $scope.user = response;
+                //$cordovaToast.show('Saved', 'long', 'center');
             });
+
         };
     });
