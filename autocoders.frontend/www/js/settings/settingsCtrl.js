@@ -22,10 +22,7 @@
             $scope.user.accountKey = makeid();
         };
 
-        logger.log(window.localStorage['userprofile']);
-
-        $scope.user = JSON.parse(window.localStorage['userprofile'] || '{}');
-        $scope.user.accountKey = $scope.user.accountKey || helper.makeid();
+        $scope.user = userApiProxy.getCurrentUser();
 
         $scope.pushNotificationToggle = { checked: !!$scope.user.pushNotificationToken };
 
@@ -52,13 +49,13 @@
 
         $scope.sendNotification = function() {
             console.log('sending test notification');
-            userApiProxy.getUserTokens($scope.user.accountKey).then(function (response) {
+            userApiProxy.getAllUserTokens().then(function (response) {
                 var userTokens = [];
                
                 userTokens = _.pluck(response.data, 'pushNotificationToken');
                 userTokens = _.without(userTokens, $scope.user.pushNotificationToken);
                 logger.log(userTokens);
-                pushNotificationProxy.sendNotification({ message: 'test notification from GP', title: 'Autocoders Rock!', route: '#/app/playlists/5', data1: 'hello'}, userTokens);
+                pushNotificationProxy.sendNotification({ message: 'test notification from GP', title: 'Autocoders Rock!', route: '#/app/quote/5', data1: 'hello'}, userTokens);
             });
         };
 
@@ -78,14 +75,9 @@
 
         $scope.saveUser = function () {
             logger.log('saving user');
-            $scope.user.pushNotificationToken = window.localStorage['token'];
 
             window.localStorage['userprofile'] = JSON.stringify($scope.user);
 
-            userApiProxy.saveUser($scope.user).then(function(response) {
-                logger.log(response);
-            }, function(error) {
-                logger.log(error);
-            });
+            userApiProxy.saveUser($scope.user);
         };
     });

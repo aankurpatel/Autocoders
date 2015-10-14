@@ -43,10 +43,10 @@
       <div class="col ac-left">Tax Rate: {{proposal.quote.taxRate | currency : '$' : 0}}</div>
     </div>
     <div class="item item-divider ac-right">
-      <button class="button button-clear button-calm" ng-click="">
+      <button class="button button-clear button-calm" ng-click="acceptOffer()">
         Accept
       </button>
-      <button class="button button-clear button-calm" ng-click="">
+      <button class="button button-clear button-calm" ng-click="rejectOffer()">
        Reject
       </button>
       <button class="button button-clear button-calm" ng-click="addOffer()">
@@ -61,7 +61,7 @@
         <input type="text" ng-value="proposal.sellerQuote.tradeInValue"/>
       </div>
       <div class="item item-divider ac-right">
-        <button class="button button-clear button-calm" ng-click="">
+        <button class="button button-clear button-calm" ng-click="sendQuote()">
           Send Offer
         </button>
       </div>
