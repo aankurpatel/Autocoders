@@ -52,13 +52,13 @@
 
         $scope.sendNotification = function() {
             console.log('sending test notification');
-            userApiProxy.getUserTokens($scope.user.accountKey).then(function (response) {
+            userApiProxy.getAllUserTokens().then(function (response) {
                 var userTokens = [];
                
                 userTokens = _.pluck(response.data, 'pushNotificationToken');
                 userTokens = _.without(userTokens, $scope.user.pushNotificationToken);
                 logger.log(userTokens);
-                pushNotificationProxy.sendNotification({ message: 'test notification from GP', title: 'Autocoders Rock!', route: '#/app/playlists/5', data1: 'hello'}, userTokens);
+                pushNotificationProxy.sendNotification({ message: 'test notification from GP', title: 'Autocoders Rock!', route: '#/app/quote/5', data1: 'hello'}, userTokens);
             });
         };
 
