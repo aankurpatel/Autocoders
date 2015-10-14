@@ -35,7 +35,7 @@
         }
 
         $scope.user = JSON.parse(window.localStorage['userprofile']);
-        $scope.user.accountKey = window.localStorage['accountKey'] || makeid();
+        $scope.user.accountKey = $scope.user.accountKey || makeid();
 
         $scope.pushNotificationToggle = { checked: !!$scope.user.pushNotificationToken };
 
@@ -67,13 +67,14 @@
                
                 userTokens = _.pluck(response.data, 'pushNotificationToken');
                 userTokens = _.without(userTokens, $scope.user.pushNotificationToken);
-
+                logger.log(userTokens);
                 pushNotificationProxy.sendNotification('test notification from GP', userTokens);
             });
         };
 
         function loadUser() {
-            userApiProxy.getUsers().then(function (response) {
+            logger.log('loading users');
+            userApiProxy.getUserTokens('www').then(function (response) {
                 logger.log(response.data);
                 $scope.users = response.data;
             }, function(error) {
@@ -83,7 +84,7 @@
 
         }
 
-        //loadUser();
+        loadUser();
 
         $scope.saveUser = function () {
             logger.log('saving user');
