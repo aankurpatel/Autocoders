@@ -43,13 +43,13 @@
         <div>
           <a class="item item-list-detail">
             <ion-scroll direction="x">
-              <img ng-repeat="image in allImages" ng-src="data:image/jpeg;base64,{{image.src}}" ng-click="showImages($index)" class="image-list-thumb"/>
+              <img ng-repeat="image in allImages" ng-src="data:image/jpeg;base64,{{image}}" class="image-list-thumb"/>
             </ion-scroll>
           </a>
           <button ng-click="getPhoto()" class="button button-block button-primary">Photo</button>
-          <button ng-click="uploadPhoto()">From Photo
-            Library</button><br>
-          <img id="image" src="" style="display:none;width:100%;">
+          <button ng-click="uploadPhoto()" class="button button-block button-primary">From Photo
+            Library</button>
+          <img id="image" src="" style="display:none;width:200px;height:100px">
         </div>
 
         <label class="item item-input">
