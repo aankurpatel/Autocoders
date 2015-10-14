@@ -16,11 +16,18 @@
             var deffered = $q.defer();
 
             logger.log('saving user');
+            console.log(user)
             console.log(url + "?$filter=(id eq '" + user.id + "')")
-            var currentUser = $http.get(url + "?$filter=(id eq '" + user.id + "')").then(function(response) {
+            $http.get(url + "?$filter=(id eq '" + user.id + "')").then(function(response) {
                 if (response.data.length > 0) {
                     console.log('user found');
-                    $http.patch(url + "/" + user.id, user);
+                    window.localStorage['userprofile'] = JSON.stringify(user);
+
+                    $http.patch(url + "/" + user.id, user).then(function(response) {
+                        console.log(response);
+                        deffered.resolve(user);
+
+                    });
                 } else {
                     console.log('inserting');
 
@@ -29,8 +36,9 @@
 
                     $http.post(url, user).then(function (response) {
                         user = response.data;
+                        console.log(user);
                         window.localStorage['userprofile'] = JSON.stringify(user);
-                        console.log(user)
+
                         deffered.resolve(user);
                     });
                 }
