@@ -63,9 +63,9 @@
 }
 
 /* Vehicle Detail Page */
-.item.item-image > img.ac-vehicle-detail-img {
-    width: auto;
-    margin: 20px 0;
+.ac-vehicle-detail-img .slider-slides,
+.ac-vehicle-detail-img .slider-slide {
+    height: auto;
 }
 
 .ac-vehicle-detail-value {

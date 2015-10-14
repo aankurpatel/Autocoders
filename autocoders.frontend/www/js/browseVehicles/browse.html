@@ -1,4 +1,4 @@
-<ion-view view-title="Browse Vehicles">
+<ion-view view-title="Browse">
     <ion-nav-buttons side="right">
         <button class="button button-icon ac-browse-vehicle-icon" ng-click="navigateToMaps()">
             <i class="ion-android-locate"></i>
@@ -15,7 +15,7 @@
         <div class="list">
 
             <a class="item item-thumbnail-left ac-browse-vehicle-list" href="#" ng-repeat="vehicle in vehicles" ng-click="setselectedVehicle(vehicle)">
-                <img class="ac-browse-vehicle-img" ng-src="data:image/jpeg;base64,{{vehicle.imageUrl[0]}}">
+                <img class="ac-browse-vehicle-img" ng-src="{{vehicle.imageUrl[0]}}">
                 <h2>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h2>
                 <div class="row ac-browse-vehicle-row">
                     <div class="col col-67 ac-left">{{vehicle.vin}}</div>
