@@ -6,8 +6,18 @@
                 <h2 class="ac-vehicle-detail-value">{{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h2>
             </div>
 
-            <div class="item item-image">
-                <img class="ac-vehicle-detail-img" ng-src="{{vehicle.imageUrl[0]}}">
+            <div class="item item-image ac-vehicle-detail-img">
+                <!--<img class="ac-vehicle-detail-img" ng-src="{{vehicle.imageUrl[0]}}">-->
+
+
+                <ion-slide-box show-pager="false">
+                    <ion-slide ng-repeat="imageUrl in vehicle.imageUrl">
+                        <img ng-src="{{imageUrl}}">
+                    </ion-slide>
+                </ion-slide-box>
+
+
+
             </div>
 
             <div class="item">
