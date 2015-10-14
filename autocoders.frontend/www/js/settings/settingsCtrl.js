@@ -34,7 +34,9 @@
             return text;
         }
 
-        $scope.user = JSON.parse(window.localStorage['userprofile']);
+        logger.log(window.localStorage['userprofile']);
+
+        $scope.user = JSON.parse(window.localStorage['userprofile'] || '{}');
         $scope.user.accountKey = $scope.user.accountKey || makeid();
 
         $scope.pushNotificationToggle = { checked: !!$scope.user.pushNotificationToken };

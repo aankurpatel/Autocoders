@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'underscore', 'ngCordova', 'angularBingMaps'])
-    .run(function ($ionicPlatform, $rootScope, $cordovaDialogs) {
+    .run(function ($ionicPlatform, $rootScope, $cordovaDialogs, $cordovaToast) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -23,7 +23,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
 
         // Notification Received
         $rootScope.$on('$cordovaPush:notificationReceived', function (event, notification) {
-            console.log(JSON.stringify([notification]));
+            alert(JSON.stringify([notification]));
             switch (notification.event) {
                 case 'registered':
                     if (notification.regid.length > 0) {
@@ -33,7 +33,15 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
                 case 'message':
                     // this is the actual push notification. its format depends on the data model from the push server
                     //                    alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-                    $cordovaDialogs.alert(notification.message.text, "Push Notification Received");
+                    alert(notification.message.text, "Push Notification Received");
+//                    $cordovaToast
+//                        .show(notification.message.text, 'long', 'center')
+//                        .then(function(success) {
+//                            // success
+//                            
+//                        }, function(error) {
+//                            // error
+//                        });
                     break;
 
                 case 'error':
