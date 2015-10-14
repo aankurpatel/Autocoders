@@ -35,10 +35,10 @@ app.factory('quoteService', ['$http', '$log', '$q', function ($http, $log, $q) {
     };
 
  
-    quoteFactory.getQuote = function(price, term, zipcode) {
+    quoteFactory.getQuote = function(price, term, tradeinValue, zipcode) {
         var defer = $q.defer();
         quoteFactory.getTaxTitleReg(zipcode).then(function(taxes) {
-            var totalPrice = price + (price * taxes.taxRate) + taxes.registrationFees + taxes.title;
+            var totalPrice = price - tradeinValue + (price * taxes.taxRate) + taxes.registrationFees + taxes.title;
             var monthlyPayment = totalPrice / term;
             defer.resolve({
                 monthlyPayment: monthlyPayment,
