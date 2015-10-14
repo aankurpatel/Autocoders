@@ -9,30 +9,41 @@ app.factory('quoteService', ['$http', '$log', function ($http, $log) {
     var title = 150;
     var registrationFees = 25;
     
-    quoteFactory.getQuote = function (msrp, zipcode) {
+    quoteFactory.getRandomQuotePrice = function (msrp) {
         var num = parseFloat(msrp);
         var val = num - (num * Math.random());
-        $http.get(urlBaseTaxRate + '?postal=' + zipcode + '&apikey=' + apiKey).
-            success(function(data) {
-                // alert(data.styles);
-                //$scope.styles = data.styles;
-                taxRate = data.totalRate;
-            }).error(function(error) {
-                taxRate = 9.25;
-            });
-       
         return {
-            value: val,
+            value: val
+        };
+    };
+
+    quoteFactory.getTaxTitleReg = function (zipcode) {
+        
+        $http.get(urlBaseTaxRate + '?postal=' + zipcode + '&apikey=' + apiKey).
+          success(function (data) {
+              // alert(data.styles);
+              //$scope.styles = data.styles;
+              taxRate = data.totalRate;
+          }).error(function (error) {
+              taxRate = 9.25;
+          });
+
+        return {
             taxRate: taxRate,
             title: title,
             registrationFees: registrationFees
         };
     };
+    
+    quoteFactory.getMonthlyPayment = function (price, term, zipcode) {
 
+        var taxes = quoteFactory.getTaxTitleReg(zipcode);
+        var totalPrice = price + (price * taxes.taxRate) + taxes.registrationFees + taxes.title;
+        var monthlyPayment = totalPrice / term;
 
-    //quoteFactory.getRebatesIncentives = function (styleId, zipcode) {
-    //    return $http.get('https://api.edmunds.com/v1/api/incentive/incentiverepository/findincentivesbystyleidandzipcode?styleId=' + styleId + '&zipcode=' + zipcode + '&fmt=json&api_key=' + apiKey);
-    //};
+        return monthlyPayment;
+
+    };
 
     return quoteFactory;
 }]);
