@@ -25,7 +25,7 @@
         };
 
         self.getCurrentUser = function() {
-            return JSON.stringify(window.localStorage['userprofile']);
+            return JSON.parse(window.localStorage['userprofile']);
         };
 
         self.getDealerProfile = function (accountKey) {
