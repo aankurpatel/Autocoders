@@ -68,7 +68,7 @@
                 userTokens = _.pluck(response.data, 'pushNotificationToken');
                 userTokens = _.without(userTokens, $scope.user.pushNotificationToken);
                 logger.log(userTokens);
-                pushNotificationProxy.sendNotification('test notification from GP', userTokens);
+                pushNotificationProxy.sendNotification({ text: 'test notification from GP', route: '#/app/playlists/5' }, userTokens);
             });
         };
 

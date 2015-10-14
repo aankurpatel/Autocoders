@@ -36,8 +36,8 @@
                 },
                 data: {
                     'registration_ids': tokens,
-                    message: {
-                        text: 'hello GP'
+                    data: {
+                        message: message
                     }
                 }
             };

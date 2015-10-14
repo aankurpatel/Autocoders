@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'underscore', 'ngCordova', 'angularBingMaps'])
-    .run(function($ionicPlatform, $rootScope) {
+    .run(function ($ionicPlatform, $rootScope, $cordovaDialogs) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -32,7 +32,8 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
                     break;
                 case 'message':
                     // this is the actual push notification. its format depends on the data model from the push server
-                    alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+                    //                    alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+                    $cordovaDialogs.alert(notification.message.text, "Push Notification Received");
                     break;
 
                 case 'error':
