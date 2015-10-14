@@ -1,25 +1,57 @@
-<ion-view view-title="Quote & Negotiation">
+<ion-view view-title="Quote">
     <ion-content>
 
         <div class="card">
             <div class="item item-divider">
-                <h2 class="ac-vehicle-detail-value">{{vehicle.type}} {{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h2>
-            </div>
-            <div class="row">
-                <div class="col col-50 ac-left">{{vehicle.odo | number}} miles</div>
-                <div class="col col-50 ac-left">Exterior color: {{vehicle.extColor}}</div>
-            </div>
-            <div class="row">
-                <h4 class="col ac-vehicle-detail-value">msrp: {{vehicle.featPrice | currency : '$' : 0}}</h2>
+                <h2 class="ac-vehicle-detail-value">{{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h2>
             </div>
 
-            <div class="row">
-                <h4>Monthly: {{monthlyPayment}} Tax:{{taxRate}} Title Fee:{{titlePrice}} Reg Fee:{{registrationFees}}</h4>
+            <div class="item">
+                <div class="row">
+                    <div class="col col-67 ac-left">{{vehicle.vin}}</div>
+                    <div class="col col-33 ac-right">{{vehicle.extColor}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-67 ac-left">{{vehicle.odo | number}} miles</div>
+                    <div class="col col-33 ac-right">{{vehicle.type}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <h2 class="ac-vehicle-detail-value">{{vehicle.featPrice | currency : '$' : 0}}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item item-divider">
+                <div class="row">
+                    <div class="col col-67 ac-vehicle-detail-value ac-left">Monthly Payment</div>
+                    <div class="col col-33 ac-vehicle-detail-value balanced ac-right">{{monthlyPayment | currency : '$' : 0}}</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="row">
+                    <div class="col col-67 ac-left">Tax</div>
+                    <div class="col col-33 ac-right">{{taxRate | currency : '$' : 0}}</div>
+                </div>
+                <div class="row">
+                    <div class="col col-67 ac-left">Title Fee</div>
+                    <div class="col col-33 ac-right">{{titlePrice | currency : '$' : 0}}</div>
+                </div>
+                <div class="row">
+                    <div class="col col-67 ac-left">Registration Fee</div>
+                    <div class="col col-33 ac-right">{{registrationFees | currency : '$' : 0}}</div>
+                </div>
             </div>
 
             <div class="item item-divider ac-right">
+                <button class="button button-clear button-calm" ng-click="AcceptQuote()">
+                    ACCEPT
+                </button>
                 <button class="button button-clear button-calm" ng-click="NavigateToQuote()">
-                    Not Happy With Quote?
+                    NEGOTIATE
                 </button>
             </div>
         </div>
