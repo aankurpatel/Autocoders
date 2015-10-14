@@ -3,36 +3,50 @@ angular.module('starter')
 	function($scope, $stateParams, quoteService) {
 		$scope.view = {};
 		$scope.vehicle = $stateParams.vehicle;
-		$scope.Error = "";
-		$scope.monthlyPayment = 0;
-		$scope.taxRate = 0;
-		$scope.titlePrice = 0;
-		$scope.registrationFees = 0;
-		$scope.term = 60;
-		$scope.zipCode = '60107';
-		$scope.tradeInValue = 0;
-		$scope.downPayment = 0;
-		
+		$scope.creditTiers = ["700+", "660-699", "620-659", "600-619"];
 		$scope.sellerQuote = {};
-		$scope.buyerQuote = {};
+		$scope.buyerQuoteOffer = {};
+		var self = this;
 	    
 		$scope.AcceptQuote = function(){
 			$scope.view.editable = false;
 		};
 		
 		$scope.Negotiate = function(){
-			$scope.view.editable = true;	
+			$scope.view.editable = true;
+			$scope.buyerQuoteOffer = angular.copy($scope.sellerQuote);//Make a deep copy of sellerQuote first time
+		};
+		
+		self.setPaymentOnQuote = function(quote, paymentInfo){
+			quote.featPrice = $scope.vehicle.featPrice;
+			quote.titleFee =  paymentInfo.titleFee;
+			quote.regFee = paymentInfo.registrationFees;
+			quote.term = 60;
+			quote.creditTier = quote.creditTier;
+			quote.apr = 1.99;
+			quote.taxRate = paymentInfo.taxRate;
+			quote.monthlyPayment = paymentInfo.monthlyPayment;
+		};
+		
+		self.AddCurrentQuote = function(){
+			
 		};
 		
 		//Init
 		(function(){
-			quoteService.getQuote($scope.vehicle.featPrice, $scope.tradeInValue, $scope.downPayment, $scope.term, $scope.zipCode).then(
+			//Set Defaults
+			$scope.sellerQuote.term = 60;
+			$scope.sellerQuote.tradeInValue = 0;
+			$scope.sellerQuote.downPayment = 0;
+			if(!$scope.zipCode){
+				$scope.zipCode = '60107';
+			}
+			//Request payments
+			quoteService.getQuote($scope.vehicle.featPrice, $scope.sellerQuote.term, $scope.sellerQuote.tradeInValue, $scope.sellerQuote.downPayment, $scope.zipCode).then(
 				function(payment){
-					$scope.monthlyPayment = payment.value;
-					$scope.taxRate = payment.taxRate;
-					$scope.titlePrice = payment.titlePrice;
-					$scope.registrationFees = payment.registrationFees;
 					$scope.view.editable = false;
+					self.setPaymentOnQuote($scope.sellerQuote, payment);
+					self.AddCurrentQuote();
 				},
 				function(){
 					$scope.Error = "Error fetching quote. Please retry.";

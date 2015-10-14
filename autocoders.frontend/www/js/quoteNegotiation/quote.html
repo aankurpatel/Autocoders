@@ -16,43 +16,43 @@
             </div>
 
             <label class=" item item-input item-divider">
-                <span class="input-label">MSRP</span>
+                <span class="input-label">Selling Price</span>
                 <span>{{vehicle.featPrice | currency : '$' : 0}}</span>
             </label>
 
             <div class="item item-input-inset ac-pad-left">
                 <span class="input-label">Zip Code</span>
                 <label class=" item-input-wrapper">
-                    <input type="text" placeholder="Enter to calculate tax">
+                    <input type="text" placeholder="Enter to zip calculate tax" ng-model="zipCode">
                 </label>
             </div>
 
             <div class=" item item-divider">
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-33">Tax (%)</div>
-                    <div class="col col-67 ac-pad-left">{{taxRate | currency : '$' : 0}}</div>
+                    <div class="col col-67 ac-pad-left">{{sellerQuote.taxRate | currency : '$' : 0}}</div>
                 </div>
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-33">Title Fee</div>
-                    <div class="col col-67 ac-pad-left">{{titlePrice | currency : '$' : 0}}</div>
+                    <div class="col col-67 ac-pad-left">{{sellerQuote.titleFee | currency : '$' : 0}}</div>
                 </div>
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-33">Reg. Fee</div>
-                    <div class="col col-67 ac-pad-left">{{registrationFees | currency : '$' : 0}}</div>
+                    <div class="col col-67 ac-pad-left">{{sellerQuote.regFee | currency : '$' : 0}}</div>
                 </div>
             </div>
 
             <div class="item item-input-inset ac-pad-left">
                 <span class="input-label">Down Payment</span>
                 <label class=" item-input-wrapper">
-                    $<input type="text" placeholder="Money down">
+                    $<input type="text" placeholder="Money down" ng-model="sellerQuote.downPayment">
                 </label>
             </div>
 
             <div class="item item-input-inset ac-pad-left">
                 <span class="input-label">Trade-in</span>
                 <label class=" item-input-wrapper">
-                    $<input type="text" placeholder="Estimated trade-in value">
+                    $<input type="text" placeholder="Estimated trade-in value" ng-model="sellerQuote.tradeInValue">
                 </label>
             </div>
 
@@ -60,17 +60,12 @@
                 <span class="input-label">
                     Credit Score
                 </span>
-                <select>
-                    <option>700 to 740</option>
-                    <option selected>660 to 699</option>
-                    <option>620 to 659</option>
-                    <option>600 to 619</option>
-                </select>
+                <select ng-model="quote.creditTier" ng-options="creditTier as creditTier for creditTier in creditTiers"></select>
             </label>
 
             <label class=" item item-input item-divider">
                 <span class="input-label">Payment</span>
-                <span class="balanced">{{monthlyPayment | currency : '$' : 0}}</span>
+                <span class="balanced">{{sellerQuote.monthlyPayment | currency : '$' : 0}}</span>
                 <span class="ac-pad-left ac-regular">(Monthly)</span>
                 <button class="button button-clear button-calm ac-pad-left">
                     Calculate
@@ -80,11 +75,11 @@
             <div class=" item item-divider">
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-33">Term</div>
-                    <div class="col col-67 ac-pad-left">60 Months</div>
+                    <div class="col col-67 ac-pad-left">{{sellerQuote.term}}</div>
                 </div>
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-33">APR (%)</div>
-                    <div class="col col-67 ac-pad-left">1.99%</div>
+                    <div class="col col-67 ac-pad-left">{{sellerQuote.apr}}%</div>
                 </div>
             </div>
 

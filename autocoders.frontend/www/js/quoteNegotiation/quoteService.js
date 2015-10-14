@@ -4,7 +4,7 @@ app.factory('quoteService', ['$http', '$log', '$q', function($http, $log, $q) {
     var quoteFactory = {};
     var urlBaseTaxRate = 'https://taxrates.api.avalara.com/postal?country=usa';
 
-    var apiKey = "FN8+sW0mxt8qKhlpfcLwX77qgbcxWTmU/oS3HPaw86yea5cRTV+cQge68UgQ46czU/QAjJwR8QRU8Oy6osB77w==";
+    var apiKey = "FN8%2BsW0mxt8qKhlpfcLwX77qgbcxWTmU%2FoS3HPaw86yea5cRTV%2BcQge68UgQ46czU%2FQAjJwR8QRU8Oy6osB77w%3D%3D";
     var taxRate = 9.25;
     var title = 150;
     var registrationFees = 25;
@@ -19,7 +19,7 @@ app.factory('quoteService', ['$http', '$log', '$q', function($http, $log, $q) {
 
     quoteFactory.getTaxTitleReg = function(zipcode) {
         var deferred = $q.defer();
-        $http.get(urlBaseTaxRate + '?postal=' + zipcode + '&apikey=' + apiKey).
+        $http.get(urlBaseTaxRate + '&postal=' + zipcode + '&apikey=' + apiKey).
             success(function(data) {
                 taxRate = data.totalRate;
                 deferred.resolve({
@@ -28,18 +28,20 @@ app.factory('quoteService', ['$http', '$log', '$q', function($http, $log, $q) {
                     registrationFees: registrationFees
                 });
             }).error(function(error) {
-                deferred.reject({ taxRate: 9.25 });
+                deferred.resolve({ taxRate: 9.25,
+                    title: title,
+                    registrationFees: registrationFees         
+                });
             });
 
         return deferred.promise;
     };
 
-
     quoteFactory.getQuote = function(price, term, tradeinValue, downpayment, zipcode) {
         var defer = $q.defer();
         quoteFactory.getTaxTitleReg(zipcode).then(function(taxes) {
             var netPrice = price - tradeinValue - downpayment;
-            var totalPrice = netPrice + (netPrice * taxes.taxRate) + taxes.registrationFees + taxes.title;
+            var totalPrice = netPrice + (netPrice * (taxes.taxRate/100)) + taxes.registrationFees + taxes.title;
             var monthlyPayment = totalPrice / term;
             defer.resolve({
                 monthlyPayment: monthlyPayment,
