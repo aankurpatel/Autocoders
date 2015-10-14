@@ -30,29 +30,29 @@
             <div class=" item item-divider">
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-33">Tax (%)</div>
-                    <div class="col col-67 ac-pad-left">{{sellerQuote.taxRate | currency : '$' : 0}}</div>
+                    <div class="col col-67 ac-pad-left">{{view.quote.taxRate | currency : '$' : 0}}</div>
                 </div>
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-33">Title Fee</div>
-                    <div class="col col-67 ac-pad-left">{{sellerQuote.titleFee | currency : '$' : 0}}</div>
+                    <div class="col col-67 ac-pad-left">{{view.quote.titleFee | currency : '$' : 0}}</div>
                 </div>
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-33">Reg. Fee</div>
-                    <div class="col col-67 ac-pad-left">{{sellerQuote.regFee | currency : '$' : 0}}</div>
+                    <div class="col col-67 ac-pad-left">{{view.quote.regFee | currency : '$' : 0}}</div>
                 </div>
             </div>
 
             <div class="item item-input-inset ac-pad-left">
                 <span class="input-label">Down Payment</span>
                 <label class=" item-input-wrapper">
-                    $<input type="text" placeholder="Money down" ng-model="sellerQuote.downPayment">
+                    $<input type="text" placeholder="Money down" ng-model="view.quote.downPayment">
                 </label>
             </div>
 
             <div class="item item-input-inset ac-pad-left">
                 <span class="input-label">Trade-in</span>
                 <label class=" item-input-wrapper">
-                    $<input type="text" placeholder="Estimated trade-in value" ng-model="sellerQuote.tradeInValue">
+                    $<input type="text" placeholder="Estimated trade-in value" ng-model="view.quote.tradeInValue">
                 </label>
             </div>
 
@@ -65,7 +65,7 @@
 
             <label class=" item item-input item-divider">
                 <span class="input-label">Payment</span>
-                <span class="balanced">{{sellerQuote.monthlyPayment | currency : '$' : 0}}</span>
+                <span class="balanced">{{view.quote.monthlyPayment | currency : '$' : 0}}</span>
                 <span class="ac-pad-left ac-regular">(Monthly)</span>
                 <button class="button button-clear button-calm ac-pad-left">
                     Calculate
@@ -75,15 +75,15 @@
             <div class=" item item-divider">
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-33">Term</div>
-                    <div class="col col-67 ac-pad-left">{{sellerQuote.term}}</div>
+                    <div class="col col-67 ac-pad-left">{{view.quote.term}}</div>
                 </div>
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-33">APR (%)</div>
-                    <div class="col col-67 ac-pad-left">{{sellerQuote.apr}}%</div>
+                    <div class="col col-67 ac-pad-left">{{view.quote.apr}}%</div>
                 </div>
             </div>
 
-            <button class="button button-block button-balanced" ng-click="SubmitOffer()">MAKE OFFER</button>
+            <button class="button button-block button-balanced" ng-click="MakeOffer()">{{view.offerStatus}}</button>
         </div>
 
 
