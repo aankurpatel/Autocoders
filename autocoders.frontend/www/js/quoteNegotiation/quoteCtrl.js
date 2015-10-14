@@ -7,7 +7,6 @@ angular.module('starter')
 		$scope.sellerQuote = {};
 		$scope.buyerQuoteOffer = {};
 		var self = this;
-	    var buyer = userApiProxy.getCurrentUser();
 		$scope.AcceptQuote = function(){
 			$scope.view.editable = false;
 		};
@@ -28,11 +27,16 @@ angular.module('starter')
 			$scope.view.quote = $scope.sellerQuote;
 		};
 		
-		$scope.AcceptQuote = function(){
-			quoteApiProxy.addQuote($scope.buyerQuoteOffer, $scope.sellerQuote, $scope.vehicle, buyer, $scope.vehicle.accountKey)
+		self.AddQuote = function(){
+			quoteApiProxy.addQuote($scope.buyerQuoteOffer, $scope.sellerQuote, $scope.vehicle, $scope.buyer, $scope.vehicle.accountKey)
 				.then(function(finalQuote){
 					$scope.finalQuote = finalQuote.data;
 				});
+		};
+		
+		$scope.AcceptQuote = function(){
+			$scope.buyerQuoteOffer = $scope.sellerQuote;
+			self.AddQuote();
 		};
 		
 		$scope.MakeOffer = function() {
@@ -43,7 +47,7 @@ angular.module('starter')
 			if($scope.view.offerStatus = "SUBMIT OFFER"){
 				//Insert if id is null/undefined, else, update the finalQuote
 				if($scope.finalQuote && $scope.finalQuote.id){
-					quoteApiProxy.updateQuote($scope.finalQuote.id, $scope.buyerQuoteOffer, $scope.sellerQuote, $scope.vehicle, buyer, $scope.vehicle.accountKey)
+					quoteApiProxy.updateQuote($scope.finalQuote.id, $scope.buyerQuoteOffer, $scope.sellerQuote, $scope.vehicle, $scope.buyer, $scope.vehicle.accountKey)
 						.then(function(finalQuote){
 							$scope.finalQuote = finalQuote.data;
 							$scope.view.offerStatus = "MAKE OFFER";
@@ -67,6 +71,10 @@ angular.module('starter')
 			if(!$scope.zipCode){
 				$scope.zipCode = '60107';
 			}
+			userApiProxy.getUsers("(accountKey eq '"+ userApiProxy.getCurrentUser().accountKey + "')").then(function(user){
+				$scope.buyer = user.data[0];
+			});
+			
 			//Request payments
 			quoteService.getQuote($scope.vehicle.featPrice, $scope.sellerQuote.term, $scope.sellerQuote.tradeInValue, $scope.sellerQuote.downPayment, $scope.zipCode).then(
 				function(payment){

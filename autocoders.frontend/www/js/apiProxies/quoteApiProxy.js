@@ -16,6 +16,7 @@ angular.module('starter')
 
     self.addQuote = function (buyerQuote, sellerQuote, vehicle, buyer, dealerAccessKey) {
       var finalQuote = {};
+      finalQuote.buyerQuote = JSON.stringify(buyerQuote);
       finalQuote.sellerQuote = JSON.stringify(sellerQuote);
       finalQuote.vehicle = JSON.stringify(vehicle);
       finalQuote.buyer = JSON.stringify(buyer);
@@ -35,7 +36,7 @@ angular.module('starter')
       finalQuote.dealerAccessKey = dealerAccessKey;
       
       logger.log('updating quote');
-      return $http.post(url,finalQuote);
+      return $http.patch(url + "/" + quoteId,finalQuote);
     }
 
   });
