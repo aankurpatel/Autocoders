@@ -12,7 +12,10 @@ angular.module('starter')
                 var proposals = response.data;
                 angular.forEach(proposals, function (value, key) {
                   if(proposals[key].vehicle) {
-                    proposals[key].vehicle.imageUrl = value.vehicle.imageUrl.replace(/[\'\[\] ]/g, '').split(',');
+
+                    proposals[key].vehicle = JSON.parse(value.vehicle);
+                    proposals[key].buyerquote = JSON.parse(value.buyerquote);
+                    proposals[key].sellerquote = JSON.parse(value.sellerquote);
                   }
                 });
                 $scope.proposals = proposals;
