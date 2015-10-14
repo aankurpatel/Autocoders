@@ -18,8 +18,9 @@ angular.module('starter')
         quoteApiProxy.addUpdateQuote($scope.proposal).then(
           function(response){
             var message =
-            {message:"Hello !!",
-              title:"Your offer for" +$scope.proposal.vehicle.year+$scope.proposal.vehicle.make+$scope.proposal.vehicle.model
+            {message:"Message from Autocoders",
+              title:"Hello, "+ $scope.proposal.buyer.firstName+"!! Your offer for "
+              +$scope.proposal.vehicle.year+" " +$scope.proposal.vehicle.make+" " +$scope.proposal.vehicle.model+" "
               +$scope.proposal.vehicle.trim + " has been accepted.",
               quoteId:$scope.proposal.id,
               type:"Accepted"
@@ -30,11 +31,11 @@ angular.module('starter')
       };
       $scope.rejectOffer = function(){
         var message =
-        {message:"Hello !!",
-          title:"Your offer for" +$scope.proposal.vehicle.year+$scope.proposal.vehicle.make+$scope.proposal.vehicle.model
-          +$scope.proposal.vehicle.trim + " has been rejected.",
+        { title:"Message from Autocoders",
+          message:"Hello, "+ $scope.proposal.buyer.firstName+"!! Your offer for " +$scope.proposal.vehicle.year+" " +$scope.proposal.vehicle.make+" " +$scope.proposal.vehicle.model
+          +" " +$scope.proposal.vehicle.trim + " has been rejected.",
           quoteId:$scope.proposal.id,
-          type:"Accepted"
+          type:"Rejected"
         };
         pushNotificationService.sendNotification($scope.proposal.buyeraccesskey,message);
       };
@@ -43,9 +44,10 @@ angular.module('starter')
         quoteApiProxy.addUpdateQuote($scope.proposal).then(
           function(response){
             var message =
-            {message:"Hello !!",
-              title:"You have received an offer for "
-                    +$scope.proposal.vehicle.year+$scope.proposal.vehicle.make+$scope.proposal.vehicle.model+$scope.proposal.vehicle.trim,
+            {message:"Message from Autocoders",
+              title:"Hello, "+ $scope.proposal.buyer.firstName+"!! You have received an offer for "
+                    +$scope.proposal.vehicle.year+ " " +$scope.proposal.vehicle.make+" " +
+                    $scope.proposal.vehicle.model+ " " +$scope.proposal.vehicle.trim,
               quoteId:$scope.proposal.id,
               type:"Negotiating"
             };

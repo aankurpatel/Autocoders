@@ -37,13 +37,12 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
 
         var userprofile = userApiProxy.getCurrentUser();
 
-        if (!userprofile) {
+        
             register();
-        }
 
         // Notification Received
         $rootScope.$on('$cordovaPush:notificationReceived', function (event, notification) {
-            alert(JSON.stringify([notification]));
+            //alert(JSON.stringify([notification]));
             switch (notification.event) {
                 case 'registered':
                     if (notification.regid.length > 0) {
@@ -58,15 +57,15 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
                 case 'message':
                     // this is the actual push notification. its format depends on the data model from the push server
                     //                    alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-                   // alert(notification.message.text, "Push Notification Received");
-                    $cordovaToast
-                        .show(notification.message.text, 'long', 'center')
-                        .then(function(success) {
-                            // success
-
-                        }, function(error) {
-                            // error
-                        });
+                    alert(notification.message.text, "Push Notification Received");
+//                    $cordovaToast
+//                        .show(notification.message.text, 'long', 'center')
+//                        .then(function(success) {
+//                            // success
+//
+//                        }, function(error) {
+//                            // error
+//                        });
                     break;
 
                 case 'error':
