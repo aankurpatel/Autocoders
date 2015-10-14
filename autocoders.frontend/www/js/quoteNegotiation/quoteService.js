@@ -8,8 +8,7 @@ app.factory('quoteService', ['$http', '$log', '$q', function ($http, $log, $q) {
     var taxRate = 9.25;
     var title = 150;
     var registrationFees = 25;
-    
-<<<<<<< HEAD
+
     quoteFactory.getRandomQuotePrice = function (msrp) {
         var num = parseFloat(msrp);
         var val = num - (num * Math.random());
@@ -18,55 +17,38 @@ app.factory('quoteService', ['$http', '$log', '$q', function ($http, $log, $q) {
         };
     };
 
-    quoteFactory.getTaxTitleReg = function (zipcode) {
-        
-        $http.get(urlBaseTaxRate + '?postal=' + zipcode + '&apikey=' + apiKey).
-          success(function (data) {
-              // alert(data.styles);
-              //$scope.styles = data.styles;
-              taxRate = data.totalRate;
-          }).error(function (error) {
-              taxRate = 9.25;
-          });
-
-        return {
-            taxRate: taxRate,
-            title: title,
-            registrationFees: registrationFees
-        };
-=======
-    quoteFactory.getQuote = function (msrp, zipcode) {
+    quoteFactory.getTaxTitleReg = function(zipcode) {
         var deferred = $q.defer();
-        var num = parseFloat(msrp);
-        var val = num - (num * Math.random());
-        zipcode = "60169";
-        $http.get(urlBaseTaxRate + '&postal=' + zipcode + '&apikey=' + apiKey).
+        $http.get(urlBaseTaxRate + '?postal=' + zipcode + '&apikey=' + apiKey).
             success(function(data) {
-                // alert(data.styles);
-                //$scope.styles = data.styles;
                 taxRate = data.totalRate;
-                deferred.resolve({
-                    value: val,
+                deferred.resolve({                    
                     taxRate: taxRate,
                     title: title,
                     registrationFees: registrationFees
                 });
             }).error(function(error) {
-                deferred.reject({taxRate: 9.25});
+                deferred.reject({ taxRate: 9.25 });
             });
+
         return deferred.promise;
->>>>>>> 1beb803da945aaa20f3b60cb8bdcd6c06d01d2be
-    };
-    
-    quoteFactory.getMonthlyPayment = function (price, term, zipcode) {
-
-        var taxes = quoteFactory.getTaxTitleReg(zipcode);
-        var totalPrice = price + (price * taxes.taxRate) + taxes.registrationFees + taxes.title;
-        var monthlyPayment = totalPrice / term;
-
-        return monthlyPayment;
-
     };
 
-    return quoteFactory;
-}]);
+ 
+    quoteFactory.getQuote = function(price, term, zipcode) {
+        var defer = $q.defer();
+        quoteFactory.getTaxTitleReg(zipcode).then(function(taxes) {
+            var totalPrice = price + (price * taxes.taxRate) + taxes.registrationFees + taxes.title;
+            var monthlyPayment = totalPrice / term;
+            defer.resolve({
+                monthlyPayment: monthlyPayment,
+                taxRate: taxes.taxRate,
+                registrationFee: taxes.registrationFees,
+                titleFee: taxes.title
+            });
+        });
+        return defer.promise;
+    };
+
+        return quoteFactory;
+    }]);
