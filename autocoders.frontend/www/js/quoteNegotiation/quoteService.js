@@ -1,6 +1,6 @@
 ﻿var app = angular.module('starter');
 
-app.factory('quoteService', ['$http', '$log', function ($http, $log) {
+app.factory('quoteService', ['$http', '$log', '$q', function ($http, $log, $q) {
     var quoteFactory = {};
     var urlBaseTaxRate = 'https://taxrates.api.avalara.com/postal?country=usa';
     
@@ -10,23 +10,25 @@ app.factory('quoteService', ['$http', '$log', function ($http, $log) {
     var registrationFees = 25;
     
     quoteFactory.getQuote = function (msrp, zipcode) {
+        var deferred = $q.defer();
         var num = parseFloat(msrp);
         var val = num - (num * Math.random());
-        $http.get(urlBaseTaxRate + '?postal=' + zipcode + '&apikey=' + apiKey).
+        zipcode = "60169";
+        $http.get(urlBaseTaxRate + '&postal=' + zipcode + '&apikey=' + apiKey).
             success(function(data) {
                 // alert(data.styles);
                 //$scope.styles = data.styles;
                 taxRate = data.totalRate;
+                deferred.resolve({
+                    value: val,
+                    taxRate: taxRate,
+                    title: title,
+                    registrationFees: registrationFees
+                });
             }).error(function(error) {
-                taxRate = 9.25;
+                deferred.reject({taxRate: 9.25});
             });
-       
-        return {
-            value: val,
-            taxRate: taxRate,
-            title: title,
-            registrationFees: registrationFees
-        };
+        return deferred.promise;
     };
 
 
