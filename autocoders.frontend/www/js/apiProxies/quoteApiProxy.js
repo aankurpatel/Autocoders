@@ -14,9 +14,19 @@ angular.module('starter')
       return $http.get(filterUrl);
     }
 
-    self.addUpdateQuote = function (quote) {
+    self.addUpdateQuote = function (quoteId, buyerQuote, sellerQuote, vehicle, buyerAccessKey, dealerAccessKey) {
+      var finalQuote = {};
+      if(!quoteId === 0){
+        finalQuote.id = quoteId;
+      }
+      finalQuote.buyerQuote = JSON.stringify(buyerQuote);
+      finalQuote.sellerQuote = JSON.stringify(sellerQuote);
+      finalQuote.vehicle = JSON.stringify(vehicle);
+      finalQuote.buyerAccessKey = buyerAccessKey;
+      finalQuote.dealerAccessKey = dealerAccessKey;
+      
       logger.log('updating quote');
-      return $http.post(url,quote);
+      return $http.post(url,finalQuote);
     }
 
   });
