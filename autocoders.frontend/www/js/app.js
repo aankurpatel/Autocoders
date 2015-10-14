@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'underscore', 'ngCordova', 'angularBingMaps'])
-    .run(function ($ionicPlatform, $rootScope, $cordovaToast, $cordovaPush) {
+    .run(function ($ionicPlatform, $rootScope, $cordovaToast, $cordovaPush, userApiProxy, logger) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -28,22 +28,31 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
                 }).then(function(result) {
                     // Success
                     console.log("Register success " + result);
+                   
                 }, function(err) {
                     // Error
                 });
             });
         };
 
-        if (!window.localStorage['token']) {
+        var userprofile = userApiProxy.getCurrentUser();
+
+        if (!userprofile) {
             register();
         }
+
         // Notification Received
         $rootScope.$on('$cordovaPush:notificationReceived', function (event, notification) {
             alert(JSON.stringify([notification]));
             switch (notification.event) {
                 case 'registered':
                     if (notification.regid.length > 0) {
-                        window.localStorage['token'] = notification.regid;
+                        userprofile.pushNotificationToken = notification.regid;
+                        userApiProxy.saveUser(userprofile).then(function (response) {
+                            logger.log(response);
+                        }, function (error) {
+                            logger.log(error);
+                        });
                     }
                     break;
                 case 'message':
@@ -54,7 +63,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
                         .show(notification.message.text, 'long', 'center')
                         .then(function(success) {
                             // success
-                            
+
                         }, function(error) {
                             // error
                         });
@@ -148,10 +157,28 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
                    }
                },
                params: {'vehicle': null}
+            })
+            .state('app.proposalList', {
+              url: '/proposals',
+              views: {
+                'menuContent': {
+                  templateUrl: 'js/proposals/proposalList.html',
+                  controller: 'proposalListCtrl'
+                }
+              }
+            })
+            .state('app.proposalDetail', {
+              url: '/proposalDetail',
+              views: {
+                'menuContent': {
+                  templateUrl: 'js/proposals/proposalDetail.html',
+                  controller: 'proposalDetailCtrl'
+                }
+              }
             });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/browse');
-        
+
         //Register Bing-Maps & set default options
         angularBingMapsProvider.setDefaultMapOptions({
             credentials: 'AqWNccwBVcI7iRPX___tij6sHF1VtSOK9J9CD8e9R1kSx3fRYZsoFTSSCxkcQygM',

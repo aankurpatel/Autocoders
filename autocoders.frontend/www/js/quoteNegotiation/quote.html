@@ -1,60 +1,94 @@
 <ion-view view-title="Quote">
+    <ion-nav-buttons side="right">
+        <button class="button button-balanced" ng-click="AcceptQuote()">
+            ACCEPT
+        </button>
+    </ion-nav-buttons>
+
     <ion-content>
+        <div class="list list-inset">
 
-        <div class="card">
-            <div class="item item-divider">
-                <h2 class="ac-vehicle-detail-value">{{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h2>
+            <div class="item item-divider item-text-wrap">
+                <h2 class="ac-vehicle-detail-value">
+                    <span class="ac-nowrap">{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</span>
+                    <span class="ac-nowrap ac-subtitle">{{vehicle.trim}}</span>
+                </h2>
             </div>
 
-            <div class="item">
-                <div class="row">
-                    <div class="col col-67 ac-left">{{vehicle.vin}}</div>
-                    <div class="col col-33 ac-right">{{vehicle.extColor}}</div>
-                </div>
+            <label class=" item item-input item-divider">
+                <span class="input-label">MSRP</span>
+                <span>{{vehicle.featPrice | currency : '$' : 0}}</span>
+            </label>
 
-                <div class="row">
-                    <div class="col col-67 ac-left">{{vehicle.odo | number}} miles</div>
-                    <div class="col col-33 ac-right">{{vehicle.type}}</div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <h2 ng-show="!view.editable" class="ac-vehicle-detail-value">{{vehicle.featPrice | currency : '$' : 0}}</h2>
-                        <input ng-show="view.editable" class="ac-vehicle-detail-value">{{vehicle.offerPrice | currency : '$' : 0}}</input>
-                    </div>
-                </div>
+            <div class="item item-input-inset ac-pad-left">
+                <span class="input-label">Zip Code</span>
+                <label class=" item-input-wrapper">
+                    <input type="text" placeholder="Enter to calculate tax">
+                </label>
             </div>
 
-            <div class="item item-divider">
-                <div class="row">
-                    <input type="text" ng-enabled="view.editable" class="col col-67 ac-vehicle-detail-value ac-left">Monthly Payment</input>
-                    <div class="col col-33 ac-vehicle-detail-value balanced ac-right">{{monthlyPayment | currency : '$' : 0}}</div>
+            <div class=" item item-divider">
+                <div class="row ac-quote-vehicle-row ac-regular">
+                    <div class="col col-33">Tax (%)</div>
+                    <div class="col col-67 ac-pad-left">{{taxRate | currency : '$' : 0}}</div>
                 </div>
-            </div>
-
-            <div class="item">
-                <div class="row">
-                    <div class="col col-67 ac-left">Tax (%)</div>
-                    <div class="col col-33 ac-right">{{taxRate | currency : '$' : 0}}</div>
+                <div class="row ac-quote-vehicle-row ac-regular">
+                    <div class="col col-33">Title Fee</div>
+                    <div class="col col-67 ac-pad-left">{{titlePrice | currency : '$' : 0}}</div>
                 </div>
-                <div class="row">
-                    <div class="col col-67 ac-left">Title Fee</div>
-                    <div class="col col-33 ac-right">{{titlePrice | currency : '$' : 0}}</div>
-                </div>
-                <div class="row">
-                    <div class="col col-67 ac-left">Registration Fee</div>
-                    <div class="col col-33 ac-right">{{registrationFees | currency : '$' : 0}}</div>
+                <div class="row ac-quote-vehicle-row ac-regular">
+                    <div class="col col-33">Reg. Fee</div>
+                    <div class="col col-67 ac-pad-left">{{registrationFees | currency : '$' : 0}}</div>
                 </div>
             </div>
 
-            <div class="item item-divider ac-right">
-                <button class="button button-clear button-calm" ng-click="AcceptQuote()">
-                    ACCEPT
+            <div class="item item-input-inset ac-pad-left">
+                <span class="input-label">Down Payment</span>
+                <label class=" item-input-wrapper">
+                    $<input type="text" placeholder="Money down">
+                </label>
+            </div>
+
+            <div class="item item-input-inset ac-pad-left">
+                <span class="input-label">Trade-in</span>
+                <label class=" item-input-wrapper">
+                    $<input type="text" placeholder="Estimated trade-in value">
+                </label>
+            </div>
+
+            <label class="item item-input item-select">
+                <span class="input-label">
+                    Credit Score
+                </span>
+                <select>
+                    <option>700 to 740</option>
+                    <option selected>660 to 699</option>
+                    <option>620 to 659</option>
+                    <option>600 to 619</option>
+                </select>
+            </label>
+
+            <label class=" item item-input item-divider">
+                <span class="input-label">Payment</span>
+                <span class="balanced">{{monthlyPayment | currency : '$' : 0}}</span>
+                <span class="ac-pad-left ac-regular">(Monthly)</span>
+                <button class="button button-clear button-calm ac-pad-left">
+                    Calculate
                 </button>
-                <button class="button button-clear button-calm" ng-click="Negotiate()">
-                    MAKE OFFER
-                </button>
+            </label>
+
+            <div class=" item item-divider">
+                <div class="row ac-quote-vehicle-row ac-regular">
+                    <div class="col col-33">Term</div>
+                    <div class="col col-67 ac-pad-left">60 Months</div>
+                </div>
+                <div class="row ac-quote-vehicle-row ac-regular">
+                    <div class="col col-33">APR (%)</div>
+                    <div class="col col-67 ac-pad-left">1.99%</div>
+                </div>
             </div>
+
+            <button class="button button-block button-balanced" ng-click="SubmitOffer()">MAKE OFFER</button>
         </div>
 
 

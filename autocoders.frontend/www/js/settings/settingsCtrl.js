@@ -1,5 +1,5 @@
 ﻿angular.module('starter')
-    .controller('settingsCtrl', function($scope, $rootScope, $cordovaPush, pushNotificationProxy, userApiProxy, logger) {
+    .controller('settingsCtrl', function($scope, $rootScope, $cordovaPush, pushNotificationProxy, userApiProxy, logger, helper) {
         var androidConfig = {
             "senderID": "719651694151"
         };
@@ -22,22 +22,10 @@
             $scope.user.accountKey = makeid();
         };
 
-        function makeid() {
-            var text = "";
-            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-            for (var i = 0; i < 5; i++)
-                text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-            window.localStorage['accountKey'] = text;
-
-            return text;
-        }
-
         logger.log(window.localStorage['userprofile']);
 
         $scope.user = JSON.parse(window.localStorage['userprofile'] || '{}');
-        $scope.user.accountKey = $scope.user.accountKey || makeid();
+        $scope.user.accountKey = $scope.user.accountKey || helper.makeid();
 
         $scope.pushNotificationToggle = { checked: !!$scope.user.pushNotificationToken };
 

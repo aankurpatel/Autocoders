@@ -1,23 +1,25 @@
 <ion-view view-title="Details">
-    <ion-content>
+    <ion-nav-buttons side="right">
+        <button class="button button-balanced" ng-click="NavigateToQuote()">
+            QUOTE
+        </button>
+    </ion-nav-buttons>
 
+    <ion-content>
         <div class="card">
             <div class="item item-divider item-text-wrap">
-                <h2 class="ac-vehicle-detail-value">{{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h2>
+                <h2 class="ac-vehicle-detail-value">
+                    <span class="ac-nowrap">{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</span>
+                    <span class="ac-nowrap ac-subtitle">{{vehicle.trim}}</span>
+                </h2>
             </div>
 
             <div class="item item-image ac-vehicle-detail-img">
-                <!--<img class="ac-vehicle-detail-img" ng-src="{{vehicle.imageUrl[0]}}">-->
-
-
                 <ion-slide-box show-pager="false">
                     <ion-slide ng-repeat="imageUrl in vehicle.imageUrl">
                         <img ng-src="{{imageUrl}}">
                     </ion-slide>
                 </ion-slide-box>
-
-
-
             </div>
 
             <div class="item">
@@ -43,15 +45,6 @@
                     {{vehicle.description}}
                 </p>
             </div>
-
-            <div class="item item-divider ac-right">
-                <button class="button button-clear button-calm" ng-click="NavigateToQuote()">
-                    GET QUOTE
-                </button>
-            </div>
         </div>
-
-
-
     </ion-content>
 </ion-view>
