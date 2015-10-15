@@ -49,6 +49,10 @@
                     <div class="col col-60 ac-right">{{proposal.buyerquote.downPayment | currency : '$' : 0}}</div>
                 </div>
                 <div class="row">
+                    <div class="col col-40 ac-left secondary-text-color">Credit Tier</div>
+                    <div class="col col-60 ac-right">{{proposal.buyerquote.creditTier}}</div>
+                </div>
+                <div class="row">
                     <div class="col col-40 ac-left secondary-text-color">Loan Term (months)</div>
                     <div class="col col-60 ac-right">{{proposal.buyerquote.term}}</div>
                 </div>
@@ -67,10 +71,6 @@
                 <div class="row">
                     <div class="col col-40 ac-left secondary-text-color">Registration Fee</div>
                     <div class="col col-60 ac-right">{{proposal.buyerquote.regFee | currency : '$' : 0}}</div>
-                </div>
-                <div class="row">
-                    <div class="col col-40 ac-left secondary-text-color">Credit Tier</div>
-                    <div class="col col-60 ac-right">{{proposal.buyerquote.creditTier}}</div>
                 </div>
                 <div class="row">
                     <div class="col col-40 ac-left secondary-text-color">Tax Rate ({{proposal.buyerquote.taxRate}}%)</div>
