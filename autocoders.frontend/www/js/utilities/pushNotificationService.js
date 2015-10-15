@@ -8,7 +8,7 @@
                 var userTokens = _.pluck(response.data, 'pushNotificationToken');
                 userTokens = _.filter(userTokens, function(t) { return !!t && t.length > 10; });
                 userTokens = _.without(userTokens, userApiProxy.getCurrentUser.pushNotificationToken);
-                alert('userTokens: ' + userTokens + 'message: ' + message);
+                //alert('userTokens: ' + userTokens + 'message: ' + message);
                 pushNotificationProxy.sendNotification(message, userTokens);
             });
         };
