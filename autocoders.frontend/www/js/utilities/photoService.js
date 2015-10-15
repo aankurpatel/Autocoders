@@ -28,11 +28,11 @@ angular.module('starter')
       }
       catch(e)
       {
-        alert("error:"+e);
+        //alert("error:"+e);
       }
-      alert("dataUrl:"+dataURL);
+      //alert("dataUrl:"+dataURL);
       var encodedPath = dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
-      alert(encodedPath);
+      //alert(encodedPath);
       return encodedPath;
     }
 

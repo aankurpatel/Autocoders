@@ -11,7 +11,7 @@
             }
 
             // send subscription to api
-            alert('subscription added for ' + user);
+            //alert('subscription added for ' + user);
         };
 
         self.unsubscribe = function(user) {
@@ -23,7 +23,7 @@
 
         };
 
-       
+
         self.sendNotification = function (message, tokens) {
             logger.log('sending notifications to tokens', tokens);
             tokens = _.filter(tokens, function (t) { return !!t && t.length > 10; });

@@ -72,7 +72,7 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
                 $scope.vehicle.vin = result.text;
             },
                 function(error) {
-                    alert("Scanning failed: " + error);
+                    //alert("Scanning failed: " + error);
                 }
             );
     };
@@ -80,7 +80,7 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
   $scope.getPhoto = function(args) {
       photoService.captureImage(args) .then(function (image) {
         //var base64Image = photoService.getBase64Image(image);
-        alert(image);
+        //alert(image);
         $scope.allImages.push(image);
       }, function (err) {
         console.log(err);
@@ -103,7 +103,7 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
           var base64Image = photoService.getBase64Image(results[i]);
           $scope.allImages.push(base64Image);
         }
-        alert($scope.allImages.toString());
+        //alert($scope.allImages.toString());
       }, function (err) {
         console.log(err);
       });

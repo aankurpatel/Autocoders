@@ -15,11 +15,11 @@ app.controller('customerConnectCtrl', function ($scope, $rootScope, $cordovaBarc
                         $state.go('app.proposalList', {}, {reload: true});
                     },
                     function(error) {
-                        alert("Scanning failed: " + error);
+                        //alert("Scanning failed: " + error);
                     }
                 );
         });
-        
+
     };
     var user = userApiProxy.getCurrentUser();
     $scope.data =  (user.pushNotificationToken || 'notoken').substring(0, 40) + ';;' + user.accountKey;
@@ -33,7 +33,7 @@ app.controller('customerConnectCtrl', function ($scope, $rootScope, $cordovaBarc
             logger.log(response.data.length);
 
             var userTokens = [];
-               
+
             userTokens = _.pluck(response.data, 'pushNotificationToken');
             userTokens = _.without(userTokens, user.pushNotificationToken);
             logger.log(userTokens);
