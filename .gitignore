@@ -179,3 +179,4 @@ autocoders.frontend/plugins/cordova-plugin-whitelist/src/ios/CDVWhitelistPlugin.
 autocoders.frontend/plugins/cordova-plugin-whitelist/src/ios/CDVWhitelistPlugin.m
 autocoders.frontend/plugins/cordova-plugin-whitelist/whitelist.js
 autocoders.frontend/plugins/fetch.json
+*.log
