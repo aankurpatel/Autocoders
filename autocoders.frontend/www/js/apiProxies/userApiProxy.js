@@ -7,6 +7,14 @@
             throw new  Error('not implemented');
         };
 
+        self.getUserForToken = function(tokenPart) {
+            logger.log('getting users for token part');
+            var filteredUrl = url + "?$filter=(pushNotificationToken gt '" + tokenPart + "')";
+            logger.log(filteredUrl);
+
+            return $http.get(filteredUrl);
+        };
+
         self.getUsers = function (filter) {
             logger.log('getting users');
             var filteredUrl = filter?url+'?$filter='+filter:url;

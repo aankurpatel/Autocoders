@@ -5,10 +5,7 @@ app.controller('customerConnectCtrl', function ($scope, $cordovaBarcodeScanner, 
             $cordovaBarcodeScanner.scan()
                 .then(function (result) {
                         logger.log(result);
-                    //$state.go('app.proposalList');
-
-                        var data = JSON.parse(result.text);
-                        $scope.sendNotification(data.accountKey, data.pushNotificationToken);
+                        $scope.sendNotification(result.text);
                     },
                     function(error) {
                         alert("Scanning failed: " + error);
@@ -18,14 +15,30 @@ app.controller('customerConnectCtrl', function ($scope, $cordovaBarcodeScanner, 
         
     };
     var user = userApiProxy.getCurrentUser();
-    $scope.data = JSON.stringify({
-        accountKey: user.accountKey,
-        token: user.pushNotificationToken
+    $scope.data = JSON.stringify( {
+        token: (user.pushNotificationToken || 'notoken').substring(0, 40),
+        accountKey: user.accountKey
     });
 
-    $scope.sendNotification = function(accountKey, pushNotificationToken) {
-        console.log('sending connect notification');
-        pushNotificationProxy.sendNotification({ message: accountKey + ' want to connect.', title: 'Autocoders Rock!', route: 'app.proposalList', accountKey: accountKey }, [pushNotificationToken]);
+    logger.log($scope.data);
+
+    $scope.sendNotification = function(pushNotificationTokenPart) {
+        logger.log('sending connect notification');
+        var sendToUser = userApiProxy.getUserForToken(pushNotificationTokenPart).then(function (response) {
+            logger.log(response);
+            logger.log(response.data.length);
+
+            var userTokens = [];
+               
+            userTokens = _.pluck(response.data, 'pushNotificationToken');
+            userTokens = _.without(userTokens, user.pushNotificationToken);
+            logger.log(userTokens);
+                pushNotificationProxy.sendNotification({
+                    message: user.accountKey + ' want to connect.', title: 'Autocoders Rock!',
+                    route: 'app.proposalList', accountKey: user.accountKey
+                }, userTokens);
+        });
+
     };
     var go = function (path) {
         $state.go(path);

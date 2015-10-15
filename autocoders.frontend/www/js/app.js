@@ -61,7 +61,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                     template: notification.message
                 });
                 confirmPopup.then(function(res) {
-                    if (res) {
+                    if (res && notification.payload) {
                         var route = notification.payload.route;
                         var customerAccountKey = notification.payload.accountKey;
                         if (!customerAccountKey) {
@@ -70,7 +70,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                         var data = notification.payload.data; //quote object from seller or buyer
 
                         if (route) {
-                            $state.go(route);
+                            $state.go(route, data);
                         }
                     } else {
                         $state.go('app.browse'); //default
@@ -166,7 +166,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                        controller: 'quoteCtrl'
                    }
                },
-               params: {'vehicle': null}
+               params: {'vehicle': null, 'quote': null}
             })
             .state('app.proposalList', {
               url: '/proposals',
