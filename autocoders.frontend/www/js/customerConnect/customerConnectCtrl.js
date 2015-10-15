@@ -11,7 +11,7 @@ app.controller('customerConnectCtrl', function ($scope, $rootScope, $cordovaBarc
                         var remoteUserAccountKey = result.text.split(';;')[1];
 
                         $rootScope.customerAccountKey = remoteUserAccountKey;
-                        $scope.sendNotification(tokenPart);
+                        //$scope.sendNotification(tokenPart);
                         $state.go('app.proposalList', {}, {reload: true});
                     },
                     function(error) {
