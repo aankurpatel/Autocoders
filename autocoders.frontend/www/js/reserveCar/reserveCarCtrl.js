@@ -4,7 +4,9 @@
 angular.module('starter')
   .controller('reserveCarCtrl', ['$scope','_','$state','$cordovaDatePicker','photoService','$cordovaCamera','pushNotificationService','$stateParams',
     function($scope,_, $state,$cordovaDatePicker,photoService,$cordovaCamera,pushNotificationService,$stateParams) {
+      alert('stateparams:'+$stateParams);
       if ($stateParams.quote) {
+        alert('test');
         $scope.quote = $stateParams.quote;
         alert($scope.quote);
         alert($scope.quote.buyer);

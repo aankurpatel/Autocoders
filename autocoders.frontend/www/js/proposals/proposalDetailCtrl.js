@@ -27,6 +27,7 @@ angular.module('starter')
         $scope.proposal.status = "Accepted";
         quoteApiProxy.updateQuote($scope.proposal).then(
           function(response){
+            alert($scope.proposal.buyer);
             var message =
             {
                title: "Message from Autocoders",
