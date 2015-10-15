@@ -10,12 +10,12 @@
        <h2>{{proposal.vehicle.year}} {{proposal.vehicle.make}} {{proposal.vehicle.model}} {{proposal.vehicle.trim}}</h2>
        <div class="row ac-browse-vehicle-row">
          <div class="col col-67 ac-left">{{proposal.vehicle.vin}}</div>
-         <div class="col col-67 ac-left">StockNo:{{proposal.vehicle.stockNo}}</div>
+         <div class="col col-67 ac-left">StockNo:{{proposal.vehicle.stockNum}}</div>
        </div>
        <div class="row ac-browse-vehicle-row">
-         <div class="col ac-left">{{proposal.buyer.firstName}} {{proposal.buyer.lastName}}</div>
+         <div class="col ac-left">{{proposal.buyer.name}}</div>
          <div class="col ac-left">{{proposal.buyer.email}}</div>
-         <div class="col ac-left">{{proposal.buyer.phone}}</div>
+         <div class="col ac-left">Phone: {{proposal.buyer.phoneNo}}</div>
        </div>
        <div class="row ac-browse-vehicle-row">
          <div class="col col-67 ac-left ac-vehicle-detail-value">MSRP: {{proposal.vehicle.featPrice | currency : '$' : 0}}</div>

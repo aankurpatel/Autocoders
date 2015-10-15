@@ -16,6 +16,7 @@ angular.module('starter')
                     proposals[key].vehicle = JSON.parse(value.vehicle);
                     proposals[key].buyerquote = JSON.parse(value.buyerquote);
                     proposals[key].sellerquote = JSON.parse(value.sellerquote);
+                    proposals[key].buyer = JSON.parse(value.buyer);
                   }
                 });
                 $scope.proposals = proposals;

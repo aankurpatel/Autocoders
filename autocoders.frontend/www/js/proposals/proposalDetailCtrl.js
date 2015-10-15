@@ -2,8 +2,8 @@
  * Created by singhap on 10/14/15.
  */
 angular.module('starter')
-  .controller('proposalDetailCtrl', ['$scope','_','proposal','$state','quoteApiProxy','pushNotificationService',
-    function($scope,_,proposalService, $state, quoteApiProxy,pushNotificationService) {
+  .controller('proposalDetailCtrl', ['$scope','_','proposal','$state','quoteApiProxy','pushNotificationService','vehicle',
+    function($scope,_,proposalService, $state, quoteApiProxy,pushNotificationService, vehicle) {
       var proposal = proposalService.selectedProposal();
       //vehicle.featPrice = JSON.parse(JSON.stringify(eval("(" + vehicle.featPrice + ")")));
       $scope.proposal = proposal;
@@ -55,5 +55,9 @@ angular.module('starter')
           }
         );
       };
+      $scope.gotoVehicleDetail = function(){
+        vehicle.selectedVehicle($scope.proposal.vehicle);
+        $state.go("app.vehicleDetail");
+      }
     }]);
 
