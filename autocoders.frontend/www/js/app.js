@@ -63,8 +63,11 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                 confirmPopup.then(function(res) {
                     if (res) {
                         var route = notification.payload.route;
+                        var customerAccountKey = notification.payload.accountKey;
+                        if (!customerAccountKey) {
+                            $rootScope.customerAccountKey = customerAccountKey;
+                        }
                         var data = notification.payload.data; //quote object from seller or buyer
-                        alert('navigating to ' + route);
                         if (route) {
                             $state.go(route);
                         }

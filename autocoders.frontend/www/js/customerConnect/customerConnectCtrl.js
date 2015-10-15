@@ -5,26 +5,27 @@ app.controller('customerConnectCtrl', function ($scope, $cordovaBarcodeScanner, 
             $cordovaBarcodeScanner.scan()
                 .then(function (result) {
                         logger.log(result);
-                        $rootScope.customerAcountKey = 'gRUIF';
-                        //$state.go('app.proposalList');
-                        $scope.sendNotification();
+                    //$state.go('app.proposalList');
+
+                        var data = JSON.parse(result.text);
+                        $scope.sendNotification(data.accountKey, data.pushNotificationToken);
                     },
                     function(error) {
                         alert("Scanning failed: " + error);
                     }
                 );
         });
-        $scope.sendNotification();
+        
     };
-    $scope.sendNotification = function () {
-        console.log('sending test notification');
-        userApiProxy.getAllUserTokens().then(function (response) {
-            var userTokens = [];
+    var user = userApiProxy.getCurrentUser();
+    $scope.data = JSON.stringify({
+        accountKey: user.accountKey,
+        token: user.pushNotificationToken
+    });
 
-            userTokens = _.pluck(response.data, 'pushNotificationToken');
-            logger.log(userTokens);
-            pushNotificationProxy.sendNotification({ message: 'User want to connect', title: 'Autocoders Rock!', route: 'app.proposalList', data1: 'hello' }, userTokens);
-        });
+    $scope.sendNotification = function(accountKey, pushNotificationToken) {
+        console.log('sending connect notification');
+        pushNotificationProxy.sendNotification({ message: accountKey + ' want to connect.', title: 'Autocoders Rock!', route: 'app.proposalList', accountKey: accountKey }, [pushNotificationToken]);
     };
     var go = function (path) {
         $state.go(path);
