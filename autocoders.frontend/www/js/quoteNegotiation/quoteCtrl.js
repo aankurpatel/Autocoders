@@ -136,7 +136,8 @@ angular.module('starter')
 		
 		
 		//Init
-		(function(){
+	    (function () {
+			$scope.view.offerStatus = "MAKE OFFER";
 			//State checks
 			if($stateParams.vehicle){
 			    $scope.vehicle = $stateParams.vehicle;
@@ -144,7 +145,6 @@ angular.module('starter')
 			    self.openSellerQuote();
 			    return;
 			}
-			$scope.view.offerStatus = "MAKE OFFER";
 
 			//Set Defaults
 			$scope.sellerQuote.term = 60;
