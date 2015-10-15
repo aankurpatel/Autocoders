@@ -112,12 +112,15 @@ angular.module('starter')
 		};
 		
 				
-		self.openSellerQuote = function(quote) {
-			$scope.view.editable = true;
-			$scope.buyerQuoteOffer = JSON.parse(quote.buyerQuote);
-			$scope.sellerQuote = JSON.parse(quote.sellerQuote);
-			$scope.vehicle  = JSON.parse(quote.vehicle);
-			$scope.buyer  = JSON.parse(quote.buyer);
+		self.openSellerQuote = function () {
+		    var quote = $stateParams.quote;
+		    $scope.view.editable = true;
+		    $scope.buyerQuoteOffer = JSON.parse(JSON.stringify(quote.buyerquote));
+		  
+		    $scope.sellerQuote = JSON.parse(JSON.stringify(quote.sellerquote));
+		  
+		    $scope.vehicle  = JSON.parse(JSON.stringify(quote.vehicle));
+		    $scope.buyer  = JSON.parse(JSON.stringify(quote.buyer));
 			$scope.status = quote.status;
 			
 			if($scope.status === "Accepted"){
