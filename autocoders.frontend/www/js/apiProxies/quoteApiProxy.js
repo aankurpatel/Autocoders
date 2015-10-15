@@ -21,20 +21,21 @@ angular.module('starter')
       finalQuote.vehicle = JSON.stringify(vehicle);
       finalQuote.buyer = JSON.stringify(buyer);
       finalQuote.dealerAccessKey = dealerAccessKey;
-      finalQuote.status = "Negotiating";
+
       logger.log('updating quote');
       return $http.post(url,finalQuote);
     }
 
     self.updateQuote = function (quote) {
       var finalQuote = {};
-      finalQuote.id = quoteId;
-      finalQuote.buyerQuote = JSON.stringify(buyerQuote);
-      finalQuote.sellerQuote = JSON.stringify(sellerQuote);
-      finalQuote.vehicle = JSON.stringify(vehicle);
-      finalQuote.buyer = JSON.stringify(buyer);
-      finalQuote.dealerAccessKey = dealerAccessKey;
-      finalQuote.status = "Negotiating";
+      finalQuote.id = quote.id;
+      finalQuote.buyerQuote = JSON.stringify(quote.buyerquote);
+      finalQuote.sellerQuote = JSON.stringify(quote.sellerquote);
+      finalQuote.vehicle = JSON.stringify(quote.vehicle);
+      finalQuote.buyer = JSON.stringify(quote.buyer);
+      finalQuote.dealerAccessKey = quote.dealeraccesskey;
+      finalQuote.status = quote.status;
+
       logger.log('updating quote');
       return $http.patch(url + "/" + quote.id,finalQuote);
     }
