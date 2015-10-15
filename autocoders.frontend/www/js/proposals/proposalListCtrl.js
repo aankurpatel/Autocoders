@@ -35,6 +35,11 @@ angular.module('starter')
 
       loadProposals();
 
+      $scope.showAll = function(){
+        $rootScope.customerAccountKey = null;
+        loadProposals();
+      }
+
       $scope.setSelectedProposal = function(selProposal) {
         proposal.selectedProposal(selProposal);
         $state.go("app.proposalDetail");
