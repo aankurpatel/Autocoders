@@ -78,7 +78,7 @@ angular.module('starter')
             //var base64Image = photoService.getBase64Image(image);
            $scope.dlImageUrl = image;
           }, function (err) {
-            alert(err);
+            //alert(err);
           });
 
         }, false);

@@ -69,7 +69,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                         }
                         var data = notification.payload.data; //quote object from seller or buyer
                         if (route) {
-                            alert('navigate to:' + route + 'with data: ' + JSON.stringify(data));
+                            //alert('navigate to:' + route + 'with data: ' + JSON.stringify(data));
                             $state.go(route, data,{reload:true});
                         }
                     } else {
@@ -79,11 +79,11 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                 break;
 
             case 'error':
-                alert('GCM error = ' + notification.msg);
+                //alert('GCM error = ' + notification.msg);
                 break;
 
             default:
-                alert('An unknown GCM event has occurred');
+                //alert('An unknown GCM event has occurred');
                 break;
             }
         });

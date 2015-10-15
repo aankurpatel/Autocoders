@@ -32,8 +32,8 @@
                 logger.log(response);
                 deffered.resolve(response);
             }, function (error) {
-               
-                alert('error', error);
+
+                //alert('error', error);
                 deffered.reject(error);
             });
 
