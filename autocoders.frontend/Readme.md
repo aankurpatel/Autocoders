@@ -27,4 +27,5 @@ ionic plugin add https://github.com/apache/cordova-plugin-whitelist.git
 
 cordova plugin add cordova-plugin-camera
 cordova plugin add https://github.com/wymsee/cordova-imagePicker.git
+cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git
 

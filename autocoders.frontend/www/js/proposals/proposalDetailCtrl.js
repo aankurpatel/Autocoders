@@ -2,8 +2,8 @@
  * Created by singhap on 10/14/15.
  */
 angular.module('starter')
-  .controller('proposalDetailCtrl', ['$scope','_','proposal','$state','quoteApiProxy','pushNotificationService','vehicle',
-    function($scope,_,proposalService, $state, quoteApiProxy,pushNotificationService, vehicle) {
+  .controller('proposalDetailCtrl', ['$scope','_','proposal','$state','quoteApiProxy','pushNotificationService','vehicle','$stateParams',
+    function($scope,_,proposalService, $state, quoteApiProxy,pushNotificationService, vehicle,$stateParams) {
       if($stateParams.proposal){
         proposalService.selectedProposal($stateParams.proposal)
       }
