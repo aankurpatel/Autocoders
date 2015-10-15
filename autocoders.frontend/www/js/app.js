@@ -55,9 +55,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                 }
                 break;
             case 'message':
-                alert(JSON.stringify(notification));
+                //alert(JSON.stringify(notification));
                 var confirmPopup = $ionicPopup.confirm({
-                    title: notification.title,
+                    title: notification.payload.title,
                     template: notification.message
                 });
                 confirmPopup.then(function(res) {
