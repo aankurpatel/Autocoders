@@ -29,11 +29,11 @@ angular.module('starter')
     self.updateQuote = function (quote) {
       var finalQuote = {};
       finalQuote.id = quote.id;
-      finalQuote.buyerQuote = JSON.stringify(quote.buyerquote);
-      finalQuote.sellerQuote = JSON.stringify(quote.sellerquote);
+      finalQuote.buyerquote = JSON.stringify(quote.buyerquote);
+      finalQuote.sellerquote = JSON.stringify(quote.sellerquote);
       finalQuote.vehicle = JSON.stringify(quote.vehicle);
       finalQuote.buyer = JSON.stringify(quote.buyer);
-      finalQuote.dealerAccessKey = quote.dealeraccesskey;
+      finalQuote.dealeraccesskey = quote.dealeraccesskey;
       finalQuote.status = quote.status;
 
       logger.log('updating quote');

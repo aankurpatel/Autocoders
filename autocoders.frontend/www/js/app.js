@@ -210,7 +210,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
               'menuContent': {
                 templateUrl: 'js/reserveCar/reserveCar.html',
                 controller: 'reserveCarCtrl'
-              }
+              },
+              params: {'quote': null}
             }
           });
         // if none of the above states are matched, use this as the fallback

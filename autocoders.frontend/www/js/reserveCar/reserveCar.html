@@ -5,14 +5,22 @@
         Please make sure you make a reservation for test drive within next 24 hrs for this quote to be active.
       </p>
     </div>
+
     <div>
-      <button class="button button-autocoders" ng-click="showReservation()">
-        Make Reservation
-      </button>
+      <div>
+      <button ng-click="getPhoto()" class="button button-block button-primary">Scan your Driver's License</button>
+      <div class="item item-image ac-vehicle-detail-img">
+        <ion-slide-box show-pager="false">
+          <img ng-src="data:image/jpeg;base64,{{dlImageUrl}}"/>
+        </ion-slide-box>
+      </div>
+      <button ng-click="scheduleTime()" class="button button-block button-primary">Schedule Time</button>
+
     </div>
-    <div ng-show="viewMakeReservation">
-      <input type="datetime-local" id="exampleInput" name="input" ng-model="reservationDate"
-             placeholder="yyyy-MM-dd" required />
-    </div>
+      <div class="item item-text-wrap" ng-show="timeSelected">
+        <p>
+          Your appointment has been scheduled for <b>{{newDate}}</b>
+        </p>
+      </div>
   </ion-content>
   </ion-view>

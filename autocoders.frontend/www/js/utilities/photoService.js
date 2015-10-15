@@ -42,25 +42,20 @@ angular.module('starter')
       {
         return getBase64Image(img);
       },
-      captureImage:function(){
-        document.addEventListener("deviceready", function () {
+      captureImageOptions:function(){
+        return options = {
+          quality: 80,
+          destinationType: Camera.DestinationType.DATA_URL,
+          sourceType: Camera.PictureSourceType.CAMERA,
+          allowEdit: false,
+          encodingType: Camera.EncodingType.JPEG,
+          targetWidth: 100,
+          targetHeight: 100,
+          popoverOptions: CameraPopoverOptions,
+          saveToPhotoAlbum: true,
+          correctOrientation: true
+        };
 
-          var options = {
-            quality: 50,
-            destinationType: Camera.DestinationType.DATA_URL,
-            sourceType: Camera.PictureSourceType.CAMERA,
-            allowEdit: false,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 100,
-            targetHeight: 100,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: true,
-            correctOrientation: true
-          };
-
-          $cordovaCamera.getPicture(options);
-
-        }, false);
       }
     };
   });
