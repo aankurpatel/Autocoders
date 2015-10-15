@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'underscore', 'ngCordova', 'angularBingMaps'])
+angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers', 'underscore', 'ngCordova', 'angularBingMaps', 'monospaced.qrcode'])
     .run(function ($ionicPlatform, $rootScope, $cordovaToast, $cordovaPush, userApiProxy, logger, $ionicPopup, $state) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -170,6 +170,15 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
                   controller: 'proposalListCtrl'
                 }
               }
+            })
+            .state('app.customerConnect', {
+                url: '/customerConnect',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'js/customerConnect/customerConnect.html',
+                        controller: 'customerConnectCtrl'
+                    }
+                }
             })
             .state('app.proposalDetail', {
               url: '/proposalDetail',

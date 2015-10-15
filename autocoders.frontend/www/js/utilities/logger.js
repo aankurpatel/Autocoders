@@ -30,7 +30,7 @@
             document.addEventListener("deviceready", function () {
                 $cordovaToast.show(message, duration, posotion);
             });
-            console.log(message);
+            console.log('Toast message: ' + message);
         }
        
 
