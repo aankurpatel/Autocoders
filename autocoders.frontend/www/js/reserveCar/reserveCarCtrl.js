@@ -6,6 +6,8 @@ angular.module('starter')
     function($scope,_, $state,$cordovaDatePicker,photoService,$cordovaCamera,pushNotificationService,$stateParams) {
       if ($stateParams.quote) {
         $scope.quote = $stateParams.quote;
+        alert($scope.quote);
+        alert($scope.quote.buyer);
       }
 
       $scope.viewMakeReservation = false;
@@ -61,6 +63,7 @@ angular.module('starter')
       }
 
       function sendNotification(){
+        alert('test reserve');
         var message =
         {message:"Message from Autocoders",
           title:"Hello!!, "+ $scope.quote.buyer.name+"has scheduled test drive for "
