@@ -9,7 +9,7 @@ angular.module('starter')
 
     self.getQuotesforDealer = function () {
       logger.log('getting users');
-      var filterUrl = url+"?$filter=(dealeraccesskey eq '"+userApiProxy.getCurrentUser().accountKey+"',status eq 'Negotiating')";
+      var filterUrl = url+"?$filter=(dealeraccesskey eq '"+userApiProxy.getCurrentUser().accountKey+"'and status eq 'Negotiating')";
       console.log(filterUrl);
       return $http.get(filterUrl);
     }
