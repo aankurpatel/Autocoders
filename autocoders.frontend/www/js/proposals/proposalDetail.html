@@ -85,11 +85,11 @@
         <div class="item item-divider ac-right" ng-show="showOffer">
             <div class="col ac-left">
                 Offered Price:
-                <input type="text" ng-value="proposal.sellerquote.offeredPrice" />
+                <input type="text" ng-model="proposal.sellerquote.offeredPrice" />
             </div>
             <div class="col ac-left">
                 Trade in Value:
-                <input type="text" ng-value="proposal.sellerquote.tradeInValue" />
+                <input type="text" ng-model="proposal.sellerquote.tradeInValue" />
             </div>
             <div class="item item-divider ac-right">
                 <button class="button button-clear button-calm" ng-click="sendQuote()">
