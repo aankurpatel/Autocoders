@@ -73,7 +73,8 @@ angular.module('starter')
 			return finalQuote;
 		};
 
-		$scope.MakeOffer = function() {
+		$scope.MakeOffer = function () {
+		   // alert('accountKey:' + $scope.vehicle.accountKey + 'userKey:' + $scope.buyer.accountKey);
 			//Submit Offer
 			if($scope.view.offerStatus === "SUBMIT OFFER"){
 				//Insert if id is null/undefined, else, update the finalQuote
