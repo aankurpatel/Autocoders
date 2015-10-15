@@ -5,7 +5,10 @@ angular.module('starter')
   .controller('reserveCarCtrl', ['$scope', '_', '$cordovaDatePicker', 'photoService', '$cordovaCamera', 'pushNotificationService', '$stateParams',
     function ($scope, _, $cordovaDatePicker, photoService, $cordovaCamera, pushNotificationService, $stateParams) {
         if ($stateParams.quote) {
-        $scope.quote = $stateParams.quote;
+          var tempquote = $stateParams.quote;
+          tempquote.buyer = JSON.parse($stateParams.quote.buyer);
+          tempquote.vehicle = JSON.parse($stateParams.quote.vehicle);
+          $scope.quote = tempquote;
       }
 
       $scope.viewMakeReservation = false;
@@ -72,7 +75,7 @@ angular.module('starter')
         };
         pushNotificationService.sendNotification($scope.proposal.buyer.accountKey,message);
       };
-        
+
       $scope.getPhoto = function(args) {
         document.addEventListener("deviceready", function () {
          $cordovaCamera.getPicture(photoService.captureImageOptions()).then(function (image) {
