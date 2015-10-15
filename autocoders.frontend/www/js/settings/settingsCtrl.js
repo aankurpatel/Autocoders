@@ -27,7 +27,7 @@
         $scope.pushNotificationToggle = { checked: !!$scope.user.pushNotificationToken };
 
         function register() {
-            logger.log('registering for token');
+            //logger.log('registering for token');
             document.addEventListener("deviceready", function() {
                 $cordovaPush.register(androidConfig).then(function(result) {
                     // Success
@@ -60,7 +60,7 @@
         };
 
         function loadUser() {
-            logger.log('loading users');
+            //logger.log('loading users');
             userApiProxy.getUserTokens('www').then(function (response) {
                 logger.log(response.data);
                 $scope.users = response.data;
