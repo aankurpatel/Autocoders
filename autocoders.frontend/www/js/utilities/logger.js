@@ -24,9 +24,11 @@
             //alert(JSON.stringify(message));
         };
 
-        this.toast = function(message, time, location) {
+        // duration:  'short' 'long'
+        //potion: 'top', 'center', 'bottom'
+        this.toast = function(message, duration, posotion) {
             document.addEventListener("deviceready", function () {
-                $cordovaToast.show(message, time, location);
+                $cordovaToast.show(message, duration, posotion);
             });
             console.log(message);
         }
