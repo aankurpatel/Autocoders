@@ -2,8 +2,8 @@
  * Created by singhap on 10/15/15.
  */
 angular.module('starter')
-  .controller('reserveCarCtrl', ['$scope','_','$state','$cordovaDatePicker',
-    function($scope,_, $state,$cordovaDatePicker) {
+  .controller('reserveCarCtrl', ['$scope','_','$state','$cordovaDatePicker','photoService','$cordovaCamera',
+    function($scope,_, $state,$cordovaDatePicker,photoService,$cordovaCamera) {
       $scope.viewMakeReservation = false;
         $scope.showReservation = function(){
           $scope.viewMakeReservation= true;
@@ -22,13 +22,24 @@ angular.module('starter')
       };
 
       document.addEventListener("deviceready", function () {
-
         $cordovaDatePicker.show(options).then(function(date){
           alert(date);
         },function(err){
-
         });
-
       }, false);
+
+      $scope.getPhoto = function(args) {
+        document.addEventListener("deviceready", function () {
+         $cordovaCamera.getPicture(photoService.captureImageOptions()).then(function (image) {
+            alert(image);
+            //var base64Image = photoService.getBase64Image(image);
+           $scope.dlImageUrl = image;
+          }, function (err) {
+            alert(err);
+          });
+
+        }, false);
+      };
+
     }]);
 
