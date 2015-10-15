@@ -6,7 +6,7 @@
 .text-primary-color    { color: #FFFFFF; }
 .accent-color          { background: #CDDC39; }
 .primary-text-color    { color: #212121; }
-.  { color: #727272; }
+.secondary-text-color  { color: #727272; }
 .divider-color         { border-color: #B6B6B6; }
 
 /* Override Ionic styles */
