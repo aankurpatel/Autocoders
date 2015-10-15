@@ -2,7 +2,9 @@
     <ion-content>
         <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
         </ion-refresher>
-
+<span>
+    Customer: {{customerAccountKey}}
+</span>
         <div class="list">
 
             <a class="item item-thumbnail-left ac-browse-proposal-list" href="#" ng-repeat="proposal in proposals" ng-click="setSelectedProposal(proposal)">
