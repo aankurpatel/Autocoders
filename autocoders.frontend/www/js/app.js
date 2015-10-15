@@ -61,7 +61,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                     template: notification.message
                 });
                 confirmPopup.then(function(res) {
-                    if (res) {
+                    if (res && notification.payload) {
                         var route = notification.payload.route;
                         var customerAccountKey = notification.payload.accountKey;
                         if (!customerAccountKey) {
