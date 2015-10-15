@@ -24,6 +24,7 @@ angular.module('starter')
               +$scope.proposal.vehicle.year+" " +$scope.proposal.vehicle.make+" " +$scope.proposal.vehicle.model+" "
               +$scope.proposal.vehicle.trim + " has been accepted.",
               quoteId:$scope.proposal.id,
+              data:$scope.proposal,
               type:"Accepted",
               route:"app.StartQuote"
             };
@@ -41,6 +42,7 @@ angular.module('starter')
               message: "Hello, " + $scope.proposal.buyer.name + "!! Your offer for " + $scope.proposal.vehicle.year + " " + $scope.proposal.vehicle.make + " " + $scope.proposal.vehicle.model
               + " " + $scope.proposal.vehicle.trim + " has been rejected.",
               quoteId: $scope.proposal.id,
+              data:$scope.proposal,
               type: "Rejected",
               route:"app.StartQuote"
             };
