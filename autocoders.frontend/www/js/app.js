@@ -55,19 +55,21 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                 }
                 break;
             case 'message':
-                alert(JSON.stringify(notification));
+               // alert(JSON.stringify(notification));
                 var confirmPopup = $ionicPopup.confirm({
                     title: notification.title,
                     template: notification.message
                 });
                 confirmPopup.then(function(res) {
                     if (res) {
-                        alert('navifgationg to ' + notification.route);
-                        if (notification.route) {
-                            $state.go(notification.route);
+                        var route = notification.payload.route;
+                        var data = notification.payload.data; //quote object from seller or buyer
+                        alert('navigating to ' + route);
+                        if (route) {
+                            $state.go(route);
                         }
                     } else {
-                        console.log('You are not sure');
+                        $state.go('app.browse'); //default
                     }
                 });
                 break;
@@ -86,7 +88,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
         $httpProvider.defaults.headers.common['X-ZUMO-APPLICATION'] = 'nJonQAsXZEMEStHVlzCpWpmuckaJnd90'; // add the application key
         $httpProvider.defaults.headers.common['Content-Type'] = 'Application/json';
         $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-        $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, PUT';
+        $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, PUT, PATCH';
 
         $stateProvider
             .state('app', {

@@ -9,7 +9,7 @@ angular.module('starter')
 
     self.getQuotesforDealer = function () {
       logger.log('getting users');
-      var filterUrl = url+"?$filter=(dealeraccesskey eq '"+userApiProxy.getCurrentUser().accountKey+"')";
+      var filterUrl = url+"?$filter=(dealeraccesskey eq '"+userApiProxy.getCurrentUser().accountKey+"'and status eq 'Negotiating')";
       console.log(filterUrl);
       return $http.get(filterUrl);
     }
@@ -21,22 +21,22 @@ angular.module('starter')
       finalQuote.vehicle = JSON.stringify(vehicle);
       finalQuote.buyer = JSON.stringify(buyer);
       finalQuote.dealerAccessKey = dealerAccessKey;
-      
+
       logger.log('updating quote');
       return $http.post(url,finalQuote);
     }
-    
-    self.updateQuote = function (quoteId, buyerQuote, sellerQuote, vehicle, buyer, dealerAccessKey) {
+
+    self.updateQuote = function (quote) {
       var finalQuote = {};
-      finalQuote.id = quoteId;
-      finalQuote.buyerQuote = JSON.stringify(buyerQuote);
-      finalQuote.sellerQuote = JSON.stringify(sellerQuote);
-      finalQuote.vehicle = JSON.stringify(vehicle);
-      finalQuote.buyer = JSON.stringify(buyer);
-      finalQuote.dealerAccessKey = dealerAccessKey;
-      
+      finalQuote.id = quote.id;
+      finalQuote.buyerQuote = JSON.stringify(quote.buyerquote);
+      finalQuote.sellerQuote = JSON.stringify(quote.sellerquote);
+      finalQuote.vehicle = JSON.stringify(quote.vehicle);
+      finalQuote.buyer = JSON.stringify(quote.buyer);
+      finalQuote.dealerAccessKey = quote.dealeraccesskey;
+
       logger.log('updating quote');
-      return $http.patch(url + "/" + quoteId,finalQuote);
+      return $http.patch(url + "/" + quote.id,finalQuote);
     }
 
   });

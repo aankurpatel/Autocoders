@@ -2,8 +2,8 @@
  * Created by singhap on 10/14/15.
  */
 angular.module('starter')
-  .controller('proposalListCtrl', ['proposal', '$scope', '_', '$q', '$state','quoteApiProxy',
-    function( proposal, $scope, _, $q, $state, quoteApiProxy) {
+  .controller('proposalListCtrl', ['proposal', '$scope', '_', '$q', '$state','quoteApiProxy','$rootScope',
+    function( proposal, $scope, _, $q, $state, quoteApiProxy,$rootScope) {
 
       $scope.proposals =[];
       function loadProposals() {
@@ -11,16 +11,20 @@ angular.module('starter')
              .then(function(response) {
                 var proposals = response.data;
                 angular.forEach(proposals, function (value, key) {
-                  if(proposals[key].vehicle) {
-
-                    proposals[key].vehicle = JSON.parse(value.vehicle);
-                    proposals[key].buyerquote = JSON.parse(value.buyerquote);
-                    proposals[key].sellerquote = JSON.parse(value.sellerquote);
-                    proposals[key].buyer = JSON.parse(value.buyer);
-                  }
+                    var proposal = proposals[key];
+                    proposal.vehicle = JSON.parse(value.vehicle);
+                    proposal.buyerquote = JSON.parse(value.buyerquote);
+                    proposal.sellerquote = JSON.parse(value.sellerquote);
+                    proposal.buyer = JSON.parse(value.buyer);
+                    if($rootScope.customerAccountKey){
+                      if(proposal.buyer.accountKey ===$rootScope.customerAccountKey) {
+                        $scope.proposals.push(proposal);
+                      }
+                    }else
+                    {
+                      $scope.proposals.push(proposal);
+                    }
                 });
-                $scope.proposals = proposals;
-
                },function(err){
                   console.log(err);
               });
