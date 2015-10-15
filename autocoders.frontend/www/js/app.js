@@ -28,7 +28,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                 }).then(function(result) {
                     // Success
                     console.log("Register success " + result);
-                   
+
                 }, function(err) {
                     // Error
                 });
@@ -37,7 +37,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
 
         var userprofile = userApiProxy.getCurrentUser();
 
-        
+
             register();
 
         // Notification Received
@@ -193,7 +193,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                   templateUrl: 'js/proposals/proposalDetail.html',
                   controller: 'proposalDetailCtrl'
                 }
-              }
+              },
+                params: {'proposal': null}
             })
              .state('app.quoteSubmitted', {
               url: '/quoteSubmitted',

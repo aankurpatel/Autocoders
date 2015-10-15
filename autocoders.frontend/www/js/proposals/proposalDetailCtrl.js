@@ -4,6 +4,10 @@
 angular.module('starter')
   .controller('proposalDetailCtrl', ['$scope','_','proposal','$state','quoteApiProxy','pushNotificationService','vehicle',
     function($scope,_,proposalService, $state, quoteApiProxy,pushNotificationService, vehicle) {
+      if($stateParams.proposal){
+        proposalService.selectedProposal($stateParams.proposal)
+      }
+
       var proposal = proposalService.selectedProposal();
       //vehicle.featPrice = JSON.parse(JSON.stringify(eval("(" + vehicle.featPrice + ")")));
       $scope.proposal = proposal;
@@ -24,7 +28,7 @@ angular.module('starter')
               +$scope.proposal.vehicle.year+" " +$scope.proposal.vehicle.make+" " +$scope.proposal.vehicle.model+" "
               +$scope.proposal.vehicle.trim + " has been accepted.",
               quoteId:$scope.proposal.id,
-              data:$scope.proposal,
+              data:{quote:$scope.proposal},
               type:"Accepted",
               route:"app.StartQuote"
             };
@@ -42,7 +46,7 @@ angular.module('starter')
               message: "Hello, " + $scope.proposal.buyer.name + "!! Your offer for " + $scope.proposal.vehicle.year + " " + $scope.proposal.vehicle.make + " " + $scope.proposal.vehicle.model
               + " " + $scope.proposal.vehicle.trim + " has been rejected.",
               quoteId: $scope.proposal.id,
-              data:$scope.proposal,
+              data:{quote:$scope.proposal},
               type: "Rejected",
               route:"app.StartQuote"
             };
@@ -60,7 +64,7 @@ angular.module('starter')
                     +$scope.proposal.vehicle.year+ " " +$scope.proposal.vehicle.make+" " +
                     $scope.proposal.vehicle.model+ " " +$scope.proposal.vehicle.trim,
               quoteId:$scope.proposal.id,
-              data:$scope.proposal,
+              data:{quote:$scope.proposal},
               type:"Negotiating",
               route:"app.StartQuote"
             };
