@@ -41,7 +41,9 @@
 
                 <div class="row ac-browse-vehicle-row ac-browse-proposal-buyer">
                     <div class="col ac-left">{{proposal.buyer.name}}</div>
-                    <div class="col ac-right positive">{{proposal.status}}</div>
+                    <div class="col ac-right balanced" ng-show="proposal.status === 'Accepted'">{{proposal.status}}</div>
+                    <div class="col ac-right positive" ng-show="proposal.status === 'Negotiating'">{{proposal.status}}</div>
+                    <div class="col ac-right assertive" ng-show="proposal.status === 'Rejected'">{{proposal.status}}</div>
                 </div>
 
                 <div class="row ac-browse-vehicle-row">
