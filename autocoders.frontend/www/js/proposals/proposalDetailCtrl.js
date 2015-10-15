@@ -3,14 +3,18 @@
  */
 angular.module('starter')
   .controller('proposalDetailCtrl', ['$scope','_','proposal','$state','quoteApiProxy','pushNotificationService','vehicle','$stateParams',
-    function($scope,_,proposalService, $state, quoteApiProxy,pushNotificationService, vehicle,$stateParams) {
-      if($stateParams.proposal){
-        proposalService.selectedProposal($stateParams.proposal)
+    function ($scope, _, proposalService, $state, quoteApiProxy, pushNotificationService, vehicle, $stateParams) {
+        
+        if ($stateParams.proposal) {
+            var tempproposal = $stateParams.proposal;
+            tempproposal.vehicle = JSON.parse($stateParams.proposal.vehicle);
+            tempproposal.buyerquote = JSON.parse($stateParams.proposal.buyerquote);
+            tempproposal.sellerquote = JSON.parse($stateParams.proposal.sellerquote);
+            proposalService.selectedProposal(tempproposal);
       }
 
-      var proposal = proposalService.selectedProposal();
+       $scope.proposal = proposalService.selectedProposal();
       //vehicle.featPrice = JSON.parse(JSON.stringify(eval("(" + vehicle.featPrice + ")")));
-      $scope.proposal = proposal;
       $scope.navigateToList = function(){
         $state.go("app.proposalList");
       };
@@ -23,8 +27,9 @@ angular.module('starter')
         quoteApiProxy.updateQuote($scope.proposal).then(
           function(response){
             var message =
-            {message:"Message from Autocoders",
-              title:"Hello, "+ $scope.proposal.buyer.name+"!! Your offer for "
+            {
+               title: "Message from Autocoders",
+               message: "Hello, " + $scope.proposal.buyer.name + "!! Your offer for "
               +$scope.proposal.vehicle.year+" " +$scope.proposal.vehicle.make+" " +$scope.proposal.vehicle.model+" "
               +$scope.proposal.vehicle.trim + " has been accepted.",
               quoteId:$scope.proposal.id,
@@ -42,8 +47,8 @@ angular.module('starter')
           function(response) {
             var message =
             {
-              title: "Message from Autocoders",
-              message: "Hello, " + $scope.proposal.buyer.name + "!! Your offer for " + $scope.proposal.vehicle.year + " " + $scope.proposal.vehicle.make + " " + $scope.proposal.vehicle.model
+              message: "Message from Autocoders",
+              title: "Hello, " + $scope.proposal.buyer.name + "!! Your offer for " + $scope.proposal.vehicle.year + " " + $scope.proposal.vehicle.make + " " + $scope.proposal.vehicle.model
               + " " + $scope.proposal.vehicle.trim + " has been rejected.",
               quoteId: $scope.proposal.id,
               data:{quote:$scope.proposal},
@@ -72,9 +77,9 @@ angular.module('starter')
           }
         );
       };
-      $scope.gotoVehicleDetail = function(){
-        vehicle.selectedVehicle($scope.proposal.vehicle);
-        $state.go("app.vehicleDetail");
-      }
+        $scope.gotoVehicleDetail = function() {
+            vehicle.selectedVehicle($scope.proposal.vehicle);
+            $state.go("app.vehicleDetail");
+        };
     }]);
 

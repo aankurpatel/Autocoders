@@ -12,7 +12,7 @@ app.controller('customerConnectCtrl', function ($scope, $rootScope, $cordovaBarc
 
                         $rootScope.customerAccountKey = remoteUserAccountKey;
                         $scope.sendNotification(tokenPart);
-                        $state.go('app.proposalList');
+                        $state.go('app.proposalList', {}, {reload: true});
                     },
                     function(error) {
                         alert("Scanning failed: " + error);

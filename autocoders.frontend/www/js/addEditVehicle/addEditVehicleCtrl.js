@@ -78,30 +78,13 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
     };
   $scope.allImages = [];
   $scope.getPhoto = function(args) {
-    document.addEventListener("deviceready", function () {
-
-      var options = {
-        quality: 50,
-        destinationType: Camera.DestinationType.DATA_URL,
-        sourceType: Camera.PictureSourceType.CAMERA,
-        allowEdit: false,
-        encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 100,
-        targetHeight: 100,
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: true,
-        correctOrientation: true
-      };
-
-      $cordovaCamera.getPicture(options)
-        .then(function (image) {
-          //var base64Image = photoService.getBase64Image(image);
-          alert(image);
-          $scope.allImages.push(image);
-        }, function (err) {
-          console.log(err);
-        });
-    }, false);
+      photoService.captureImage(args) .then(function (image) {
+        //var base64Image = photoService.getBase64Image(image);
+        alert(image);
+        $scope.allImages.push(image);
+      }, function (err) {
+        console.log(err);
+      });
   };
 
   $scope.uploadPhoto = function(args) {
