@@ -4,7 +4,7 @@
 angular.module('starter')
   .controller('proposalDetailCtrl', ['$scope','_','proposal','$state','quoteApiProxy','pushNotificationService','vehicle','$stateParams',
     function ($scope, _, proposalService, $state, quoteApiProxy, pushNotificationService, vehicle, $stateParams) {
-        
+
         if ($stateParams.proposal) {
             var tempproposal = $stateParams.proposal;
             tempproposal.vehicle = JSON.parse($stateParams.proposal.vehicle);
@@ -36,7 +36,7 @@ angular.module('starter')
               quoteId:$scope.proposal.id,
               data:{quote:$scope.proposal},
               type:"Accepted",
-              route:"app.StartQuote"
+              route:"app.reserveCar"
             };
             pushNotificationService.sendNotification($scope.proposal.buyer.accountKey,message);
           }
