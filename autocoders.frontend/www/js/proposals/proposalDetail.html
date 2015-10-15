@@ -9,11 +9,7 @@
                 </h2>
             </div>
 
-            <!--<div class="item item-image ac-vehicle-detail-img">
-            <img ng-src="{{proposal.vehicle.imageUrl[0]}}">
-        </div>-->
-
-            <div class="item">
+            <div class="item ac-proposal-detail-items">
                 <div class="row">
                     <div class="col col-67 ac-left">{{proposal.vehicle.vin}}</div>
                     <div class="col col-33 ac-right">{{proposal.vehicle.type}}</div>
@@ -37,59 +33,73 @@
                     </div>
                 </div>
             </div>
-        <!--</div>
 
-        <div class="card">-->
-            <div class="item">
+            <div class="item ac-proposal-detail-items">
                 <h2 class="ac-vehicle-detail-value">Offer from {{proposal.buyer.name}}</h2>
                 <div class="row">
-                    <div class="col col-33 ac-left">Offer</div>
-                    <div class="col col-67 ac-right">$33,233{{proposal.buyerquote.offeredPrice | currency : '$' : 0}}</div>
+                    <div class="col col-40 ac-left secondary-text-color">Offered Price</div>
+                    <div class="col col-60 ac-right">{{proposal.buyerquote.offerPrice | currency : '$' : 0}}</div>
                 </div>
                 <div class="row">
-                    <div class="col col-33 ac-left">Trade-in Value</div>
-                    <div class="col col-67 ac-right">{{proposal.buyerquote.tradeInValue | currency : '$' : 0}}</div>
+                    <div class="col col-40 ac-left secondary-text-color">Trade-in Value</div>
+                    <div class="col col-60 ac-right">{{proposal.buyerquote.tradeInValue | currency : '$' : 0}}</div>
                 </div>
                 <div class="row">
-                    <div class="col col-33 ac-left">Down Payment</div>
-                    <div class="col col-67 ac-right">{{proposal.buyerquote.downPayment | currency : '$' : 0}}</div>
+                    <div class="col col-40 ac-left secondary-text-color">Down Payment</div>
+                    <div class="col col-60 ac-right">{{proposal.buyerquote.downPayment | currency : '$' : 0}}</div>
                 </div>
-
-
-
-                <div class="col ac-left">Term: {{proposal.buyerquote.term}}</div>
-                <div class="col ac-left">APR: {{proposal.buyerquote.apr}}</div>
-                <div class="col ac-left">Monthly Payment: {{proposal.buyerquote.monthlyPayment | currency : '$' : 0}}</div>
-                <div class="col ac-left">Ttle Fee: {{proposal.buyerquote.titleFee | currency : '$' : 0}}</div>
-                <div class="col ac-left">Reg Fee: {{proposal.buyerquote.regFee}}</div>
-                <div class="col ac-left">Tax Rate: {{proposal.buyerquote.taxRate}}</div>
+                <div class="row">
+                    <div class="col col-40 ac-left secondary-text-color">Credit Tier</div>
+                    <div class="col col-60 ac-right">{{proposal.buyerquote.creditTier}}</div>
+                </div>
+                <div class="row">
+                    <div class="col col-40 ac-left secondary-text-color">Loan Term (months)</div>
+                    <div class="col col-60 ac-right">{{proposal.buyerquote.term}}</div>
+                </div>
+                <div class="row">
+                    <div class="col col-40 ac-left secondary-text-color">Loan APR</div>
+                    <div class="col col-60 ac-right">{{proposal.buyerquote.apr}}%</div>
+                </div>
+                <div class="row">
+                    <div class="col col-40 ac-left secondary-text-color">Monthly Payment</div>
+                    <div class="col col-60 ac-right">{{proposal.buyerquote.monthlyPayment | currency : '$' : 0}}</div>
+                </div>
+                <div class="row">
+                    <div class="col col-40 ac-left secondary-text-color">Title Fee</div>
+                    <div class="col col-60 ac-right">{{proposal.buyerquote.titleFee | currency : '$' : 0}}</div>
+                </div>
+                <div class="row">
+                    <div class="col col-40 ac-left secondary-text-color">Registration Fee</div>
+                    <div class="col col-60 ac-right">{{proposal.buyerquote.regFee | currency : '$' : 0}}</div>
+                </div>
+                <div class="row">
+                    <div class="col col-40 ac-left secondary-text-color">Tax Rate ({{proposal.buyerquote.taxRate}}%)</div>
+                    <div class="col col-60 ac-right">{{proposal.buyerquote.taxAmount | currency : '$' : 0}}</div>
+                </div>
             </div>
+
+            <div class="item item-divider ac-right">
+                <button class="button button-clear button-calm" ng-click="acceptOffer()">
+                    Accept
+                </button>
+                <button class="button button-clear button-calm" ng-click="rejectOffer()">
+                    Reject
+                </button>
+                <button class="button button-clear button-calm" ng-click="addOffer()">
+                    Counter-Offer
+                </button>
+            </div>
+
         </div>
-
-
-
-
-        <div class="item item-divider ac-right">
-            <button class="button button-clear button-calm" ng-click="acceptOffer()">
-                Accept
-            </button>
-            <button class="button button-clear button-calm" ng-click="rejectOffer()">
-                Reject
-            </button>
-            <button class="button button-clear button-calm" ng-click="addOffer()">
-                Counter-Offer
-            </button>
-        </div>
-
 
         <div class="item item-divider ac-right" ng-show="showOffer">
             <div class="col ac-left">
                 Offered Price:
-                <input type="text" ng-value="proposal.sellerquote.offeredPrice" />
+                <input type="text" ng-model="proposal.sellerquote.offeredPrice" />
             </div>
             <div class="col ac-left">
                 Trade in Value:
-                <input type="text" ng-value="proposal.sellerquote.tradeInValue" />
+                <input type="text" ng-model="proposal.sellerquote.tradeInValue" />
             </div>
             <div class="item item-divider ac-right">
                 <button class="button button-clear button-calm" ng-click="sendQuote()">
