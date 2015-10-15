@@ -34,6 +34,7 @@ angular.module('starter')
       finalQuote.vehicle = JSON.stringify(quote.vehicle);
       finalQuote.buyer = JSON.stringify(quote.buyer);
       finalQuote.dealerAccessKey = quote.dealeraccesskey;
+      finalQuote.status = quote.status;
 
       logger.log('updating quote');
       return $http.patch(url + "/" + quote.id,finalQuote);
