@@ -20,7 +20,8 @@
 
             loadVehicles();
 
-            $scope.setselectedVehicle = function(selVehicle) {
+            $scope.setselectedVehicle = function (selVehicle) {
+                console.log(selVehicle)
                 vehicle.selectedVehicle(selVehicle);
                 $state.go("app.vehicleDetail");
             };
