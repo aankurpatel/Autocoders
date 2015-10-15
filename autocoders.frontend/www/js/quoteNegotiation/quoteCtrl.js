@@ -11,7 +11,6 @@ angular.module('starter')
 		$scope.sellerQuote = {};
 		$scope.hideNegotiations = false;
 		$scope.buyerQuoteOffer = {};
-	    $scope.isSellerQuoteOffer = false;
 		var self = this;
 		
 		self.setPaymentOnQuote = function(quote, paymentInfo){
@@ -122,7 +121,8 @@ angular.module('starter')
 		    $scope.buyer  = JSON.parse(JSON.stringify(quote.buyer));
 			$scope.status = quote.status;
 			$scope.view.editable = true;
-		    $scope.view.quote = $scope.sellerQuote;
+			$scope.view.quote = $scope.sellerQuote;
+			$scope.buyerQuoteOffer.offerPrice = $scope.sellerQuote.offerPrice;
 			if($scope.status === "Accepted"){
 				$scope.view.showAccept = false;
 				$scope.view.showMakeOffer = false;
@@ -140,12 +140,12 @@ angular.module('starter')
 			//State checks
 			if($stateParams.vehicle){
 			    $scope.vehicle = $stateParams.vehicle;
-			    $scope.isSellerQuoteOffer = false;
 			}else{
-			    $scope.isSellerQuoteOffer = true;
 			    self.openSellerQuote();
+			    return;
 			}
-			
+			$scope.view.offerStatus = "MAKE OFFER";
+
 			//Set Defaults
 			$scope.sellerQuote.term = 60;
 			$scope.sellerQuote.creditTier = "700+";
@@ -162,10 +162,6 @@ angular.module('starter')
 				$scope.buyer = user.data[0];
 			});
 		    
-			if ($scope.isSellerQuoteOffer) {
-			    return;
-			}
-			
 			//Request payments
 			quoteService.getQuote($scope.vehicle.featPrice, $scope.sellerQuote.term, $scope.sellerQuote.tradeInValue, $scope.sellerQuote.downPayment, $scope.zipCode).then(
 				function(payment){
