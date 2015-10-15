@@ -45,6 +45,7 @@ angular.module('starter')
 		};
 		
 		$scope.AcceptQuote = function(){
+			$scope.sellerQuote.offerPrice = $scope.buyerQuoteOffer.offerPrice;
 			$scope.buyerQuoteOffer = $scope.sellerQuote;
 			self.AddQuote();
 		};
@@ -103,6 +104,7 @@ angular.module('starter')
 				$scope.view.offerStatus = "MAKE OFFER";
 			}else{//MAKE OFFER
 				$scope.view.editable = true;
+				$scope.view.showAccept = false;
 				$scope.buyerQuoteOffer = angular.copy($scope.sellerQuote);//Make a deep copy of sellerQuote first time
 				$scope.view.quote = $scope.buyerQuoteOffer;
 				$scope.view.offerStatus = "SUBMIT OFFER";
