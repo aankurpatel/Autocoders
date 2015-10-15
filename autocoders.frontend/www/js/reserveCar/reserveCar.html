@@ -14,12 +14,13 @@
           <img ng-src="data:image/jpeg;base64,{{dlImageUrl}}"/>
         </ion-slide-box>
       </div>
+      <button ng-click="scheduleTime()" class="button button-block button-primary">Schedule Time</button>
 
     </div>
-    <div>
-      <button class="button button-autocoders" ng-click="">
-        Make Reservation
-      </button>
-    </div>
+      <div class="item item-text-wrap" ng-show="timeSelected">
+        <p>
+          Your appointment has been scheduled for <b>{{newDate}}</b>
+        </p>
+      </div>
   </ion-content>
   </ion-view>
