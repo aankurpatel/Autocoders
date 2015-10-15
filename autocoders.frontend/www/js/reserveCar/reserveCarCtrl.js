@@ -49,7 +49,7 @@ angular.module('starter')
                     year = date.getYear();
                     currDate = date.getDate();
                     month = date.getMonth();
-                    $cordovaDatePicker.show(optionsTime).then(function(time) {
+                    $cordovaDatePicker.show(optionsTime).then(function (time) {
                         hour = time.getHours();
                         minutes = time.getMinutes();
                         $scope.newDate = new Date(year, month, currDate, hour, minutes).toString("dddd, MMMM dd, yyyy h:mm:ss tt");
@@ -63,17 +63,18 @@ angular.module('starter')
             }, false);
         };
 
-      function sendNotification(){
+        function sendNotification() {
         var message =
-        {message:"Message from Autocoders",
-          title:"Hello!!, "+ $scope.quote.buyer.name+"has scheduled test drive for "
+        {title:"Message from Autocoders",
+          message:"Hello!!, "+ $scope.quote.buyer.name+" has scheduled test drive for "
           +$scope.quote.vehicle.year+ " " +$scope.quote.vehicle.make+" " +
-          $scope.quote.vehicle.model+ " " +$scope.quote.vehicle.trim +" on "+$scope.timeSelected,
-          quoteId:$scope.quote.id,
-          data:{quote:$scope.quote},
+          $scope.quote.vehicle.model+ " " +$scope.quote.vehicle.trim +" on "+$scope.newDate,
+          data: { quote: $scope.quote },
           type:"Message"
         };
-        pushNotificationService.sendNotification($scope.proposal.buyer.accountKey,message);
+        pushNotificationService.sendNotification($scope.quote.vehicle.accountKey, message);
+        
+
       };
 
       $scope.getPhoto = function(args) {
