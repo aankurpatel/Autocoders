@@ -77,7 +77,7 @@
     top: 82px;
 }
 
-/* Proposal Page */
+/* Browse Proposal Page */
 .item.item-thumbnail-left.ac-browse-proposal-list {
   min-height: 0;
   padding-bottom: 8px;
@@ -85,6 +85,16 @@
 
 .row.ac-browse-vehicle-row.ac-browse-proposal-buyer {
     padding-top: 5px;
+}
+
+/* Proposal Details Page */
+.item.ac-proposal-detail-items .col {
+    padding-bottom: 0;
+}
+
+.item.ac-proposal-detail-items .col .row {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 /* Browse Vehicles Page */
