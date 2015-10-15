@@ -6,8 +6,8 @@ angular.module('starter')
     function ($scope, _, $cordovaDatePicker, photoService, $cordovaCamera, pushNotificationService, $stateParams) {
         if ($stateParams.quote) {
           var tempquote = $stateParams.quote;
-          tempquote.buyer = JSON.parse($stateParams.quote.buyer);
-          tempquote.vehicle = JSON.parse($stateParams.quote.vehicle);
+          tempquote.buyer = JSON.parse(JSON.stringify($stateParams.quote.buyer));
+          tempquote.vehicle = JSON.parse(JSON.stringify($stateParams.quote.vehicle));
           $scope.quote = tempquote;
       }
 
