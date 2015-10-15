@@ -1,14 +1,18 @@
 ﻿var app = angular.module('starter');
-app.controller('customerConnectCtrl', function ($scope, $cordovaBarcodeScanner, logger, $state, pushNotificationProxy, userApiProxy) {
+app.controller('customerConnectCtrl', function ($scope, $rootScope, $cordovaBarcodeScanner, logger, $state, pushNotificationProxy, userApiProxy) {
     $scope.scanCode = function () {
         document.addEventListener("deviceready", function() {
             $cordovaBarcodeScanner.scan()
                 .then(function (result) {
-                        logger.log(result);
-                    //$state.go('app.proposalList');
+                    var data = result.text.split(';;')
+                        logger.log(data);
+                        var tokenPart = result.text.split(';;')[0];
+                        logger.log(tokenPart);
+                        var remoteUserAccountKey = result.text.split(';;')[1];
 
-                        var data = JSON.parse(result.text);
-                        $scope.sendNotification(data.accountKey, data.pushNotificationToken);
+                        $rootScope.customerAccountKey = remoteUserAccountKey;
+                        $scope.sendNotification(tokenPart);
+                        $state.go('app.proposalList', {}, {reload: true});
                     },
                     function(error) {
                         alert("Scanning failed: " + error);
@@ -18,14 +22,27 @@ app.controller('customerConnectCtrl', function ($scope, $cordovaBarcodeScanner, 
         
     };
     var user = userApiProxy.getCurrentUser();
-    $scope.data = JSON.stringify({
-        accountKey: user.accountKey,
-        token: user.pushNotificationToken
-    });
+    $scope.data =  (user.pushNotificationToken || 'notoken').substring(0, 40) + ';;' + user.accountKey;
 
-    $scope.sendNotification = function(accountKey, pushNotificationToken) {
-        console.log('sending connect notification');
-        pushNotificationProxy.sendNotification({ message: accountKey + ' want to connect.', title: 'Autocoders Rock!', route: 'app.proposalList', accountKey: accountKey }, [pushNotificationToken]);
+    logger.log($scope.data);
+
+    $scope.sendNotification = function(pushNotificationTokenPart) {
+        logger.log('sending connect notification');
+       userApiProxy.getUserForToken(pushNotificationTokenPart).then(function (response) {
+            logger.log(response);
+            logger.log(response.data.length);
+
+            var userTokens = [];
+               
+            userTokens = _.pluck(response.data, 'pushNotificationToken');
+            userTokens = _.without(userTokens, user.pushNotificationToken);
+            logger.log(userTokens);
+                pushNotificationProxy.sendNotification({
+                    message: user.accountKey + ' want to connect.', title: 'Autocoders Rock!',
+                    route: 'app.proposalList', accountKey: user.accountKey
+                }, userTokens);
+        });
+
     };
     var go = function (path) {
         $state.go(path);

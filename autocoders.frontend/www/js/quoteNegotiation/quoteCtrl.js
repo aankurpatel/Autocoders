@@ -64,16 +64,17 @@ angular.module('starter')
 		self.buildQuote = function(){
 			var finalQuote = {};
 			finalQuote.id = $scope.finalQuote.id;
-			finalQuote.buyerQuote = JSON.stringify($scope.buyerQuoteOffer);
-			finalQuote.sellerQuote = JSON.stringify($scope.sellerQuote);
+			finalQuote.buyerquote = JSON.stringify($scope.buyerQuoteOffer);
+			finalQuote.sellerquote = JSON.stringify($scope.sellerQuote);
 			finalQuote.vehicle = JSON.stringify($scope.vehicle);
 			finalQuote.buyer = JSON.stringify($scope.buyer);
-			finalQuote.dealerAccessKey = $scope.vehicle.accountKey;
+			finalQuote.dealeraccesskey = $scope.vehicle.accountKey;
 			finalQuote.status = "Negotiating";
 			return finalQuote;
 		};
 
-		$scope.MakeOffer = function() {
+		$scope.MakeOffer = function () {
+		   // alert('accountKey:' + $scope.vehicle.accountKey + 'userKey:' + $scope.buyer.accountKey);
 			//Submit Offer
 			if($scope.view.offerStatus === "SUBMIT OFFER"){
 				//Insert if id is null/undefined, else, update the finalQuote
