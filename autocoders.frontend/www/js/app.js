@@ -68,9 +68,9 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                             $rootScope.customerAccountKey = customerAccountKey;
                         }
                         var data = notification.payload.data; //quote object from seller or buyer
-                        alert('data received' + data);
+                        alert('data received' +JSON.stringify(data));
                         if (route) {
-                            $state.go(route, data);
+                            $state.go(route, data,{reload:true});
                         }
                     } else {
                         $state.go('app.browse'); //default
