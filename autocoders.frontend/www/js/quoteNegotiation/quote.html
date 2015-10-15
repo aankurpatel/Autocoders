@@ -1,6 +1,6 @@
 <ion-view view-title="Quote">
     <ion-nav-buttons side="right">
-        <button class="button button-autocoders" ng-click="AcceptQuote()">
+        <button class="button button-autocoders" ng-hide="view.editable" ng-click="AcceptQuote()">
             ACCEPT
         </button>
     </ion-nav-buttons>
@@ -20,17 +20,10 @@
                 <span>{{vehicle.featPrice | currency : '$' : 0}}</span>
             </label>
 
-            <div class="item item-input-inset ac-pad-left">
-                <span class="input-label">Zip Code</span>
-                <label class=" item-input-wrapper">
-                    <input type="text" placeholder="Enter to zip calculate tax" ng-model="zipCode">
-                </label>
-            </div>
-
             <div class=" item item-divider">
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-33">Tax (%)</div>
-                    <div class="col col-67 ac-pad-left">{{view.quote.taxRate | currency : '$' : 0}}</div>
+                    <div class="col col-67 ac-pad-left">{{view.quote.taxRate}}</div>
                 </div>
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-33">Title Fee</div>
@@ -42,36 +35,6 @@
                 </div>
             </div>
 
-            <div class="item item-input-inset ac-pad-left">
-                <span class="input-label">Down Payment</span>
-                <label class=" item-input-wrapper">
-                    $<input type="text" placeholder="Money down" ng-model="view.quote.downPayment">
-                </label>
-            </div>
-
-            <div class="item item-input-inset ac-pad-left">
-                <span class="input-label">Trade-in</span>
-                <label class=" item-input-wrapper">
-                    $<input type="text" placeholder="Estimated trade-in value" ng-model="view.quote.tradeInValue">
-                </label>
-            </div>
-
-            <label class="item item-input item-select">
-                <span class="input-label">
-                    Credit Score
-                </span>
-                <select ng-model="quote.creditTier" ng-options="creditTier as creditTier for creditTier in creditTiers"></select>
-            </label>
-
-            <label class=" item item-input item-divider">
-                <span class="input-label">Payment</span>
-                <span class="balanced">{{view.quote.monthlyPayment | currency : '$' : 0}}</span>
-                <span class="ac-pad-left ac-regular">(Monthly)</span>
-                <button class="button button-clear button-calm ac-pad-left">
-                    Calculate
-                </button>
-            </label>
-
             <div class=" item item-divider">
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-33">Term</div>
@@ -82,6 +45,50 @@
                     <div class="col col-67 ac-pad-left">{{view.quote.apr}}%</div>
                 </div>
             </div>
+                        
+            <div ng-show="view.editable" class="item item-input-inset ac-pad-left">
+                <span class="input-label">Offer Price</span>
+                <label class=" item-input-wrapper">
+                    <input type="text" placeholder="Enter Offer Price" ng-model="buyerQuoteOffer.offerPrice">
+                </label>
+            </div>
+            
+            <div class="item item-input-inset ac-pad-left">
+                <span class="input-label">Zip Code</span>
+                <label class=" item-input-wrapper">
+                    <input type="text" placeholder="Enter to zip calculate tax" ng-model="zipCode">
+                </label>
+            </div>
+            
+            <label class="item item-input item-select">
+                <span class="input-label">
+                    Credit Score
+                </span>
+                <select ng-model="quote.creditTier" ng-options="creditTier as creditTier for creditTier in creditTiers"></select>
+            </label>
+            
+            <div ng-show="view.editable" class="item item-input-inset ac-pad-left">
+                <span class="input-label">Down Payment</span>
+                <label class=" item-input-wrapper">
+                    $<input  type="text" placeholder="Money down" ng-model="buyerQuoteOffer.downPayment">
+                </label>
+            </div>
+
+            <div ng-show="view.editable" class="item item-input-inset ac-pad-left">
+                <span class="input-label">Trade-in</span>
+                <label class=" item-input-wrapper">
+                    $<input type="text" placeholder="Estimated trade-in value" ng-model="buyerQuoteOffer.tradeInValue">
+                </label>
+            </div>
+
+            <label class=" item item-input item-divider">
+                <span class="input-label">Payment</span>
+                <span class="balanced">{{view.quote.monthlyPayment | currency : '$' : 0}}</span>
+                <span class="ac-pad-left ac-regular">(Monthly)</span>
+                <button ng-show="view.editable" class="button button-clear button-calm ac-pad-left" ng-click="CalcPayment()">
+                    Calculate
+                </button>
+            </label>
 
             <button class="button button-block button-balanced" ng-click="MakeOffer()">{{view.offerStatus}}</button>
 

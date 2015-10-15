@@ -21,6 +21,7 @@ angular.module('starter')
       finalQuote.vehicle = JSON.stringify(vehicle);
       finalQuote.buyer = JSON.stringify(buyer);
       finalQuote.dealerAccessKey = dealerAccessKey;
+      finalQuote.status = "Negotiating";
       
       logger.log('updating quote');
       return $http.post(url,finalQuote);
@@ -34,6 +35,7 @@ angular.module('starter')
       finalQuote.vehicle = JSON.stringify(vehicle);
       finalQuote.buyer = JSON.stringify(buyer);
       finalQuote.dealerAccessKey = dealerAccessKey;
+      finalQuote.status = "Negotiating";
       
       logger.log('updating quote');
       return $http.patch(url + "/" + quoteId,finalQuote);

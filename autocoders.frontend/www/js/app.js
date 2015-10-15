@@ -175,6 +175,15 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
                   controller: 'proposalDetailCtrl'
                 }
               }
+            })
+             .state('app.quoteSubmitted', {
+              url: '/quoteSubmitted',
+              views: {
+                'menuContent': {
+                  templateUrl: 'js/quoteNegotiation/quoteSubmitted.html',
+                  controller: 'quoteSubmittedCtrl'
+                }
+              }
             });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/browse');
