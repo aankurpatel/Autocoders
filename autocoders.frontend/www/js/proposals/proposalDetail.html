@@ -1,4 +1,4 @@
-<ion-view view-title="Proposal Detail">
+<ion-view view-title="Offer Detail">
     <ion-content>
 
         <div class="card">
@@ -16,7 +16,10 @@
                 </div>
 
                 <div class="row">
-                    <div class="col col-50 ac-left">{{proposal.vehicle.odo | number}} miles</div>
+                    <div class="col col-50 ac-left">
+                        {{proposal.vehicle.odo | number}}
+                        <span class="secondary-text-color"> miles</span>
+                    </div>
                     <div class="col col-50 ac-right">
                         <span class="secondary-text-color">Interior: </span>
                         {{proposal.vehicle.intColor}}
@@ -33,6 +36,29 @@
                     </div>
                 </div>
             </div>
+
+
+            <!--Counter Offer-->
+            <div ng-show="showOffer">
+                <div class="item item-input-inset ac-first-border">
+                    <span class="input-label">Offer Price</span>
+                    <label class=" item-input-wrapper">
+                        $<input type="text" placeholder="Enter updated offer price" ng-model="proposal.sellerquote.offeredPrice" />
+                    </label>
+                </div>
+                <div class="item item-input-inset">
+                    <span class="input-label">Trade-in Value</span>
+                    <label class=" item-input-wrapper">
+                        $<input type="text" placeholder="Estimated trade-in value" ng-model="proposal.sellerquote.tradeInValue" />
+                    </label>
+                </div>
+                <div class="item item-divider ac-right">
+                    <button class="button button-clear button-calm" ng-click="sendQuote()">
+                        Send Offer
+                    </button>
+                </div>
+            </div>
+
 
             <div class="item ac-proposal-detail-items">
                 <h2 class="ac-vehicle-detail-value">Offer from {{proposal.buyer.name}}</h2>
@@ -91,28 +117,5 @@
             </div>
 
         </div>
-
-
-
-
-
-
-
-        <div class="item item-divider ac-right" ng-show="showOffer">
-            <div class="col ac-left">
-                Offered Price:
-                <input type="text" ng-model="proposal.sellerquote.offeredPrice" />
-            </div>
-            <div class="col ac-left">
-                Trade in Value:
-                <input type="text" ng-model="proposal.sellerquote.tradeInValue" />
-            </div>
-            <div class="item item-divider ac-right">
-                <button class="button button-clear button-calm" ng-click="sendQuote()">
-                    Send Offer
-                </button>
-            </div>
-        </div>
-
     </ion-content>
 </ion-view>
