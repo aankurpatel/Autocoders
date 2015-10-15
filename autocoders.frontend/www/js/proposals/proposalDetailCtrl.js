@@ -27,7 +27,7 @@ angular.module('starter')
               type:"Accepted",
               route:"app.StartQuote"
             };
-            pushNotificationService.sendNotification($scope.proposal.buyeraccesskey,message);
+            pushNotificationService.sendNotification($scope.proposal.buyer.accountKey,message);
           }
         );
       };
@@ -44,7 +44,7 @@ angular.module('starter')
               type: "Rejected",
               route:"app.StartQuote"
             };
-            pushNotificationService.sendNotification($scope.proposal.buyeraccesskey, message);
+            pushNotificationService.sendNotification($scope.proposal.buyer.accountKey, message);
           });
         };
       $scope.sendQuote= function()
@@ -62,7 +62,7 @@ angular.module('starter')
               type:"Negotiating",
               route:"app.StartQuote"
             };
-            pushNotificationService.sendNotification($scope.proposal.buyeraccesskey,message);
+            pushNotificationService.sendNotification($scope.proposal.buyer.accountKey,message);
           }
         );
       };

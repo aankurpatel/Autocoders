@@ -19,11 +19,11 @@
                 <h2>{{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h2>
                 <div class="row ac-browse-vehicle-row">
                     <div class="col col-67 ac-left">{{vehicle.vin}}</div>
-                    <div class="col col-33 ac-right">{{vehicle.extColor}}</div>
+                    <div class="col col-33 ac-right">{{vehicle.type}}</div>
                 </div>
                 <div class="row ac-browse-vehicle-row">
-                    <div class="col col-67 ac-left ac-vehicle-detail-value">{{vehicle.featPrice | currency : '$' : 0}}</div>
-                    <div class="col col-33 ac-right">{{vehicle.type}}</div>
+                    <div class="col col-50 ac-left ac-vehicle-detail-value">{{vehicle.featPrice | currency : '$' : 0}}</div>
+                    <div class="col col-50 ac-right">{{vehicle.extColor}}</div>
                 </div>
             </a>
 

@@ -17,7 +17,7 @@ angular.module('starter')
                     proposal.sellerquote = JSON.parse(value.sellerquote);
                     proposal.buyer = JSON.parse(value.buyer);
                     if($rootScope.customerAccountKey){
-                      if(proposal.buyeraccesskey ===$rootScope.customerAccountKey) {
+                      if(proposal.buyer.accountKey ===$rootScope.customerAccountKey) {
                         $scope.proposals.push(proposal);
                       }
                     }else
