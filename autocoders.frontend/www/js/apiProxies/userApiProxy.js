@@ -15,13 +15,11 @@
 
         self.saveUser = function (user) {
             var deffered = $q.defer();
-
             logger.log('saving user');
-            console.log(user)
-            console.log(url + "?$filter=(id eq '" + user.id + "')")
+            logger.log(user);
             $http.get(url + "?$filter=(id eq '" + user.id + "')").then(function(response) {
                 if (response.data.length > 0) {
-                    console.log('user found');
+                    logger.log('user found');
                     window.localStorage['userprofile'] = JSON.stringify(user);
 
                     $http.patch(url + "/" + user.id, user).then(function(response) {
@@ -30,14 +28,14 @@
 
                     });
                 } else {
-                    console.log('inserting');
+                    logger.log('inserting');
 
                     user.accountKey = user.accountKey || helper.makeid();
                     user.userId = user.userId || helper.makeid();
 
                     $http.post(url, user).then(function (response) {
                         user = response.data;
-                        console.log(user);
+                        logger.log(user);
                         window.localStorage['userprofile'] = JSON.stringify(user);
 
                         deffered.resolve(user);

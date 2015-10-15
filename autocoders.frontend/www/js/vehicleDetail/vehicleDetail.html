@@ -25,17 +25,24 @@
             <div class="item">
                 <div class="row">
                     <div class="col col-67 ac-left">{{vehicle.vin}}</div>
-                    <div class="col col-33 ac-right">{{vehicle.extColor}}</div>
-                </div>
-
-                <div class="row">
-                    <div class="col col-67 ac-left">{{vehicle.odo | number}} miles</div>
                     <div class="col col-33 ac-right">{{vehicle.type}}</div>
                 </div>
 
                 <div class="row">
-                    <div class="col">
+                    <div class="col col-50 ac-left">{{vehicle.odo | number}} miles</div>
+                    <div class="col col-50 ac-right">
+                        <span class="secondary-text-color">Interior: </span>
+                        {{vehicle.intColor}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-33 ">
                         <h2 class="ac-vehicle-detail-value">{{vehicle.featPrice | currency : '$' : 0}}</h2>
+                    </div>
+                    <div class="col col-67 ac-right">
+                        <span class="secondary-text-color">Exterior: </span>
+                        {{vehicle.extColor}}
                     </div>
                 </div>
             </div>

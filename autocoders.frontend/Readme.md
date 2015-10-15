@@ -7,6 +7,7 @@ Install ant (http://ant.apache.org/)
 Install Android SDK (http://developer.android.com/sdk/index.html)
 
 Open SDK Manager.exe, and update/install android 22 and 23.
+Make sure dev options enabled on phone to install on it
 
 # Run following commends to make it work
 npm install ionic -g
