@@ -81,7 +81,7 @@
                 userTokens = _.pluck(response.data, 'pushNotificationToken');
                 userTokens = _.without(userTokens, $scope.user.pushNotificationToken);
                 logger.log(userTokens);
-                pushNotificationProxy.sendNotification({ message: 'test notification from GP', title: 'Autocoders Rock!', route: '#/app/quote/5', data1: 'hello'}, userTokens);
+                pushNotificationProxy.sendNotification({ message: 'test notification from GP', title: 'Autocoders Rock!', route: 'app.myVehicles', data1: 'hello'}, userTokens);
             });
         };
 
