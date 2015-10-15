@@ -57,6 +57,12 @@
     padding-left: 16px;
 }
 
+.ac-short-button {
+    min-height: 0;
+    line-height: 1;
+    padding-top: 1px;
+}
+
 /* Navigation */
 .bar .button.back-button .ion-android-arrow-back {
     font-size: 30px;
@@ -95,6 +101,10 @@
 .item.ac-proposal-detail-items .col .row {
     padding-top: 0;
     padding-bottom: 0;
+}
+
+.card .item.ac-first-border:first-child {
+    border-top: 1px solid #DDDDDD;
 }
 
 /* Browse Vehicles Page */

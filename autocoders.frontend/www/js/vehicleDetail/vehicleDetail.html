@@ -29,7 +29,10 @@
                 </div>
 
                 <div class="row">
-                    <div class="col col-50 ac-left">{{vehicle.odo | number}} miles</div>
+                    <div class="col col-50 ac-left">
+                        {{vehicle.odo | number}}
+                        <span class="secondary-text-color"> miles</span>
+                    </div>
                     <div class="col col-50 ac-right">
                         <span class="secondary-text-color">Interior: </span>
                         {{vehicle.intColor}}
