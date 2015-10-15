@@ -17,33 +17,7 @@
         };
 
         $scope.user = {};
-        // Notification Received
-//        $scope.$on('$cordovaPush:notificationReceived', function (event, notification) {
-//            switch (notification.event) {
-//               
-//                case 'message':
-//                    // this is the actual push notification. its format depends on the data model from the push server
-//                    //                    alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-//                    alert(notification.message.text, "Push Notification Received");
-//                    //                    $cordovaToast
-//                    //                        .show(notification.message.text, 'long', 'center')
-//                    //                        .then(function(success) {
-//                    //                            // success
-//                    //
-//                    //                        }, function(error) {
-//                    //                            // error
-//                    //                        });
-//                    break;
-//
-//                case 'error':
-//                    alert('GCM error = ' + notification.msg);
-//                    break;
-//
-//                default:
-//                    alert('An unknown GCM event has occurred');
-//                    break;
-//            }
-//        });
+       
         $scope.getNewAccountKey = function() {
             $scope.user.accountKey = makeid();
         };
@@ -81,7 +55,7 @@
                 userTokens = _.pluck(response.data, 'pushNotificationToken');
                 userTokens = _.without(userTokens, $scope.user.pushNotificationToken);
                 logger.log(userTokens);
-                pushNotificationProxy.sendNotification({ message: 'test notification from GP', title: 'Autocoders Rock!', route: '#/app/quote/5', data1: 'hello'}, userTokens);
+                pushNotificationProxy.sendNotification({ message: 'test notification from GP', title: 'Autocoders Rock!', route: 'app.myVehicles', data1: 'hello'}, userTokens);
             });
         };
 
@@ -102,7 +76,7 @@
         $scope.saveUser = function () {
             userApiProxy.saveUser($scope.user).then(function (response) {
                 $scope.user = response;
-                $cordovaToast.show('Saved', 'short', 'center');
+                logger.toast('Saved', 'short', 'center');
             });
 
         };

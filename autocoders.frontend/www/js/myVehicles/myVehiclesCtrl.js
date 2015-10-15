@@ -21,7 +21,7 @@
         $scope.doRefresh = function () {
             loadVehicles();
             $scope.$broadcast('scroll.refreshComplete');
-            $scope.$apply()
+            $scope.$apply();
         };
 
     });

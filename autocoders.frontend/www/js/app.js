@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'underscore', 'ngCordova', 'angularBingMaps'])
-    .run(function ($ionicPlatform, $rootScope, $cordovaToast, $cordovaPush, userApiProxy, logger) {
+    .run(function ($ionicPlatform, $rootScope, $cordovaToast, $cordovaPush, userApiProxy, logger, $ionicPopup, $state) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -41,40 +41,44 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
             register();
 
         // Notification Received
-        $rootScope.$on('$cordovaPush:notificationReceived', function (event, notification) {
+        $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
             //alert(JSON.stringify([notification]));
             switch (notification.event) {
-                case 'registered':
-                    if (notification.regid.length > 0) {
-                        userprofile.pushNotificationToken = notification.regid;
-                        userApiProxy.saveUser(userprofile).then(function (response) {
-                            logger.log(response);
-                        }, function (error) {
-                            logger.log(error);
-                        });
+            case 'registered':
+                if (notification.regid.length > 0) {
+                    userprofile.pushNotificationToken = notification.regid;
+                    userApiProxy.saveUser(userprofile).then(function(response) {
+                        logger.log(response);
+                    }, function(error) {
+                        logger.log(error);
+                    });
+                }
+                break;
+            case 'message':
+                alert(JSON.stringify(notification));
+                var confirmPopup = $ionicPopup.confirm({
+                    title: notification.title,
+                    template: notification.message
+                });
+                confirmPopup.then(function(res) {
+                    if (res) {
+                        alert('navifgationg to ' + notification.route);
+                        if (notification.route) {
+                            $state.go(notification.route);
+                        }
+                    } else {
+                        console.log('You are not sure');
                     }
-                    break;
-                case 'message':
-                    // this is the actual push notification. its format depends on the data model from the push server
-                    //                    alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-                    alert(notification.message.text, "Push Notification Received");
-//                    $cordovaToast
-//                        .show(notification.message.text, 'long', 'center')
-//                        .then(function(success) {
-//                            // success
-//
-//                        }, function(error) {
-//                            // error
-//                        });
-                    break;
+                });
+                break;
 
-                case 'error':
-                    alert('GCM error = ' + notification.msg);
-                    break;
+            case 'error':
+                alert('GCM error = ' + notification.msg);
+                break;
 
-                default:
-                    alert('An unknown GCM event has occurred');
-                    break;
+            default:
+                alert('An unknown GCM event has occurred');
+                break;
             }
         });
     })
@@ -82,6 +86,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
         $httpProvider.defaults.headers.common['X-ZUMO-APPLICATION'] = 'nJonQAsXZEMEStHVlzCpWpmuckaJnd90'; // add the application key
         $httpProvider.defaults.headers.common['Content-Type'] = 'Application/json';
         $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+        $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, PUT';
 
         $stateProvider
             .state('app', {

@@ -1,5 +1,5 @@
 ﻿angular.module('starter')
-    .service('logger', function () {
+    .service('logger', function ($cordovaToast) {
         function toString(obj) {
             var str = '';
 
@@ -21,9 +21,17 @@
             var out = toString(message);
            
             console.log(message);
-//            alert(out);
+            //alert(JSON.stringify(message));
         };
 
+        // duration:  'short' 'long'
+        //potion: 'top', 'center', 'bottom'
+        this.toast = function(message, duration, posotion) {
+            document.addEventListener("deviceready", function () {
+                $cordovaToast.show(message, duration, posotion);
+            });
+            console.log(message);
+        }
        
 
     });
