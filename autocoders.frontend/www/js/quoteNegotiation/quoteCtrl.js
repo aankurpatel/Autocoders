@@ -45,6 +45,7 @@ angular.module('starter')
 		};
 		
 		$scope.AcceptQuote = function(){
+			$scope.sellerQuote.offerPrice = $scope.buyerQuoteOffer.offerPrice;
 			$scope.buyerQuoteOffer = $scope.sellerQuote;
 			self.AddQuote();
 		};
