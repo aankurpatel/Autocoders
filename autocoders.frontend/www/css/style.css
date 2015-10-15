@@ -93,6 +93,14 @@
     padding-top: 5px;
 }
 
+.ac-customer-offers {
+    padding: 0;
+}
+
+.ac-customer-offers .ac-customer-name {
+    padding-top: 10px;
+}
+
 /* Proposal Details Page */
 .item.ac-proposal-detail-items .col {
     padding-bottom: 0;

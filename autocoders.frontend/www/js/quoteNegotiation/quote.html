@@ -4,7 +4,7 @@
             ACCEPT
         </button>
         &nbsp;
-        <button class="button button-autocoders" ng-show="view.showMakeOffer" ng-click="MakeOffer()">
+        <button class="button button-autocoders" ng-show="view.editable" ng-click="MakeOffer()">
             {{view.offerStatus}}
         </button>
     </ion-nav-buttons>
@@ -99,6 +99,9 @@
                     </div>
                 </div>
             </div>
+
+            <button ng-hide="view.editable" class="button button-block button-balanced" ng-click="MakeOffer()">{{view.offerStatus}}</button>
+
         </div>
     </ion-content>
 
