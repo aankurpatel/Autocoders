@@ -3,11 +3,21 @@
         <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
         </ion-refresher>
 
-        <div class="bar bar-header bar-energized">
-            <span>Showing Customer </span>
-        </div>
-
         <div class="list">
+
+            <div class="item item-dark ac-customer-offers" ng-show="true">
+                <div class="row">
+                    <div class="col col-67 ac-left ac-customer-name">
+                        <span class="">Offers for: </span>
+                        <span class="ac-vehicle-detail-value">{{customerAccountKey}}</span>
+                    </div>
+                    <div class="col col-33 ac-right">
+                        <button class="button button-balanced button-small" ng-click="showAll()">
+                            SHOW ALL
+                        </button>
+                    </div>
+                </div>
+            </div>
 
             <a class="item item-thumbnail-left ac-browse-proposal-list" href="#" ng-repeat="proposal in proposals" ng-click="setSelectedProposal(proposal)">
                 <img class="ac-browse-vehicle-img" ng-src="{{proposal.vehicle.imageUrl[0]}}">
