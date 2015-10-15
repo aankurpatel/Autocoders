@@ -19,15 +19,17 @@
                 </h2>
             </div>
 
-            <label class=" item item-input item-divider">
-                <span class="input-label">Selling Price</span>
-                <span>{{vehicle.featPrice | currency : '$' : 0}}</span>
-            </label>
+            <div class=" item item-divider">
+                <div class="row ac-quote-vehicle-row ac-regular">
+                    <div class="col col-40">Selling Price</div>
+                    <div class="col col-60 ac-right">{{vehicle.featPrice | currency : '$' : 0}}</div>
+                </div>
+            </div>
 
             <div class="item item-divider">
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-40">Tax ({{view.quote.taxRate}}%)</div>
-                    <div class="col col-60 ac-right">{{view.quote.taxRate}}</div>
+                    <div class="col col-60 ac-right">$</div>
                 </div>
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-40">Title Fee</div>
