@@ -69,18 +69,9 @@
     color: #FFFFFF;
 }
 
-.bar.ac-menu-header {
-    height: auto;
-}
-
 .bar.ac-menu-header .title {
-    top: 20px;
     font-size: 30px;
     color: #82C600; /*CDK Green*/
-}
-
-.ac-menu-content {
-    top: 82px;
 }
 
 /* Browse Proposal Page */
