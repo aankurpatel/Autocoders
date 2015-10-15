@@ -6,7 +6,7 @@
 .text-primary-color    { color: #FFFFFF; }
 .accent-color          { background: #CDDC39; }
 .primary-text-color    { color: #212121; }
-.secondary-text-color  { color: #727272; }
+.  { color: #727272; }
 .divider-color         { border-color: #B6B6B6; }
 
 /* Override Ionic styles */
@@ -81,6 +81,10 @@
 .item.item-thumbnail-left.ac-browse-proposal-list {
   min-height: 0;
   padding-bottom: 8px;
+}
+
+.row.ac-browse-vehicle-row.ac-browse-proposal-buyer {
+    padding-top: 5px;
 }
 
 /* Browse Vehicles Page */
