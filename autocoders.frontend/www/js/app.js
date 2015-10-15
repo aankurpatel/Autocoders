@@ -69,6 +69,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                         }
                         var data = notification.payload.data; //quote object from seller or buyer
                         if (route) {
+                            alert('navigate to:' + route + 'with data: ' + JSON.stringify(data));
                             $state.go(route, data,{reload:true});
                         }
                     } else {

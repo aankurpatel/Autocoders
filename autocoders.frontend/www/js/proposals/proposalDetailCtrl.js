@@ -4,11 +4,12 @@
 angular.module('starter')
   .controller('proposalDetailCtrl', ['$scope','_','proposal','$state','quoteApiProxy','pushNotificationService','vehicle','$stateParams',
     function ($scope, _, proposalService, $state, quoteApiProxy, pushNotificationService, vehicle, $stateParams) {
-        
+
         if ($stateParams.proposal) {
             var tempproposal = $stateParams.proposal;
             tempproposal.vehicle = JSON.parse($stateParams.proposal.vehicle);
             tempproposal.buyerquote = JSON.parse($stateParams.proposal.buyerquote);
+            tempproposal.buyer = JSON.parse($stateParams.proposal.buyer);
             tempproposal.sellerquote = JSON.parse($stateParams.proposal.sellerquote);
             proposalService.selectedProposal(tempproposal);
       }
@@ -35,7 +36,7 @@ angular.module('starter')
               quoteId:$scope.proposal.id,
               data:{quote:$scope.proposal},
               type:"Accepted",
-              route:"app.StartQuote"
+              route:"app.reserveCar"
             };
             pushNotificationService.sendNotification($scope.proposal.buyer.accountKey,message);
           }
@@ -73,6 +74,8 @@ angular.module('starter')
               type:"Negotiating",
               route:"app.StartQuote"
             };
+             // alert($scope.proposal.buyer.accountKey);
+             // alert(message);
             pushNotificationService.sendNotification($scope.proposal.buyer.accountKey,message);
           }
         );
