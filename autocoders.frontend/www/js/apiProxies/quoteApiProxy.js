@@ -16,11 +16,11 @@ angular.module('starter')
 
     self.addQuote = function (buyerQuote, sellerQuote, vehicle, buyer, dealerAccessKey) {
       var finalQuote = {};
-      finalQuote.buyerQuote = JSON.stringify(buyerQuote);
-      finalQuote.sellerQuote = JSON.stringify(sellerQuote);
+      finalQuote.buyerquote = JSON.stringify(buyerQuote);
+      finalQuote.sellerquote = JSON.stringify(sellerQuote);
       finalQuote.vehicle = JSON.stringify(vehicle);
       finalQuote.buyer = JSON.stringify(buyer);
-      finalQuote.dealerAccessKey = dealerAccessKey;
+      finalQuote.dealeraccesskey = dealerAccessKey;
       finalQuote.status = "Negotiating";
       logger.log('updating quote');
       return $http.post(url,finalQuote);
