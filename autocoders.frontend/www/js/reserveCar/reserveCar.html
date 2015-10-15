@@ -8,20 +8,20 @@
             </div>
 
             <div class="item item-text-wrap">
-                Please make make a reservation for your test drive within next 24 hours for this quote to be active.
-            </div>
-
-            <button class="button button-full button-balanced" ng-click="getPhoto()">Scan your Driver's License</button>
-
-            <div class="item item-image ac-vehicle-detail-img">
-                <img ng-src="data:image/jpeg;base64,{{dlImageUrl}}" />
+                Please make a reservation for your test drive within next 24 hours for this quote to be active.
             </div>
 
             <button class="button button-block button-balanced" ng-click="scheduleTime()">Schedule Time</button>
 
             <div class="item item-text-wrap item-divider" ng-show="timeSelected">
                 <div class="ac-regular ac-center">Your appointment has been scheduled.</div>
-                <div class="ac-vehicle-detail-value ac-center">{{newDate}}</div>
+                <div class="ac-vehicle-detail-value ac-center">{{newDate | date:'medium'}}</div>
+            </div>
+
+            <button class="button button-full button-balanced" ng-click="getPhoto()">Scan your Driver's License</button>
+
+            <div class="item item-image ac-vehicle-detail-img">
+                <img ng-src="data:image/jpeg;base64,{{dlImageUrl}}" />
             </div>
 
         </div>
