@@ -88,7 +88,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
         $httpProvider.defaults.headers.common['X-ZUMO-APPLICATION'] = 'nJonQAsXZEMEStHVlzCpWpmuckaJnd90'; // add the application key
         $httpProvider.defaults.headers.common['Content-Type'] = 'Application/json';
         $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-        $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, PUT';
+        $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS, PUT, PATCH';
 
         $stateProvider
             .state('app', {
