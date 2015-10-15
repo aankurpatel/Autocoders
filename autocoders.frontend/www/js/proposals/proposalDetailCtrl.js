@@ -47,8 +47,8 @@ angular.module('starter')
           function(response) {
             var message =
             {
-              message: "Message from Autocoders",
-              title: "Hello, " + $scope.proposal.buyer.name + "!! Your offer for " + $scope.proposal.vehicle.year + " " + $scope.proposal.vehicle.make + " " + $scope.proposal.vehicle.model
+              title: "Message from Autocoders",
+              message: "Hello, " + $scope.proposal.buyer.name + "!! Your offer for " + $scope.proposal.vehicle.year + " " + $scope.proposal.vehicle.make + " " + $scope.proposal.vehicle.model
               + " " + $scope.proposal.vehicle.trim + " has been rejected.",
               quoteId: $scope.proposal.id,
               data:{quote:$scope.proposal},
@@ -64,8 +64,8 @@ angular.module('starter')
         quoteApiProxy.updateQuote($scope.proposal).then(
           function(response){
             var message =
-            {message:"Message from Autocoders",
-              title:"Hello, "+ $scope.proposal.buyer.name+"!! You have received an offer for "
+            {title:"Message from Autocoders",
+              message:"Hello, "+ $scope.proposal.buyer.name+"!! You have received an offer for "
                     +$scope.proposal.vehicle.year+ " " +$scope.proposal.vehicle.make+" " +
                     $scope.proposal.vehicle.model+ " " +$scope.proposal.vehicle.trim,
               quoteId:$scope.proposal.id,
