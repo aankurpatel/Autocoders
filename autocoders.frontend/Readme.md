@@ -29,3 +29,4 @@ cordova plugin add cordova-plugin-camera
 cordova plugin add https://github.com/wymsee/cordova-imagePicker.git
 cordova plugin add https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git
 
+cordova plugin add https://github.com/wildabeast/BarcodeScanner.git
