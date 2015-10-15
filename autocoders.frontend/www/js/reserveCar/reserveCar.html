@@ -1,4 +1,4 @@
-<ion-view view-title="Proposal Detail">
+<ion-view view-title="Reserve Car">
   <ion-content>
     <div class="item item-text-wrap">
       <p>
@@ -6,9 +6,12 @@
       </p>
     </div>
     <div>
-      <button class="button button-autocoders" ng-click="NavigateToQuote()">
+      <button class="button button-autocoders" ng-click="showReservation()">
         Make Reservation
       </button>
+    </div>
+    <div ng-show="viewMakeReservation">
+        Datepicker control
     </div>
   </ion-content>
   </ion-view>
