@@ -1,29 +1,41 @@
-<ion-view view-title="Proposed Quotes">
- <ion-content>
-    <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
-    </ion-refresher>
+<ion-view view-title="Browse Proposals">
+    <ion-content>
+        <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
+        </ion-refresher>
 
-   <div class="list">
+        <div class="list">
 
-     <a class="item item-thumbnail-left ac-browse-proposal-list" href="#" ng-repeat="proposal in proposals" ng-click="setSelectedProposal(proposal)">
-       <img class="ac-browse-vehicle-img" ng-src="{{proposal.vehicle.imageUrl[0]}}">
-       <h2>{{proposal.vehicle.year}} {{proposal.vehicle.make}} {{proposal.vehicle.model}} {{proposal.vehicle.trim}}</h2>
-       <div class="row ac-browse-vehicle-row">
-         <div class="col col-67 ac-left">{{proposal.vehicle.vin}}</div>
-         <div class="col col-67 ac-left">StockNo:{{proposal.vehicle.stockNum}}</div>
-       </div>
-       <div class="row ac-browse-vehicle-row">
-         <div class="col ac-left">{{proposal.buyer.name}}</div>
-         <div class="col ac-left">{{proposal.buyer.email}}</div>
-         <div class="col ac-left">Phone: {{proposal.buyer.phoneNo}}</div>
-       </div>
-       <div class="row ac-browse-vehicle-row">
-         <div class="col col-67 ac-left ac-vehicle-detail-value">MSRP: {{proposal.vehicle.featPrice | currency : '$' : 0}}</div>
-         <div class="col col-67 ac-left ac-vehicle-detail-value">Offered Price: {{proposal.buyerquote.offerPrice | currency : '$' : 0}}</div>
-       </div>
-     </a>
+            <a class="item item-thumbnail-left ac-browse-proposal-list" href="#" ng-repeat="proposal in proposals" ng-click="setSelectedProposal(proposal)">
+                <img class="ac-browse-vehicle-img" ng-src="{{proposal.vehicle.imageUrl[0]}}">
+                <h2>{{proposal.vehicle.year}} {{proposal.vehicle.make}} {{proposal.vehicle.model}} {{proposal.vehicle.trim}}</h2>
 
-   </div>
+                <div class="row ac-browse-vehicle-row">
+                    <div class="col col-67 ac-left">{{proposal.vehicle.vin}}</div>
+                    <div class="col col-33 ac-right">#{{proposal.vehicle.stockNum}}</div>
+                </div>
+                <div class="row ac-browse-vehicle-row">
+                    <div class="col col-50 ac-left ac-vehicle-detail-value">
+                        <span class="secondary-text-color">MSRP: </span>
+                        {{proposal.vehicle.featPrice | currency : '$' : 0}}
+                    </div>
+                    <div class="col col-50 ac-right ac-vehicle-detail-value">
+                        <span class="secondary-text-color">Offer: </span>
+                        {{proposal.buyerquote.offeredPrice | currency : '$' : 0}}
+                    </div>
 
-  </ion-content>
+                </div>
+
+                <div class="row ac-browse-vehicle-row ac-browse-proposal-buyer">
+                    <div class="col ac-left">{{proposal.buyer.name}}</div>
+                </div>
+
+                <div class="row ac-browse-vehicle-row">
+                    <div class="col ac-left">{{proposal.buyer.phoneNo}}</div>
+                    <div class="col ac-right">{{proposal.buyer.email}}</div>
+                </div>
+            </a>
+
+        </div>
+
+    </ion-content>
 </ion-view>
