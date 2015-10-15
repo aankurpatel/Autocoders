@@ -9,7 +9,7 @@ angular.module('starter')
 
     self.getQuotesforDealer = function () {
       logger.log('getting users');
-      var filterUrl = url+"?$filter=(dealeraccesskey eq '"+userApiProxy.getCurrentUser().accountKey+"'and status eq 'Negotiating')";
+      var filterUrl = url+"?$filter=(dealeraccesskey eq '"+userApiProxy.getCurrentUser().accountKey+"')";
       console.log(filterUrl);
       return $http.get(filterUrl);
     }
@@ -21,7 +21,7 @@ angular.module('starter')
       finalQuote.vehicle = JSON.stringify(vehicle);
       finalQuote.buyer = JSON.stringify(buyer);
       finalQuote.dealerAccessKey = dealerAccessKey;
-
+      finalQuote.status = "Negotiating";
       logger.log('updating quote');
       return $http.post(url,finalQuote);
     }

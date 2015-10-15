@@ -1,6 +1,6 @@
 <ion-view view-title="Quote">
     <ion-nav-buttons side="right">
-        <button class="button button-autocoders" ng-hide="view.editable" ng-click="AcceptQuote()">
+        <button class="button button-autocoders" ng-show="view.showAccept" ng-click="AcceptQuote()">
             ACCEPT
         </button>
         <button class="button button-autocoders" ng-show="view.editable" ng-click="MakeOffer()">
@@ -102,7 +102,7 @@
 
             </div>
 
-            <button class="button button-block button-balanced" ng-hide="view.editable" ng-click="MakeOffer()">{{view.offerStatus}}</button>
+            <button class="button button-block button-balanced" ng-show="view.showMakeOffer" ng-click="MakeOffer()">{{view.offerStatus}}</button>
 
         </div>
 

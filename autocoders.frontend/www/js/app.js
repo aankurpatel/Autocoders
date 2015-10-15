@@ -28,7 +28,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                 }).then(function(result) {
                     // Success
                     console.log("Register success " + result);
-                   
+
                 }, function(err) {
                     // Error
                 });
@@ -37,7 +37,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
 
         var userprofile = userApiProxy.getCurrentUser();
 
-        
+
             register();
 
         // Notification Received
@@ -70,7 +70,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                         var data = notification.payload.data; //quote object from seller or buyer
 
                         if (route) {
-                            $state.go(route);
+                            $state.go(route, data);
                         }
                     } else {
                         $state.go('app.browse'); //default
@@ -166,7 +166,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                        controller: 'quoteCtrl'
                    }
                },
-               params: {'vehicle': null}
+               params: {'vehicle': null, 'quote': null}
             })
             .state('app.proposalList', {
               url: '/proposals',
@@ -193,7 +193,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                   templateUrl: 'js/proposals/proposalDetail.html',
                   controller: 'proposalDetailCtrl'
                 }
-              }
+              },
+                params: {'proposal': null}
             })
              .state('app.quoteSubmitted', {
               url: '/quoteSubmitted',
@@ -203,7 +204,16 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                   controller: 'quoteSubmittedCtrl'
                 }
               }
-            });
+            })
+           .state('app.reserveCar', {
+            url: '/reserveCar',
+            views: {
+              'menuContent': {
+                templateUrl: 'js/reserveCar/reserveCar.html',
+                controller: 'reserveCarCtrl'
+              }
+            }
+          });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/browse');
 
