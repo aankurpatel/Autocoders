@@ -21,7 +21,7 @@
             var out = toString(message);
            
             console.log(message);
-            //alert(JSON.stringify(message));
+            alert(JSON.stringify(message));
         };
 
         // duration:  'short' 'long'
