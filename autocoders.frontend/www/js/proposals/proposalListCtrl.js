@@ -17,8 +17,8 @@ angular.module('starter')
                     proposal.buyerquote = JSON.parse(value.buyerquote);
                     proposal.sellerquote = JSON.parse(value.sellerquote);
                     proposal.buyer = JSON.parse(value.buyer);
-                    if($rootScope.customerAccountKey){//show all proposals from this user
-                      if(proposal.buyer.accountKey ===$rootScope.customerAccountKey) {
+                    if($scope.customerAccountKey){//show all proposals from this user
+                      if(proposal.buyer.accountKey ===$scope.customerAccountKey) {
                         $scope.proposals.push(proposal);
                       }
                     }else if(proposal.status ==="Negotiating")//only show Negotiating proposals
