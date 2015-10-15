@@ -49,8 +49,8 @@ angular.module('starter')
         };
       $scope.sendQuote= function()
       {
-        $scope.proposal.status = "Negotiated";
-        quoteApiProxy.addUpdateQuote($scope.proposal).then(
+        $scope.proposal.status = "Negotiating";
+        quoteApiProxy.updateQuote($scope.proposal).then(
           function(response){
             var message =
             {message:"Message from Autocoders",

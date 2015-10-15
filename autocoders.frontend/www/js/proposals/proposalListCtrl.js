@@ -9,6 +9,7 @@ angular.module('starter')
       function loadProposals() {
         quoteApiProxy.getQuotesforDealer()
              .then(function(response) {
+                $scope.proposals =[];
                 var proposals = response.data;
                 angular.forEach(proposals, function (value, key) {
                     var proposal = proposals[key];
