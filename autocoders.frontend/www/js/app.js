@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                 }
                 break;
             case 'message':
-               // alert(JSON.stringify(notification));
+                alert(JSON.stringify(notification));
                 var confirmPopup = $ionicPopup.confirm({
                     title: notification.title,
                     template: notification.message
@@ -68,6 +68,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                             $rootScope.customerAccountKey = customerAccountKey;
                         }
                         var data = notification.payload.data; //quote object from seller or buyer
+
                         if (route) {
                             $state.go(route);
                         }
