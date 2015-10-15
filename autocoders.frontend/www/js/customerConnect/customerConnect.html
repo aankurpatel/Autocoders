@@ -1,9 +1,21 @@
-<ion-view view-title="Connect to customer">
+<ion-view view-title="Connect to Customer">
    
     <ion-content>
-        <h4 clas="center">Please have customer scan following QR code.</h4>
-        <div class="row center">
-            <qrcode data="Autocoders rocks!" size="200"></qrcode>
+        <div class="card">
+            <div class="item item-divider">
+                <h2>
+                    Scan to Connect.
+                </h2>
+            </div>
+
+            <div class="item item-image padding">
+                <qrcode data="Autocoders rocks!" size="200"></qrcode>
+            </div>
+        </div>
+
+        <div class="list list-inset">
+            <button class="button button-block button-balanced" ng-click="scanCode()">Scan QR Code</button>
         </div>
     </ion-content>
+
 </ion-view>
