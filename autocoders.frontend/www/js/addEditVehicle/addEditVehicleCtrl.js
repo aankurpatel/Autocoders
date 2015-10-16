@@ -9,7 +9,7 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
     //$scope.models = {};
     //$scope.styles = {};
     //$scope.vehicle = {};
-    $scope.vehicle={};
+    $scope.tradein={};
     //getAllMakes();
     //
     //function getAllMakes() {
@@ -69,16 +69,17 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
                 var s = "Result: " + result.text + "<br/>" +
                     "Format: " + result.format + "<br/>" +
                     "Cancelled: " + result.cancelled;
-                $scope.vehicle.vin = result.text;
+                $scope.tradeIn.vin = result.text;
                 alert(result.text);
                 edmundsService.decodeVin(result.text).then(function(result){
                   alert(JSON.stringify(result));
                   var vehicleData = JSON.parse(result.data);
-                  $scope.vehicle.make = vehicleData.make.name;
-                  $scope.vehicle.model = vehicleData.model.name;
-                  $scope.vehicle.vehicleType = vehicleData.vehicleStyle;
-                  $scope.vehicle.value = "6000";
-                  $scope.vehicle.year = vehicleData.years[0].year;
+                  $scope.tradeIn.make = vehicleData.make.name;
+                  $scope.tradeIn.model = vehicleData.model.name;
+                  $scope.tradeIn.vehicleType = vehicleData.vehicleStyle;
+
+                  $scope.tradeIn.year = vehicleData.years[0].year;
+
                 });
 
 
@@ -122,12 +123,7 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
       });
   };
 
-    $scope.saveVehicle = function() {
-        vehicleApiProxy.saveVehicle($scope.vehicle)
-            .then(function() {
-                go('app.StartQuote');
-            });
-    };
+
 
     var go = function(path) {
         $state.go(path, {}, { reload: true });
