@@ -100,7 +100,7 @@
                 </div>
                 <div class="row">
                     <div class="col col-40 ac-left secondary-text-color">Tax Rate ({{proposal.buyerquote.taxRate}}%)</div>
-                    <div class="col col-60 ac-right">{{proposal.buyerquote.taxAmount | currency : '$' : 0}}</div>
+                    <div class="col col-60 ac-right">{{(proposal.buyerquote.taxRate * proposal.vehicle.featPrice) / 100 | currency : '$' : 0}}</div>
                 </div>
             </div>
 
