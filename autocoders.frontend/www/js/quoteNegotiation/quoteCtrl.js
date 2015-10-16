@@ -2,8 +2,8 @@
  * Created by vamshi on 10/13/15.
  */
 angular.module('starter')
-.controller('quoteCtrl', [ '$scope','$stateParams','quoteService', 'quoteApiProxy', 'userApiProxy','pushNotificationService', '$state',
-	function($scope, $stateParams, quoteService, quoteApiProxy, userApiProxy, pushNotificationService, $state) {
+.controller('quoteCtrl', [ '$scope','$stateParams','quoteService', 'quoteApiProxy', 'userApiProxy','pushNotificationService', '$state','$ionicModal',
+	function($scope, $stateParams, quoteService, quoteApiProxy, userApiProxy, pushNotificationService, $state,$ionicModal) {
 		$scope.view = {};
 		$scope.view.showAccept = true;
 		$scope.view.showMakeOffer = true;
@@ -75,9 +75,25 @@ angular.module('starter')
 			return finalQuote;
 		};
 
-    $scope.scanVin = function(){
-      $state.go('app.addEditVehicle');
-    }
+    $ionicModal.fromTemplateUrl('addEditVehicle/addEditVehicle.html', {
+      scope: $scope
+    }).then(function (modal) {
+      $scope.tradeInModal = modal;
+    });
+
+    // Triggered in the login modal to close it
+    $scope.closeModal = function () {
+      $scope.tradeInModal.hide();
+    };
+
+    // Open the login modal
+    $scope.scanVin = function () {
+      $scope.tradeInModal.show();
+    };
+
+    //$scope.scanVin = function(){
+    //  $state.go('app.addEditVehicle');
+    //}
 
 		$scope.MakeOffer = function () {
 		   // alert('accountKey:' + $scope.vehicle.accountKey + 'userKey:' + $scope.buyer.accountKey);

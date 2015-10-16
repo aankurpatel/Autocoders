@@ -19,15 +19,7 @@ angular.module('starter.controllers', [])
         $scope.modal = modal;
     });
 
-    // Triggered in the login modal to close it
-    $scope.closeLogin = function () {
-        $scope.modal.hide();
-    };
-
-    // Open the login modal
-    $scope.login = function () {
-        $scope.modal.show();
-    };
+    // Create the login modal that we will use later
 
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
@@ -53,6 +45,6 @@ angular.module('starter.controllers', [])
     ];
 })
 
-    
+
 .controller('PlaylistCtrl', function ($scope, $stateParams) {
 });
