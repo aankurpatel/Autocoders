@@ -2,8 +2,11 @@
  * Created by vamshi on 10/13/15.
  */
 angular.module('starter')
-.controller('quoteCtrl', [ '$scope','$stateParams','quoteService', 'quoteApiProxy', 'userApiProxy','pushNotificationService', '$state','$ionicModal',
-	function($scope, $stateParams, quoteService, quoteApiProxy, userApiProxy, pushNotificationService, $state,$ionicModal) {
+.controller('quoteCtrl', [ '$scope','$stateParams','quoteService', 'quoteApiProxy', 'userApiProxy','pushNotificationService', '$state','$ionicModal','$cordovaBarcodeScanner',
+    'edmundsService',
+    '$cordovaToast','photoService','$cordovaImagePicker','$cordovaCamera',
+	function($scope, $stateParams, quoteService, quoteApiProxy, userApiProxy, pushNotificationService, $state,$ionicModal,$cordovaBarcodeScanner,edmundsService,
+           $cordovaToast,photoService,$cordovaImagePicker,$cordovaCamera) {
 		$scope.view = {};
 		$scope.view.showAccept = true;
 		$scope.view.showMakeOffer = true;
@@ -89,6 +92,45 @@ angular.module('starter')
     // Open the login modal
     $scope.scanVin = function () {
       $scope.tradeInModal.show();
+    };
+    $scope.tradein={};
+
+    $scope.startScan = function() {
+      $cordovaBarcodeScanner.scan()
+        .then(function(result) {
+          var s = "Result: " + result.text + "<br/>" +
+            "Format: " + result.format + "<br/>" +
+            "Cancelled: " + result.cancelled;
+          $scope.tradein.vin = result.text;
+
+          edmundsService.decodeVin(result.text).then(function(result){
+
+
+            $scope.tradein.make = "Honda";
+            $scope.tradein.model = "Accord";
+            $scope.tradein.style =  "4 door SUV";
+            $scope.tradein.year = "2010";
+          });
+
+
+
+        },
+        function(error) {
+          //alert("Scanning failed: " + error);
+        }
+      );
+    };
+    $scope.allImages = [];
+    $scope.getPhoto = function(args) {
+      document.addEventListener("deviceready", function () {
+        $cordovaCamera.getPicture(photoService.captureImageOptions()).then(function (image) {
+          //var base64Image = photoService.getBase64Image(image);
+          $scope.allImages.push(image);
+        }, function (err) {
+          //alert(err);
+        });
+
+      }, false);
     };
 
     //$scope.scanVin = function(){
