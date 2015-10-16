@@ -78,17 +78,17 @@ angular.module('starter')
     $ionicModal.fromTemplateUrl('addEditVehicle/addEditVehicle.html', {
       scope: $scope
     }).then(function (modal) {
-      $scope.modal = modal;
+      $scope.tradeInModal = modal;
     });
 
     // Triggered in the login modal to close it
     $scope.closeModal = function () {
-      $scope.modal.hide();
+      $scope.tradeInModal.hide();
     };
 
     // Open the login modal
     $scope.scanVin = function () {
-      $scope.modal.show();
+      $scope.tradeInModal.show();
     };
 
     //$scope.scanVin = function(){
