@@ -75,14 +75,14 @@ angular.module('starter')
 			return finalQuote;
 		};
 
-    $ionicModal.fromTemplateUrl('addEditVehicle/addEditVehicle.html', {
+    $ionicModal.fromTemplateUrl('js/addEditVehicle/addEditVehicle.html', {
       scope: $scope
     }).then(function (modal) {
       $scope.tradeInModal = modal;
     });
 
     // Triggered in the login modal to close it
-    $scope.closeModal = function () {
+    $scope.closeTradeInModal = function () {
       $scope.tradeInModal.hide();
     };
 

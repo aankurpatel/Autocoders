@@ -124,15 +124,15 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
             }, {
                 reload: true
             })
-            .state('app.addEditVehicle', {
-                url: '/addEditVehicle',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'js/addEditVehicle/addEditVehicle.html',
-                        controller: 'addEditVehicleCtrl'
-                    }
-                }
-            })
+            //.state('app.addEditVehicle', {
+            //    url: '/addEditVehicle',
+            //    views: {
+            //        'menuContent': {
+            //            templateUrl: 'js/addEditVehicle/addEditVehicle.html',
+            //            controller: 'addEditVehicleCtrl'
+            //        }
+            //    }
+            //})
             .state('app.vehicleDetail', {
               url: '/vehicleDetail',
               views: {

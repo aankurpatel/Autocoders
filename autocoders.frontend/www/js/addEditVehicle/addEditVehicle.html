@@ -1,64 +1,64 @@
-<ion-view>
-    <!--<ion-header-bar align-title="left" class="bar bar-autocoders">-->
-        <!--<div class="buttons">-->
-            <!--<h1 class="title">Add Trade-in</h1>-->
-            <!--<button menu-close class="button button-icon ac-login-close-icon" ng-click="closeLogin()">-->
-                <!--<i class="ion-android-close"></i>-->
-            <!--</button>-->
-        <!--</div>-->
-    <!--</ion-header-bar>-->
+<ion-modal-view>
+      <ion-header-bar align-title="left" class="bar bar-autocoders">
+          <div class="buttons">
+              <h1 class="title">Add Trade-in</h1>
+              <button menu-close class="button button-icon ac-login-close-icon" ng-click="closeTradeInModal()">
+                  <i class="ion-android-close"></i>
+              </button>
+          </div>
+      </ion-header-bar>
 
-    <ion-content>
-        <div class="list list-inset">
+      <ion-content>
+          <div class="list list-inset">
 
-            <div class="item item-input-inset">
-                <span class="input-label">VIN</span>
-                <label class="item-input-wrapper">
-                    <input type="text" ng-model="tradein.vin">
-                </label>
-                <button class="button button-clear button-calm ac-pad-left ac-short-button" ng-click="startScan();">
-                    Scan
-                </button>
-            </div>
+              <div class="item item-input-inset">
+                  <span class="input-label">VIN</span>
+                  <label class="item-input-wrapper">
+                      <input type="text" ng-model="tradein.vin">
+                  </label>
+                  <button class="button button-clear button-calm ac-pad-left ac-short-button" ng-click="startScan();">
+                      Scan
+                  </button>
+              </div>
 
-            <div class="item item-input-inset">
-                <span class="input-label">Type</span>
-                <input class="ac-radio" type="radio" ng-model="type.name" value="new">New
-                <input class="ac-radio" type="radio" ng-model="type.name" value="pre-owned">Pre-Owned
-            </div>
+              <div class="item item-input-inset">
+                  <span class="input-label">Type</span>
+                  <input class="ac-radio" type="radio" ng-model="type.name" value="new">New
+                  <input class="ac-radio" type="radio" ng-model="type.name" value="pre-owned">Pre-Owned
+              </div>
 
-            <div class="item item-divider">
-                <div class="row ac-quote-vehicle-row ac-regular">
-                    <div class="col col-40">Year</div>
-                    <div class="col col-60">{{tradein.year}}</div>
-                </div>
-                <div class="row ac-quote-vehicle-row ac-regular">
-                    <div class="col col-40">Make</div>
-                    <div class="col col-60">{{tradein.make}}</div>
-                </div>
-                <div class="row ac-quote-vehicle-row ac-regular">
-                    <div class="col col-40">Model</div>
-                    <div class="col col-60">{{tradein.model}}</div>
-                </div>
-                <div class="row ac-quote-vehicle-row ac-regular">
-                    <div class="col col-40">Style</div>
-                    <div class="col col-60">{{tradein.style}}</div>
-                </div>
-            </div>
+              <div class="item item-divider">
+                  <div class="row ac-quote-vehicle-row ac-regular">
+                      <div class="col col-40">Year</div>
+                      <div class="col col-60">{{tradein.year}}</div>
+                  </div>
+                  <div class="row ac-quote-vehicle-row ac-regular">
+                      <div class="col col-40">Make</div>
+                      <div class="col col-60">{{tradein.make}}</div>
+                  </div>
+                  <div class="row ac-quote-vehicle-row ac-regular">
+                      <div class="col col-40">Model</div>
+                      <div class="col col-60">{{tradein.model}}</div>
+                  </div>
+                  <div class="row ac-quote-vehicle-row ac-regular">
+                      <div class="col col-40">Style</div>
+                      <div class="col col-60">{{tradein.style}}</div>
+                  </div>
+              </div>
 
-            <button ng-hide="view.editable" class="button button-block button-balanced" ng-click="getPhoto()">GET PHOTO</button>
+              <button ng-hide="view.editable" class="button button-block button-balanced" ng-click="getPhoto()">GET PHOTO</button>
 
-            <div class="item item-image ac-vehicle-detail-img">
-                <ion-slide-box show-pager="false">
-                    <ion-slide ng-repeat="imageUrl in vehicle.imageUrl">
-                        <img ng-repeat="image in allImages" ng-src="data:image/jpeg;base64,{{image}}" />
-                    </ion-slide>
-                </ion-slide-box>
+              <div class="item item-image ac-vehicle-detail-img">
+                  <ion-slide-box show-pager="false">
+                      <ion-slide ng-repeat="imageUrl in vehicle.imageUrl">
+                          <img ng-repeat="image in allImages" ng-src="data:image/jpeg;base64,{{image}}" />
+                      </ion-slide>
+                  </ion-slide-box>
 
-                <img id="image" src="" style="display:none;width:200px;height:100px">
-            </div>
+                  <img id="image" src="" style="display:none;width:200px;height:100px">
+              </div>
 
-        </div>
+          </div>
 
-    </ion-content>
-</ion-view>
+      </ion-content>
+</ion-modal-view>
