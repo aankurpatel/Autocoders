@@ -76,7 +76,7 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
                   var vehicleData = JSON.parse(result.data);
                   $scope.vehicle.make = vehicleData.make.name;
                   $scope.vehicle.model = vehicleData.model.name;
-                  $scope.vehicle.vehicleType = vehicleData.vehicleStyle;
+                  $scope.vehicle.style = vehicleData.vehicleStyle;
                   $scope.vehicle.value = "6000";
                   $scope.vehicle.year = vehicleData.years[0].year;
                 });
