@@ -70,6 +70,7 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
                     "Format: " + result.format + "<br/>" +
                     "Cancelled: " + result.cancelled;
                 $scope.vehicle.vin = result.text;
+                $scope.vehicle.value = "6000";
             },
                 function(error) {
                     //alert("Scanning failed: " + error);
