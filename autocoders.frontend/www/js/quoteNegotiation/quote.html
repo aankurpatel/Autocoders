@@ -29,7 +29,7 @@
             <div class="item item-divider">
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-40">Tax ({{view.quote.taxRate}}%)</div>
-                    <div class="col col-60 ac-right">$</div>
+                    <div class="col col-60 ac-right">{{(vehicle.featPrice * view.quote.taxRate) / 100 | currency : '$' : 0}}</div>
                 </div>
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-40">Title Fee</div>
@@ -44,16 +44,16 @@
             <div class="item item-divider">
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-40">Loan Term</div>
-                    <div class="col col-60 ac-right">{{view.quote.term}}</div>
+                    <div class="col col-60 ac-right">
+                        {{view.quote.term}}
+                        <span class="secondary-text-color">Months</span>
+                    </div>
                 </div>
                 <div class="row ac-quote-vehicle-row ac-regular">
                     <div class="col col-40">Loan APR</div>
                     <div class="col col-60 ac-right">{{view.quote.apr}}%</div>
                 </div>
             </div>
-
-
-
 
             <div class="item item-input-inset" ng-show="view.editable">
                 <span class="input-label">Offer Price</span>
