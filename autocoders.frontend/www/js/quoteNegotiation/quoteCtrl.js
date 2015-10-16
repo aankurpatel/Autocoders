@@ -12,7 +12,7 @@ angular.module('starter')
 		$scope.hideNegotiations = false;
 		$scope.buyerQuoteOffer = {};
 		var self = this;
-		
+
 		self.setPaymentOnQuote = function(quote, paymentInfo){
 			quote.featPrice = $scope.vehicle.featPrice;
 			quote.titleFee =  paymentInfo.titleFee;
@@ -23,7 +23,7 @@ angular.module('starter')
 			quote.taxRate = paymentInfo.taxRate;
 			quote.monthlyPayment = paymentInfo.monthlyPayment;
 		};
-		
+
 		self.AddQuote = function(status){
 			quoteApiProxy.addQuote($scope.buyerQuoteOffer, $scope.sellerQuote, $scope.vehicle, $scope.buyer, $scope.vehicle.accountKey)
 				.then(function (finalQuote) {
@@ -44,13 +44,13 @@ angular.module('starter')
 					$state.go("app.quoteSubmitted");
 				});
 		};
-		
+
 		$scope.AcceptQuote = function(){
 			$scope.sellerQuote.offerPrice = $scope.buyerQuoteOffer.offerPrice;
 			$scope.buyerQuoteOffer = $scope.sellerQuote;
 			self.AddQuote("BuyerAccepted");
 		};
-		
+
 		$scope.CalcPayment = function(){
 			//Request payments
 			quoteService.getQuote($scope.buyerQuoteOffer.offerPrice, $scope.buyerQuoteOffer.term, $scope.buyerQuoteOffer.tradeInValue, $scope.buyerQuoteOffer.downPayment, $scope.zipCode).then(
@@ -62,7 +62,7 @@ angular.module('starter')
 				}
 			);
 		};
-		
+
 		self.buildQuote = function(){
 			var finalQuote = {};
 			finalQuote.id = $scope.finalQuote.id;
@@ -74,6 +74,10 @@ angular.module('starter')
 			finalQuote.status = "Negotiating";
 			return finalQuote;
 		};
+
+    $scope.scanVin = function(){
+      $state.go('app.addEditVehicle');
+    }
 
 		$scope.MakeOffer = function () {
 		   // alert('accountKey:' + $scope.vehicle.accountKey + 'userKey:' + $scope.buyer.accountKey);
@@ -98,7 +102,7 @@ angular.module('starter')
 							};
 							pushNotificationService.sendNotification($scope.vehicle.accountKey,message);
 							$state.go("app.quoteSubmitted");
-						});	
+						});
 				}else{
 					self.AddQuote();
 				}
@@ -111,8 +115,8 @@ angular.module('starter')
 				$scope.view.offerStatus = "SUBMIT OFFER";
 			}
 		};
-		
-				
+
+
 		self.openSellerQuote = function () {
 		    var quote = $stateParams.quote;
 		    $scope.buyerQuoteOffer = JSON.parse(JSON.stringify(quote.buyerquote));
@@ -133,8 +137,8 @@ angular.module('starter')
 				$scope.view.editable = true;
 			}
 		};
-		
-		
+
+
 		//Init
 	    (function () {
 			$scope.view.offerStatus = "MAKE OFFER";
@@ -161,7 +165,7 @@ angular.module('starter')
 			userApiProxy.getUsers("(accountKey eq '"+ userApiProxy.getCurrentUser().accountKey + "')").then(function(user){
 				$scope.buyer = user.data[0];
 			});
-		    
+
 			//Request payments
 			quoteService.getQuote($scope.vehicle.featPrice, $scope.sellerQuote.term, $scope.sellerQuote.tradeInValue, $scope.sellerQuote.downPayment, $scope.zipCode).then(
 				function(payment){
