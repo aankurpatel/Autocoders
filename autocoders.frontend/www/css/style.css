@@ -63,6 +63,11 @@
     padding-top: 1px;
 }
 
+input[type="radio"].ac-radio {
+    margin-left: 20px;
+    margin-right: 5px;
+}
+
 /* Navigation */
 .bar .button.back-button .ion-android-arrow-back {
     font-size: 30px;
