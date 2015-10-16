@@ -3,65 +3,65 @@
 
 app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordovaBarcodeScanner, vehicleApiProxy, edmundsService,
                                               $cordovaToast,photoService,$cordovaImagePicker,$cordovaCamera) {
-    $scope.selectedMake = '';
-    $scope.selectedModel = '';
-    $scope.makes = {};
-    $scope.models = {};
-    $scope.styles = {};
-    $scope.vehicle = {};
+    //$scope.selectedMake = '';
+    //$scope.selectedModel = '';
+    //$scope.makes = {};
+    //$scope.models = {};
+    //$scope.styles = {};
+    //$scope.vehicle = {};
+    $scope.vehicle={};
+    //getAllMakes();
+    //
+    //function getAllMakes() {
+    //    edmundsService.getAllMakes()
+    //        .success(function(data) {
+    //            $scope.makes = data.makes;
+    //        })
+    //        .error(function(error) {
+    //            $scope.status = 'Unable to load Makes data: ' + error.message;
+    //        });
+    //}
 
-    getAllMakes();
+    //$scope.getModelByMake = function() {
+    //    edmundsService.getAllModels($scope.vehicle.make.name)
+    //        .success(function(data) {
+    //            //alert(data);
+    //            $scope.models = data.models;
+    //        })
+    //        .error(function(error) {
+    //            $scope.status = 'Unable to load Models data: ' + error.message;
+    //        });
+    //};
 
-    function getAllMakes() {
-        edmundsService.getAllMakes()
-            .success(function(data) {
-                $scope.makes = data.makes;
-            })
-            .error(function(error) {
-                $scope.status = 'Unable to load Makes data: ' + error.message;
-            });
-    }
+    //$scope.getStyleByMakeModelYear = function(selectedMake, selectedModel, selectedYear) {
+    //    //alert(selectedYear);
+    //    edmundsService.getAllStyles($scope.vehicle.make.name, selectedModel.name, selectedYear)
+    //        .success(function(data) {
+    //            // alert(data.styles);
+    //            $scope.styles = data.styles;
+    //
+    //        })
+    //        .error(function(error) {
+    //            $scope.status = 'Unable to load Styles data: ' + error.message;
+    //        });
+    //};
 
-    $scope.getModelByMake = function() {
-        edmundsService.getAllModels($scope.vehicle.make.name)
-            .success(function(data) {
-                //alert(data);
-                $scope.models = data.models;
-            })
-            .error(function(error) {
-                $scope.status = 'Unable to load Models data: ' + error.message;
-            });
-    };
-
-    $scope.getStyleByMakeModelYear = function(selectedMake, selectedModel, selectedYear) {
-        //alert(selectedYear);
-        edmundsService.getAllStyles($scope.vehicle.make.name, selectedModel.name, selectedYear)
-            .success(function(data) {
-                // alert(data.styles);
-                $scope.styles = data.styles;
-
-            })
-            .error(function(error) {
-                $scope.status = 'Unable to load Styles data: ' + error.message;
-            });
-    };
-
-    $scope.getTrueCost = function () {
-        if (!$scope.vehicle.styleId) {
-            $cordovaToast.show('Please enter zipcode and style to get the true cost', 'long', 'center');
-            return;
-        }
-        //alert($scope.vehicle.styleId);
-        //alert($scope.vehicle.zipcode);
-        edmundsService.getTCO($scope.vehicle.styleId, $scope.vehicle.zipcode)
-           .success(function (data) {
-                //alert(data.value);
-               $scope.vehicle.tco = data.value;
-           })
-           .error(function (error) {
-               $scope.status = 'Unable to load Styles data: ' + error.message;
-           });
-    };
+    //$scope.getTrueCost = function () {
+    //    if (!$scope.vehicle.styleId) {
+    //        $cordovaToast.show('Please enter zipcode and style to get the true cost', 'long', 'center');
+    //        return;
+    //    }
+    //    //alert($scope.vehicle.styleId);
+    //    //alert($scope.vehicle.zipcode);
+    //    edmundsService.getTCO($scope.vehicle.styleId, $scope.vehicle.zipcode)
+    //       .success(function (data) {
+    //            //alert(data.value);
+    //           $scope.vehicle.tco = data.value;
+    //       })
+    //       .error(function (error) {
+    //           $scope.status = 'Unable to load Styles data: ' + error.message;
+    //       });
+    //};
 
     $scope.startScan = function() {
         $cordovaBarcodeScanner.scan()
@@ -70,7 +70,19 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
                     "Format: " + result.format + "<br/>" +
                     "Cancelled: " + result.cancelled;
                 $scope.vehicle.vin = result.text;
-                $scope.vehicle.value = "6000";
+                alert(result.text);
+                edmundsService.decodeVin(result.text).then(function(result){
+                  alert(JSON.stringify(result));
+                  var vehicleData = JSON.parse(result.data);
+                  $scope.vehicle.make = vehicleData.make.name;
+                  $scope.vehicle.model = vehicleData.model.name;
+                  $scope.vehicle.vehicleType = vehicleData.vehicleStyle;
+                  $scope.vehicle.value = "6000";
+                  $scope.vehicle.year = vehicleData.years[0].year;
+                });
+
+
+
             },
                 function(error) {
                     //alert("Scanning failed: " + error);
@@ -113,7 +125,7 @@ app.controller('addEditVehicleCtrl', function($scope, $location, $state, $cordov
     $scope.saveVehicle = function() {
         vehicleApiProxy.saveVehicle($scope.vehicle)
             .then(function() {
-                go('app.myVehicles');
+                go('app.StartQuote');
             });
     };
 
